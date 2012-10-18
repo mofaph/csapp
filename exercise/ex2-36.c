@@ -5,9 +5,6 @@
  * 要使用 64 位精度的数据类型 long long，而不使用除法。
  */
 
-#include <limits.h>
-#include <stdio.h>
-
 /*
  * Determine whether arguments can be multipled without overflow
  *
