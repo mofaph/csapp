@@ -17,6 +17,8 @@
 
 2.60 exercise/ex2-60.c
 
+2.61 exercise/ex2-61.c
+
 2.62 exercise/ex2-62.c
 
 2.64 exercise/ex2-64.c
