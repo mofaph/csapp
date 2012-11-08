@@ -77,6 +77,27 @@
      上运行时，这个函数生成 1，而其他情况下生成 0。你的代码应该可以运行在任何字
      长的机器上。在几种机器上测试你的代码。
 
+2.63 将下面的 C 函数代码补充完整。函数 srl 用算术右移（由值 xsra 给出）来完成逻
+     辑右移，后面的其他操作不包括右移或者除法。函数 sra 用逻辑右移（由值 xsrl 给
+     出）来完成算术右移，后面的其他操作不包括右移或者除法。可以通过计算
+     8*sizeof(int) 来确定数据类型 int 中的位数 w。位移量 k 的取值范围位 0~w-1。
+
+     int sra(int x, int k) {
+         /* Perform shift logically */
+         int xsrl = (unsigned) x >> k;
+         .
+         .
+         .
+     }
+
+     unsigned srl(unsigned x, int k) {
+         /* Perform shift arithmetically */
+         unsigned xsra = (int) x >> k;
+         .
+         .
+         .
+     }
+
 2.64 写出代码实现如下函数：
 
      /* Return 1 when any even bit of x equals 1; 0 otherwise.
