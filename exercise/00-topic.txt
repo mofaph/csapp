@@ -107,6 +107,15 @@
 
      函数应该遵循位级整数编码规则，不过你可以假设数据类型 int 有 w=32 位。
 
+2.65 写出代码实现如下函数：
+
+     /* Return 1 when x contains an even number of 1s; 0 otherwise.
+        Assume w=32 */
+     int even_ones(unsigned x);
+
+     函数应该遵循位级编码规则，不过你可以假设数据类型 int 有 w=32 位。
+     你的代码最多只能包含 12 个算术运算、位运算和逻辑运算。
+
 2.66 写出代码实现如下的函数：
 
      /*
