@@ -38,3 +38,5 @@
 2.70 exercise/ex2-70.c
 
 2.71 exercise/ex2-71.c
+
+2.73 exercise/ex2-73.c

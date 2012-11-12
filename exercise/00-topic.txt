@@ -210,3 +210,13 @@
 
      A. 这段代码错在哪里？
      B. 给出函数的正确实现，只能使用左右移位和一个减法。
+
+2.73 写出具有如下原型的函数的代码：
+
+     /* Addition that saturates to TMin or TMax */
+     int saturating_add(int x, int y);
+
+     同正常的补码溢出的方式不同，当正溢出时，saturating_add 返回 TMax，负溢出时，
+     返回 TMin。这种运算常常用在执行数字信号处理的程序中。
+
+     你的函数应该遵循位级整数编码规则。
