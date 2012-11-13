@@ -241,3 +241,10 @@
      返回 TMin。这种运算常常用在执行数字信号处理的程序中。
 
      你的函数应该遵循位级整数编码规则。
+
+2.74 写出具有如下原型的函数的代码：
+
+     /* Determine whether subtracting arguments will cause overflow */
+     int tsub_ovf(int x, int y);
+
+     如果计算 x-y 导致溢出，这个函数就返回 1。

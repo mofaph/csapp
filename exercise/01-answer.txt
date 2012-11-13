@@ -12,33 +12,19 @@
 ================================================================================
 
 2.58 exercise/ex2-58.c
-
 2.59 exercise/ex2-59.c
-
 2.60 exercise/ex2-60.c
-
 2.61 exercise/ex2-61.c
-
 2.62 exercise/ex2-62.c
-
 2.63 exercise/ex2-63.c
-
 2.64 exercise/ex2-64.c
-
 2.65 exercise/ex2-65.c
-
 2.66 exercise/ex2-66.c
-
 2.67 exercise/ex2-67.c
-
 2.68 exercise/ex2-68.c
-
 2.69 exercise/ex2-69.c
-
 2.70 exercise/ex2-70.c
-
 2.71 exercise/ex2-71.c
-
 2.72 exercise/ex2-72.c
-
 2.73 exercise/ex2-73.c
+2.74 exercise/ex2-74.c
