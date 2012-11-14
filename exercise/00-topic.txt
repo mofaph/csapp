@@ -257,3 +257,24 @@
      B. K=9
      C. K=30
      D. K=-56
+
+2.81 我们在一个 int 类型值为 32 位的机器上运行程序。这些值以补码形式表示，而且它
+     们都是算术右移的。unsigned 类型的值也是 32 位的。
+
+     我们产生随机数 x 和 y，并且把它们转换成无符号数，显示如下：
+
+     /* Create some arbitrary values */
+     int x = random();
+     int y = random();
+     /* Convert to unsigned */
+     unsigned ux = (unsigned) x;
+     unsigned uy = (unsigned) y;
+
+     对于下列每个 C 表达式，你要指出表达式是否总是为 1。如果它总是为 1，那么请描
+     述其中的数学原理。否则，列举一个使它为 0 的参数示例。
+
+     A. (x > y) == (-x < -y)
+     B. ((x + y) << 5) + x - y == 31 * y + 33 * x
+     C. ~x + ~y == ~(x + y)
+     D. (int)(ux - uy) == -(y - x)
+     E. ((x >> 1) << 1) <= x
