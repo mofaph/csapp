@@ -32,4 +32,5 @@
 2.76 exercise/ex2-76.c
 2.77 exercise/ex2-77.c
 2.78 exercise/ex2-78.c
+2.79 exercise/ex2-79.c
 2.81 exercise/ex2-81.c
