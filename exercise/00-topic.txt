@@ -328,3 +328,19 @@
         (a) 001
         (b) 1001
         (c) 000111
+
+2.83 填写下列程序的返回值，这个程序是测试它的第一个参数是否大于或者等于第二个参
+     数。假定函数 f2u 返回一个无符号 32 位数字，其位表示与它的浮点参数相同。你可
+     以假设两个参数都不是 NaN。两种 0，+0 和 -0 都认为是相等的。
+
+     int float_ge(float x, float y) {
+         unsigned ux = f2u(x);
+         unsigned uy = f2u(y);
+
+         /* Get the sign bits */
+         unsigned sx = ux >> 31;
+         unsigned sy = uy >> 31;
+
+         /* Given an expression using only ux, uy, sx, sy */
+         return ________;
+     }
