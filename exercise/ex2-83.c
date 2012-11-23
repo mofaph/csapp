@@ -74,3 +74,17 @@ int float_ge(float x, float y)
                           : !sx ? ux >= uy
                                 : ux <= uy;
 }
+
+/* ftp://202.120.40.101/Courses/Computer_Architecture/csapp.cs.cmu.edu/im/code/data/floatge-ans.c */
+int float_ge_ans(float x, float y)
+{
+        unsigned ux = f2u(x);
+        unsigned uy = f2u(y);
+        unsigned sx = ux >> 31;
+        unsigned sy = uy >> 31;
+
+        return (ux << 1 == 0 && uy << 1 == 0) || /* ux = uy = 0 */
+                (!sx && sy) ||                   /* x >= 0, y < 0 */
+                (!sx && !sy && ux >= uy) ||      /* x >= 0, y >= 0 */
+                (sx && sy && ux <= uy);          /* x < 0, y < 0 */
+}
