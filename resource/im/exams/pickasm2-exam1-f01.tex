@@ -1,0 +1,52 @@
+%%COMMENT:3:3:Matching C two's comp arithmetic to the corresponding assembly:
+\begin{problem}{3}
+\end{problem}
+Consider the following C functions and assembly code:
+
+\vspace{.5ex}
+
+\begin{minipage}{3in}
+\begin{ccode}
+\begin{alltt}
+int fun7(int a)
+\verb:{:
+    return a * 30;
+\verb:}:
+\end{alltt}
+\begin{alltt}
+int fun8(int a)
+\verb:{:
+    return a * 34;
+\verb:}:
+\end{alltt}
+\begin{alltt}
+int fun9(int a)
+\verb:{:
+    return a * 18;
+\verb:}:
+\end{alltt}
+\end{ccode}
+\end{minipage}
+\begin{minipage}{3in}
+\begin{scode}
+\begin{alltt}
+  pushl %ebp{\em\scriptsize }
+  movl %esp,%ebp{\em\scriptsize }
+  movl 8(%ebp),%eax{\em\scriptsize }
+  sall $4,%eax{\em\scriptsize }
+  addl 8(%ebp),%eax{\em\scriptsize }
+  addl %eax,%eax{\em\scriptsize }
+  movl %ebp,%esp{\em\scriptsize }
+  popl %ebp{\em\scriptsize }
+  ret{\em\scriptsize }
+\end{alltt}
+\end{scode}
+\end{minipage}
+
+
+\vspace{.5ex}
+
+Which of the functions compiled into the assembly code shown?
+\shortanswer{.5}
+\answer{fun8}
+

@@ -1,0 +1,165 @@
+%%COMMENT:6:5:Low-level cache access:
+\begin{problem}{5}
+The following problem concerns basic cache lookups.
+\end{problem}
+
+\begin{itemize}
+\item The memory is byte addressable.
+\item Memory accesses are to {\bf 1-byte words} (not 4-byte words).
+\item Physical addresses are 12 bits wide.
+\item The cache is 4-way set associative, with a 2-byte block size and 32 total lines.
+\end{itemize}
+
+In the following tables, {\bf all numbers are given in hexadecimal}.
+The contents of the cache are as follows:
+
+\begin{center}
+\small
+\begin{tabular}{|c||c c|c c||c c|c c||c c|c c||c c|c c|}
+\hline
+\multicolumn{17}{|c|}{4-way Set Associative Cache}\\
+\hline
+\makebox[.2in]{Index} & \makebox[.2in]{Tag} & \makebox[.2in]{Valid} &
+\makebox[.3in]{Byte 0} & \makebox[.3in]{Byte 1} &
+\makebox[.2in]{Tag} & \makebox[.2in]{Valid} &
+\makebox[.3in]{Byte 0} & \makebox[.3in]{Byte 1} &
+\makebox[.2in]{Tag} & \makebox[.2in]{Valid} &
+\makebox[.3in]{Byte 0} & \makebox[.3in]{Byte 1} &
+\makebox[.2in]{Tag} & \makebox[.2in]{Valid} &
+\makebox[.3in]{Byte 0} & \makebox[.3in]{Byte 1} \\ 
+\hline
+\hline
+0  &  29 & 0 & 34 & 29  &  87 & 0 & 39 & AE  &  7D & 1 & 68 & F2  &  8B & 1 & 64 & 38 \\
+1  &  F3 & 1 & 0D & 8F  &  3D & 1 & 0C & 3A  &  4A & 1 & A4 & DB  &  D9 & 1 & A5 & 3C \\
+2  &  A7 & 1 & E2 & 04  &  AB & 1 & D2 & 04  &  E3 & 0 & 3C & A4  &  01 & 0 & EE & 05 \\
+3  &  3B & 0 & AC & 1F  &  E0 & 0 & B5 & 70  &  3B & 1 & 66 & 95  &  37 & 1 & 49 & F3 \\
+4  &  80 & 1 & 60 & 35  &  2B & 0 & 19 & 57  &  49 & 1 & 8D & 0E  &  00 & 0 & 70 & AB \\
+5  &  EA & 1 & B4 & 17  &  CC & 1 & 67 & DB  &  8A & 0 & DE & AA  &  18 & 1 & 2C & D3 \\
+6  &  1C & 0 & 3F & A4  &  01 & 0 & 3A & C1  &  F0 & 0 & 20 & 13  &  7F & 1 & DF & 05 \\
+7  &  0F & 0 & 00 & FF  &  AF & 1 & B1 & 5F  &  99 & 0 & AC & 96  &  3A & 1 & 22 & 79 \\
+\hline
+\end{tabular}
+%\end{minipage}
+\end{center}
+
+\section*{Part 1}
+
+The box below shows the format of a physical address.  Indicate
+(by labeling the diagram) the fields that would be used to determine
+the following:\\
+
+\begin{tabular}{cl}
+{\em CO} & The block offset within the cache line\\
+{\em CI} & The cache index\\
+{\em CT} & The cache tag\\
+\end{tabular}
+
+\vspace{0.2in}
+{\small
+\begin{tabular} {cccccccccccc} 
+\makebox[.15in]{11} & \makebox[.15in]{10} &
+\makebox[.15in]{9} & \makebox[.15in]{8} & 
+\makebox[.15in]{7} & \makebox[.15in]{6} & 
+\makebox[.15in]{5} & \makebox[.15in]{4} & 
+\makebox[.15in]{3} & \makebox[.15in]{2} & 
+\makebox[.15in]{1} & \makebox[.15in]{0} \\ 
+\end{tabular} 
+}
+
+\begin{tabular} {|c|c|c|c|c|c|c|c|c|c|c|c|}
+\hline
+\makebox[.15in]{} & \makebox[.15in]{} & 
+\makebox[.15in]{} & \makebox[.15in]{} & \makebox[.15in]{} & \makebox[.15in]{} & 
+\makebox[.15in]{} & \makebox[.15in]{} & \makebox[.15in]{} & \makebox[.15in]{} & 
+\makebox[.15in]{} & \makebox[.15in]{} \\ 
+&&&&&&&&&&&\\
+\hline
+\end{tabular}
+
+\vspace{0.2in}
+%***********************************************************
+% solution
+% CT: [11-4]	CI: [3-1]	CO: [0]
+%***********************************************************
+
+\newpage
+\section*{Part 2}
+For the given physical address, indicate the cache entry accessed
+and the cache byte value returned {\bf in hex}.  
+Indicate whether a cache miss occurs.  
+
+If there is a cache miss, enter ``-'' for ``Cache Byte returned''.
+
+
+{\bf Physical address}:  {\tt 3B6}
+
+\begin{subproblem}
+
+\item Physical address format (one bit per box)\\
+\begin{tabular} {cccccccccccc}
+\makebox[.15in]{11} & \makebox[.15in]{10} & 
+\makebox[.15in]{9} & \makebox[.15in]{8} & 
+\makebox[.15in]{7} & \makebox[.15in]{6} & 
+\makebox[.15in]{5} & \makebox[.15in]{4} & 
+\makebox[.15in]{3} & \makebox[.15in]{2} & 
+\makebox[.15in]{1} & \makebox[.15in]{0} \\ 
+\end{tabular} 
+
+\begin{tabular} {|c|c|c|c|c|c|c|c|c|c|c|c|}
+\hline
+\makebox[.15in]{} & \makebox[.15in]{} & \makebox[.15in]{} & \makebox[.15in]{} & 
+\makebox[.15in{}] & \makebox[.15in]{} & \makebox[.15in]{} & \makebox[.15in]{} & 
+\makebox[.15in]{} & \makebox[.15in]{} & \makebox[.15in]{} & \makebox[.15in]{}\\ 
+\hline
+\end{tabular}
+
+\vspace*{.5\baselineskip}
+
+\item Physical memory reference
+\vspace{.1in}
+
+\begin{tabular}{|l|l|}
+\hline
+Parameter & Value\\
+\hline
+\hline
+Cache Offset (CO) & 0x\\
+\hline
+Cache Index (CI) & 0x\\
+\hline
+Cache Tag (CT) & 0x\\
+\hline
+Cache Hit? (Y/N) &\\
+\hline
+Cache Byte returned & 0x\\
+\hline
+\end{tabular}
+
+\end{subproblem}
+
+
+\answer{
+1. 	CT: [11-4]   CI: [1-3]   CO: [0]
+
+2.
+   A.	0011 1011 0110
+
+   B.	CO:		0x0
+	CI:		0x3
+	CT:		0x3B
+	cache hit?	Y
+	cache byte?	0x66
+}
+%***********************************************************
+% solution
+%
+% A. 	0011 1011 0110
+%
+% B.
+%    	CO:		0x0
+%	CI:		0x3
+%	CT:		0x3B
+%	cache hit?	Y
+%	cache byte?	0x66
+%***********************************************************
+

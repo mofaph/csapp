@@ -1,0 +1,99 @@
+%%COMMENT:3:7:Mapping of arithment operations to assembly:
+\begin{problem}{7}
+
+\noindent
+Match each of the assembler routines on the left with the equivalent
+C function on the right.
+
+\vspace{.2in}
+\begin{minipage}[l]{2.5in}
+
+\begin{verbatim}
+foo1:
+     pushl %ebp
+     movl %esp,%ebp
+     movl 8(%ebp),%eax
+     sall $4,%eax
+     subl 8(%ebp),%eax
+     movl %ebp,%esp
+     popl %ebp
+     ret
+
+foo2:
+     pushl %ebp
+     movl %esp,%ebp
+     movl 8(%ebp),%eax
+     testl %eax,%eax
+     jge .L4
+     addl $15,%eax
+.L4:
+     sarl $4,%eax
+     movl %ebp,%esp
+     popl %ebp
+     ret
+
+foo3:
+     pushl %ebp
+     movl %esp,%ebp
+     movl 8(%ebp),%eax
+     shrl $31,%eax
+     movl %ebp,%esp
+     popl %ebp
+     ret
+
+
+\end{verbatim}
+
+
+
+
+\end{minipage}\makebox[1in]{}\begin{minipage}[r]{2.5in}
+\begin{verbatim}
+int choice1(int x)
+{
+    return (x < 0);
+}
+
+
+int choice2(int x)
+{
+    return (x << 31) & 1;
+}
+
+
+int choice3(int x)
+{
+    return 15 * x;
+}
+
+
+int choice4(int x)
+{
+    return (x + 15) /4
+}
+
+
+int choice5(int x)
+{
+    return x / 16;
+}
+
+
+int choice6(int x)
+{
+    return (x >> 31);    
+}
+
+\end{verbatim}
+\bf{Fill in your answers here:}\\
+\normalfont
+\noindent foo1 corresponds to choice \rule{45pt}{.1pt}.\\
+% Answer: Choice 3: return 15*x;
+foo2 corresponds to choice \rule{45pt}{.1pt}.\\
+% Answer: Choice 5: return x / 16;
+foo3 corresponds to choice \rule{45pt}{.1pt}.\\
+% Answer: Choice 6 return (x >> 31);    
+\end{minipage}
+
+
+\end{problem}

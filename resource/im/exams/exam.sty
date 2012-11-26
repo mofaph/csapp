@@ -1,0 +1,55 @@
+%% Template for exam questions
+\setlength{\parindent}{0em}
+\setlength{\parskip}{1ex}
+
+\newcounter{maxpage}
+\setcounter{maxpage}{0}
+\renewcommand{\thepage}{Page \arabic{page} of \arabic{maxpage}}
+\samepage
+\raggedbottom
+
+\newcounter{prob}
+\newenvironment{problem}[1]{%
+\addtocounter{prob}{1}%
+\begin{minipage}{\textwidth}%
+{\Large\bf Problem \arabic{prob}. (#1 points):}\par}{\medskip\end{minipage}}
+
+% Modify  enumeration
+\newenvironment{choice}{\begin{enumerate}%
+\def\labelenumi{\Alph{enumi}.}}{\end{enumerate}}
+
+% Modify  enumeration
+\newenvironment{subproblem}{\begin{enumerate}%
+\def\labelenumi{\Alph{enumi}.}}{\end{enumerate}}
+
+% Create vertical space of #1 inches for an answer
+\newcommand{\shortanswer}[1]{\par\vspace*{#1in}}
+
+% Like itemize but with less separation
+\newenvironment{denseitemize}% 
+{\begin{itemize}\setlength{\itemsep}{0pt}\setlength{\parsep}{0pt}}%
+{\end{itemize}}
+
+%% Use the following Macro to supply the answer to your problem.  That
+%% way we can (someday) generate a solution automatically.
+\newcommand{\answer}[1]{}
+%% Example usage:
+\answer{
+First line of the answer.
+...
+Last line of the answer.
+}
+
+%% For commenting out large chunks of a Latex document
+\newcommand{\comment}[1]{}
+
+%% ccode- for displaying formatted C code (c2tex) 
+\newenvironment{ccode}%
+{\small}%
+{}
+
+%% scode - for displaying formatted ASM code (s2tex and d2tex)
+\newenvironment{scode}%
+{\small}
+{}
+

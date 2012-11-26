@@ -1,0 +1,343 @@
+%%COMMENT:10:10:VM address translation:
+\begin{problem}{10}
+The following problem concerns 
+the way virtual addresses are translated into physical addresses.
+\end{problem}
+
+\begin{itemize}
+\item The memory is byte addressable.
+\item Memory accesses are to {\bf 1-byte words} (not 4-byte words).
+\item Virtual addresses are 16 bits wide.
+\item Physical addresses are 14 bits wide.
+\item The page size is 1024 bytes.
+\item The TLB is 4-way set associative with 16 total entries.
+\end{itemize}
+
+In the following tables, {\bf all numbers are given in hexadecimal}.
+The contents of the TLB and the page table for the first 32 pages
+are as follows:
+
+\begin{center}
+\begin{tabular}{|c||c c c|}
+\hline
+\multicolumn{4}{|c|}{TLB}\\
+\hline
+\makebox[.3in]{Index} & \makebox[.3in]{Tag} & \makebox[.3in]{PPN} & \makebox[.3in]{Valid} \\ 
+\hline
+\hline
+0 & 8 & 7 & 1 \\
+  & F & 6 & 1 \\
+  & 0 & 3 & 0 \\
+  & 1 & F & 1 \\ \hline
+1 & 1 & E & 1 \\
+  & 2 & 7 & 0 \\
+  & 7 & 3 & 0 \\
+  & B & 1 & 1 \\ \hline
+2 & 0 & 0 & 0 \\
+  & C & 1 & 0 \\
+  & F & 8 & 1 \\
+  & 7 & 6 & 1 \\ \hline
+3 & 8 & 4 & 0 \\
+  & 3 & 5 & 0 \\
+  & 0 & D & 1 \\
+  & 2 & 9 & 0 \\
+\hline
+\end{tabular}
+\hspace{.25in}
+%\begin{minipage}{3.1in}
+\begin{tabular}{|c c c|c c c|}
+\hline
+\multicolumn{6}{|c|}{Page Table}\\
+\hline
+\makebox[.25in]{VPN} & \makebox[.25in]{PPN} & \makebox[.25in]{Valid} &
+\makebox[.25in]{VPN} & \makebox[.25in]{PPN} & \makebox[.25in]{Valid} \\ 
+\hline
+\hline
+00 & 2 & 0 & 10 & 1 & 1 \\
+01 & 5 & 1 & 11 & 3 & 0 \\
+02 & 7 & 1 & 12 & 9 & 0 \\
+03 & 9 & 0 & 13 & 7 & 1 \\
+04 & F & 1 & 14 & D & 1 \\
+05 & 3 & 1 & 15 & 5 & 0 \\
+06 & B & 0 & 16 & E & 1 \\
+07 & D & 1 & 17 & 6 & 0 \\
+08 & 7 & 1 & 18 & 1 & 0 \\
+09 & C & 0 & 19 & 0 & 1 \\
+0A & 3 & 0 & 1A & 8 & 1 \\
+0B & 1 & 1 & 1B & C & 0 \\
+0C & 0 & 1 & 1C & 0 & 0 \\
+0D & D & 0 & 1D & 2 & 1 \\
+0E & 0 & 0 & 1E & 7 & 0 \\
+0F & 1 & 0 & 1F & 3 & 0 \\
+\hline
+\end{tabular}
+
+\end{center}
+
+\newpage
+\section*{Part 1}
+
+\begin{choice}
+
+\item The box below shows the format of a virtual address.  Indicate
+(by labeling the diagram) the fields (if they exist) that would be
+used to determine the following: (If a field doesn't exist, don't draw
+it on the diagram.)
+
+\begin{tabular}{cl}
+{\em VPO} & The virtual page offset\\
+{\em VPN} & The virtual page number\\
+{\em TLBI} & The TLB index\\
+{\em TLBT} & The TLB tag\\
+\end{tabular}
+\vspace{0.2in}
+
+{\small
+\begin{tabular} {cccccccccccccccc}
+\makebox[.15in]{15} & \makebox[.15in]{14} & 
+\makebox[.15in]{13} & \makebox[.15in]{12} &
+\makebox[.15in]{11} & \makebox[.15in]{10} & 
+\makebox[.15in]{9} & \makebox[.15in]{8} & 
+\makebox[.15in]{7} & \makebox[.15in]{6} & 
+\makebox[.15in]{5} & \makebox[.15in]{4} & 
+\makebox[.15in]{3} & \makebox[.15in]{2} & 
+\makebox[.15in]{1} & \makebox[.15in]{0} \\ 
+\end{tabular} 
+}
+
+\begin{tabular} {|c|c|c|c|c|c|c|c|c|c|c|c|c|c|c|c|}
+\hline
+\makebox[.15in]{} & \makebox[.15in]{} & \makebox[.15in]{} & \makebox[.15in]{} &
+\makebox[.15in]{} & \makebox[.15in]{} & \makebox[.15in]{} & \makebox[.15in]{} & 
+\makebox[.15in]{} & \makebox[.15in]{} & \makebox[.15in]{} & \makebox[.15in]{} & 
+\makebox[.15in]{} & \makebox[.15in]{} & \makebox[.15in]{} & \makebox[.15in]{} \\
+&&&&&&&&&&&&&&&\\
+\hline
+\end{tabular}
+\vspace{0.5in}
+
+\item The box below shows the format of a physical address.  Indicate
+(by labeling the diagram) the fields that would be used to determine
+the following:\\
+\begin{tabular}{cl}
+{\em PPO} & The physical page offset\\
+{\em PPN} & The physical page number\\
+\end{tabular}
+
+\vspace{0.2in}
+{\small
+\begin{tabular} {cccccccccccccc}
+\makebox[.15in]{13} & \makebox[.15in]{12} & 
+\makebox[.15in]{11} & \makebox[.15in]{10} &
+\makebox[.15in]{9} & \makebox[.15in]{8} & 
+\makebox[.15in]{7} & \makebox[.15in]{6} & 
+\makebox[.15in]{5} & \makebox[.15in]{4} & 
+\makebox[.15in]{3} & \makebox[.15in]{2} & 
+\makebox[.15in]{1} & \makebox[.15in]{0} \\ 
+\end{tabular} 
+}
+
+\begin{tabular} {|c|c|c|c|c|c|c|c|c|c|c|c|c|c|}
+\hline
+\makebox[.15in]{} & \makebox[.15in]{} & \makebox[.15in]{} & \makebox[.15in]{} & 
+\makebox[.15in]{} & \makebox[.15in]{} & \makebox[.15in]{} & \makebox[.15in]{} & 
+\makebox[.15in]{} & \makebox[.15in]{} & \makebox[.15in]{} & \makebox[.15in]{} & 
+\makebox[.15in]{} & \makebox[.15in]{} \\ 
+&&&&&&&&&&&&&\\
+\hline
+\end{tabular}
+
+\end{choice}
+
+\vspace{0.2in}
+%***********************************************************
+% solution
+% A. 	VPN: [15-10] 	VPO: [9-0]
+% 	TLBT: [15-12] 	TLBI: [11-10]
+%
+% B. 	PPN: [13-10]	PPO: [9-0]
+%***********************************************************
+
+\newpage
+\section*{Part 2}
+For the given virtual addresses, indicate the TLB entry accessed and the
+physical address. Indicate whether the TLB misses and whether a page fault
+occurs.
+
+If there is a page fault, enter ``-'' for ``PPN'' and leave part C blank.
+
+
+{\bf Virtual address}:  {\tt 2F09}
+
+\begin{choice}
+
+\item Virtual address format (one bit per box)\\
+{\small
+\begin{tabular} {cccccccccccccccc}
+\makebox[.15in]{15} & \makebox[.15in]{14} & 
+\makebox[.15in]{13} & \makebox[.15in]{12} & 
+\makebox[.15in]{11} & \makebox[.15in]{10} & 
+\makebox[.15in]{9} & \makebox[.15in]{8} & 
+\makebox[.15in]{7} & \makebox[.15in]{6} & 
+\makebox[.15in]{5} & \makebox[.15in]{4} & 
+\makebox[.15in]{3} & \makebox[.15in]{2} & 
+\makebox[.15in]{1} & \makebox[.15in]{0} \\ 
+\end{tabular} 
+}
+
+\begin{tabular} {|c|c|c|c|c|c|c|c|c|c|c|c|c|c|c|c|}
+\hline
+\makebox[.15in]{} & \makebox[.15in]{} & \makebox[.15in]{} & \makebox[.15in]{} & 
+\makebox[.15in{}] & \makebox[.15in]{} & \makebox[.15in]{} & \makebox[.15in]{} & 
+\makebox[.15in]{} & \makebox[.15in]{} & \makebox[.15in]{} & \makebox[.15in]{} & 
+\makebox[.15in]{} & \makebox[.15in]{} & \makebox[.15in]{} & \makebox[.15in]{} \\
+\hline
+\end{tabular}
+\vspace*{.5\baselineskip}
+\item Address translation \\
+\vspace{.1in} \\
+\begin{tabular}{|l|l|}
+\hline
+Parameter & {    Value    } \\
+\hline
+\hline
+VPN & \mbox{0x\ \ \ \ }\\
+\hline
+TLB Index & 0x\\
+\hline
+TLB Tag & 0x\\
+\hline
+TLB Hit? (Y/N) & \\
+\hline
+Page Fault? (Y/N) & \\
+\hline
+PPN & 0x\\
+\hline
+\end{tabular}
+\vspace*{.5\baselineskip}
+
+\item Physical address format (one bit per box)\\
+{\small
+\begin{tabular} {cccccccccccccc}
+\makebox[.15in]{13} & \makebox[.15in]{12} &
+\makebox[.15in]{11} & \makebox[.15in]{10} & 
+\makebox[.15in]{9} & \makebox[.15in]{8} & 
+\makebox[.15in]{7} & \makebox[.15in]{6} & 
+\makebox[.15in]{5} & \makebox[.15in]{4} & 
+\makebox[.15in]{3} & \makebox[.15in]{2} & 
+\makebox[.15in]{1} & \makebox[.15in]{0} \\ 
+\end{tabular} 
+}
+
+\begin{tabular} {|c|c|c|c|c|c|c|c|c|c|c|c|c|c|}
+\hline
+\makebox[.15in]{} & \makebox[.15in]{} & 
+\makebox[.15in]{} & \makebox[.15in]{} & \makebox[.15in]{} & \makebox[.15in]{} & 
+\makebox[.15in{}] & \makebox[.15in]{} & \makebox[.15in]{} & \makebox[.15in]{} & 
+\makebox[.15in]{} & \makebox[.15in]{} & \makebox[.15in]{} & \makebox[.15in]{} \\ 
+\hline
+\end{tabular}
+
+\end{choice}
+
+%***********************************************************
+% solution
+% A.	0010 1111 0000 1001
+% 
+% B. 	VPN:		0x0B
+%       TLBI:		0x3
+%	TLBT:		0x2
+%	TLB hit?	N
+%	page fault?	N
+%	PPN:		0x1
+%
+% C. 	00 0111 0000 1001
+%***********************************************************
+
+
+{\bf Virtual address}:  {\tt 0C53}
+
+\begin{choice}
+
+\item Virtual address format (one bit per box)\\
+{\small
+\begin{tabular} {cccccccccccccccc}
+\makebox[.15in]{15} & \makebox[.15in]{14} & 
+\makebox[.15in]{13} & \makebox[.15in]{12} & 
+\makebox[.15in]{11} & \makebox[.15in]{10} & 
+\makebox[.15in]{9} & \makebox[.15in]{8} & 
+\makebox[.15in]{7} & \makebox[.15in]{6} & 
+\makebox[.15in]{5} & \makebox[.15in]{4} & 
+\makebox[.15in]{3} & \makebox[.15in]{2} & 
+\makebox[.15in]{1} & \makebox[.15in]{0} \\ 
+\end{tabular} 
+}
+
+\begin{tabular} {|c|c|c|c|c|c|c|c|c|c|c|c|c|c|c|c|}
+\hline
+\makebox[.15in]{} & \makebox[.15in]{} & \makebox[.15in]{} & \makebox[.15in]{} & 
+\makebox[.15in{}] & \makebox[.15in]{} & \makebox[.15in]{} & \makebox[.15in]{} & 
+\makebox[.15in]{} & \makebox[.15in]{} & \makebox[.15in]{} & \makebox[.15in]{} & 
+\makebox[.15in]{} & \makebox[.15in]{} & \makebox[.15in]{} & \makebox[.15in]{} \\
+\hline
+\end{tabular}
+\vspace*{.5\baselineskip}
+\item Address translation \\
+\vspace{.1in} \\
+\begin{tabular}{|l|l|}
+\hline
+Parameter & {    Value    } \\
+\hline
+\hline
+VPN & \mbox{0x\ \ \ \ }\\
+\hline
+TLB Index & 0x\\
+\hline
+TLB Tag & 0x\\
+\hline
+TLB Hit? (Y/N) & \\
+\hline
+Page Fault? (Y/N) & \\
+\hline
+PPN & 0x\\
+\hline
+\end{tabular}
+\vspace*{.5\baselineskip}
+
+\item Physical address format (one bit per box)\\
+{\small
+\begin{tabular} {cccccccccccccc}
+\makebox[.15in]{13} & \makebox[.15in]{12} &
+\makebox[.15in]{11} & \makebox[.15in]{10} & 
+\makebox[.15in]{9} & \makebox[.15in]{8} & 
+\makebox[.15in]{7} & \makebox[.15in]{6} & 
+\makebox[.15in]{5} & \makebox[.15in]{4} & 
+\makebox[.15in]{3} & \makebox[.15in]{2} & 
+\makebox[.15in]{1} & \makebox[.15in]{0} \\ 
+\end{tabular} 
+}
+
+\begin{tabular} {|c|c|c|c|c|c|c|c|c|c|c|c|c|c|}
+\hline
+\makebox[.15in]{} & \makebox[.15in]{} & 
+\makebox[.15in]{} & \makebox[.15in]{} & \makebox[.15in]{} & \makebox[.15in]{} & 
+\makebox[.15in{}] & \makebox[.15in]{} & \makebox[.15in]{} & \makebox[.15in]{} & 
+\makebox[.15in]{} & \makebox[.15in]{} & \makebox[.15in]{} & \makebox[.15in]{} \\ 
+\hline
+\end{tabular}
+
+\end{choice}
+
+%***********************************************************
+% solution
+% A.	0000 1100 0101 0011
+% 
+% B. 	VPN:		0x03
+%       TLBI:		0x3
+%	TLBT:		0x0
+%	TLB hit?	Y
+%	page fault?	N
+%	PPN:		0xD
+%
+% C. 	11 0100 0101 0011
+%***********************************************************

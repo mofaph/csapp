@@ -1,0 +1,88 @@
+%%COMMENT:6:14:High-level miss rate analysis:
+\begin{problem}{14}
+
+Consider a direct mapped cache of size 64K with block size of 16 bytes.
+Furthermore, the cache is write-back and write-allocate.  You will
+calculate the miss rate for the following code using this cache.
+Remember that {\tt sizeof(int) == 4}.  Assume that the cache starts
+empty and that local variables and computations take place completely
+within the registers and do not spill onto the stack.
+
+\end{problem}
+
+A. Now consider the following code to copy one matrix to another.
+Assume that the {\tt src} matrix starts at address 0 and that the {\tt
+dest} matrix follows immediately follows it.
+
+{\small\begin{verbatim}
+void copy_matrix(int dest[ROWS][COLS], int src[ROWS][COLS])
+{
+    int i, j;
+
+    for (i=0; i<ROWS; i++) {
+        for (j=0; j<COLS; j++) {
+            dest[i][j] = src[i][j];
+        }
+    }
+}
+\end{verbatim}}
+
+\begin{enumerate}
+\item What is the cache miss rate if {\tt ROWS = 128} and {\tt COLS = 128}?\\
+Miss rate = \verb|_________|\% \answer{100}
+\item What is the cache miss rate if {\tt ROWS = 128} and {\tt COLS = 192}?\\
+Miss rate = \verb|_________|\% \answer{25}
+\item What is the cache miss rate if {\tt ROWS = 128} and {\tt COLS = 256}?\\
+Miss rate = \verb|_________|\% \answer{100}
+\end{enumerate}
+
+
+\newpage
+B. Now consider the following two implementations of a horizontal
+flip and copy of the matrix.  Again assume that the {\tt src} matrix
+starts at address 0 and that the {\tt dest} matrix follows immediately
+follows it.
+
+{\small\begin{verbatim}
+void copy_n_flip_matrix1(int dest[ROWS][COLS], int src[ROWS][COLS])
+{
+    int i, j;
+
+    for (i=0; i<ROWS; i++) {
+        for (j=0; j<COLS; j++) {
+            dest[i][COLS - 1 - j] = src[i][j];
+        }
+    }
+}
+\end{verbatim}}
+
+\begin{enumerate}
+
+\item What is the cache miss rate if {\tt ROWS = 128} and {\tt COLS = 128}?\\
+Miss rate = \verb|_________|\% \answer{25}
+\item What is the cache miss rate if {\tt ROWS = 128} and {\tt COLS = 192}?\\
+Miss rate = \verb|_________|\% \answer{25}
+
+\end{enumerate}
+
+{\small\begin{verbatim}
+void copy_n_flip_matrix2(int dest[ROWS][COLS], int src[ROWS][COLS])
+{
+    int i, j;
+
+    for (j=0; j<COLS; j++) {
+        for (i=0; i<ROWS; i++) {
+            dest[i][COLS - 1 - j] = src[i][j];
+        }
+    }
+}
+\end{verbatim}}
+
+\begin{enumerate}
+
+\item What is the cache miss rate if {\tt ROWS = 128} and {\tt COLS = 128}?\\
+Miss rate = \verb|_________|\% \answer{25}
+\item What is the cache miss rate if {\tt ROWS = 192} and {\tt COLS = 128}?\\
+Miss rate = \verb|_________|\% \answer{75}
+
+\end{enumerate}

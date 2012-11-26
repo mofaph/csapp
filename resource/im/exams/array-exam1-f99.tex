@@ -1,0 +1,52 @@
+%%COMMENT:3:8:Array layout and access:
+\begin{problem}{8}
+
+Consider the source code below, where {\tt M} and {\tt N} are
+constants declared with \verb@#define@.
+
+\begin{verbatim}
+int mat1[M][N];
+int mat2[N][M];
+
+int copy_element(int i, int j)
+{
+    mat1[i][j] = mat2[j][i];
+}
+\end{verbatim}
+
+This generates the following assembly code:
+
+\begin{verbatim}
+copy_element:
+        pushl %ebp
+        movl %esp,%ebp
+        pushl %ebx
+        movl 8(%ebp),%ecx
+        movl 12(%ebp),%ebx
+        movl %ecx,%edx
+        leal (%ebx,%ebx,8),%eax
+        sall $4,%edx
+        sall $2,%eax
+        subl %ecx,%edx
+        movl mat2(%eax,%ecx,4),%eax
+        sall $2,%edx
+        movl %eax,mat1(%edx,%ebx,4)
+        movl -4(%ebp),%ebx
+        movl %ebp,%esp
+        popl %ebp
+        ret
+\end{verbatim}
+
+\begin{choice}
+\item What is the value of {\tt M}:
+
+\vspace{.4 in}
+%% answer: 9
+
+\item What is the value of {\tt N}:
+
+\vspace{.4 in}
+%% answer: 15
+
+\end{choice}
+\end{problem}

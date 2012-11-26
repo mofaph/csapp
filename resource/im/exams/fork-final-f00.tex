@@ -1,0 +1,157 @@
+%%COMMENT:8:8:Process control:
+\begin{problem}{8} 
+This problem tests your understanding of
+exceptional control flow in C programs.
+
+For problems A-C, indicate how 
+many ``hello'' output lines the program would print.\\
+{\em Caution: Don't overlook the {\tt printf} function in {\tt main}.}
+\end{problem}
+
+\subsection*{Problem A}
+\begin{minipage}[c]{3in}
+\small
+\begin{verbatim}
+void doit() {
+  fork();
+  fork();
+  printf("hello\n");
+  return;
+}
+
+int main() {
+  doit();
+  printf("hello\n");
+  exit(0);
+}
+\end{verbatim}
+\end{minipage}
+\begin{minipage}[c]{3in}
+Answer: \verb:_____: output lines.
+\end{minipage}
+%Answer: 8 lines
+
+\subsection*{Problem B}
+\begin{minipage}[c]{3in}
+\small
+\begin{verbatim}
+void doit() {
+  if (fork() == 0) {
+    fork();
+    printf("hello\n");
+    exit(0);
+  }
+  return;
+}
+
+int main() {
+  doit();
+  printf("hello\n");
+  exit(0);
+}
+\end{verbatim}
+\end{minipage}
+\begin{minipage}[c]{3in}
+Answer: \verb:_____: output lines.
+\end{minipage}
+%Answer: 3 lines
+
+\subsection*{Problem C}
+\begin{minipage}[c]{3in}
+\small
+\begin{verbatim}
+void doit() {
+  if (fork() == 0) {
+    fork();
+    printf("hello\n");
+    return;
+  }
+  return;
+}
+
+int main() {
+  doit();
+  printf("hello\n");
+  exit(0);
+}
+\end{verbatim}
+\end{minipage}
+\begin{minipage}[c]{3in}
+Answer: \verb:_____: output lines.
+\end{minipage}
+%Answer: 5 lines
+
+\newpage
+For problem E, indicate the value of the {\tt counter} variable
+that the program would print. 
+
+\subsection*{Problem D}
+\begin{minipage}[c]{4in}
+\small
+\begin{verbatim}
+int counter = 1;
+
+int main() {
+
+  if (fork() == 0) {
+    counter--;  
+    exit(0);
+  }
+  else {
+    wait(NULL); 
+    counter++;      
+    printf("counter = %d\n", counter);
+  }
+  exit(0);
+}
+\end{verbatim}
+\end{minipage}
+\begin{minipage}[c]{2in}
+Answer: \verb:counter = _____:.
+\end{minipage}
+%Answer: counter = 2
+
+
+\comment{
+****************************************************************
+******This problem is no good because it contains a race********
+****************************************************************
+\subsection*{Problem E}
+\begin{minipage}[c]{4in}
+\small
+\begin{verbatim}
+int counter = 1;
+
+sigjmp_buf env; 
+
+/* 
+ * handler - catches the SIGCHLD signal that  
+ * is sent to the parent when the child dies 
+ */
+void handler(int sig) {
+  wait(NULL);
+  siglongjmp(env, 1);
+}
+
+int main() {
+  signal(SIGCHLD, handler);
+
+  if (fork() != 0) {
+    if (sigsetjmp(env, 1) == 0) {
+      counter++;      
+      pause(); /* sleeps until a signal */
+               /* arrives, then returns */
+    }
+    else
+      counter++;      
+    printf("counter = %d\n", counter);
+  }
+  exit(0);
+}
+\end{verbatim}
+\end{minipage}
+\begin{minipage}[c]{2in}
+Answer: \verb:counter = _____:.
+\end{minipage}
+%Answer: counter = 3
+}

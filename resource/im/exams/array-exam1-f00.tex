@@ -1,0 +1,50 @@
+%%COMMENT:3:8:Array layout and access:
+\begin{problem}{8}
+
+Consider the source code below, where {\tt M} and {\tt N} are
+constants declared with \verb@#define@.
+
+\begin{verbatim}
+int mat1[M][N];
+int mat2[N][M];
+
+int sum_element(int i, int j)
+{
+  return mat1[i][j] +  mat2[i][j];
+}  
+\end{verbatim}
+\begin{choice}
+\item Suppose the above code generates the following 
+assembly code:
+\begin{verbatim}
+sum_element:
+        pushl %ebp
+        movl %esp,%ebp
+        movl 8(%ebp),%eax
+        movl 12(%ebp),%ecx
+        sall $2,%ecx
+        leal 0(,%eax,8),%edx
+        subl %eax,%edx
+        leal (%eax,%eax,4),%eax
+        movl mat2(%ecx,%eax,4),%eax
+        addl mat1(%ecx,%edx,4),%eax
+        movl %ebp,%esp
+        popl %ebp
+        ret
+\end{verbatim}         
+
+What are the values of {\tt M} and {\tt N}?       
+
+\hspace{1cm}{\tt M} =
+
+\vspace{.5cm}
+% Answer: M=5
+
+
+\hspace{1cm}{\tt N} =
+
+\vspace{1cm}
+% answer N=7
+
+\end{choice}
+\end{problem}

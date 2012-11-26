@@ -1,0 +1,75 @@
+%%COMMENT:3:6:Structure and array layout and access:
+\begin{problem}{6}
+
+Consider the following code fragment containing the
+incomplete definition of a data type {\tt matrix\_entry} 
+with 4 fields.
+
+\begin{verbatim}
+struct matrix_entry{
+
+  ____ a;
+
+  ____ b;
+
+  int  c;
+
+  ____ d; 
+
+};
+
+struct matrix_entry matrix[2][5];
+
+int return_entry(int i, int j){
+   return matrix[i][j].c;
+}
+
+\end{verbatim}
+Complete the above definition of {\tt matrix\_entry}
+so that the following assembly code could be generated 
+from it on a Linux/x86 machine:
+
+\begin{verbatim}
+return_entry:
+        pushl %ebp
+        movl %esp,%ebp
+        movl 8(%ebp),%eax
+        leal (%eax,%eax,4),%eax
+        addl 12(%ebp),%eax
+        sall $4,%eax
+        movl matrix+4(%eax),%eax
+        movl %ebp,%esp
+        popl %ebp
+        ret                             
+\end{verbatim}         
+\subsection*{Notes}
+\begin{itemize}
+\item Note that there are multiple correct answers.
+\item Choose your answers from the following types, 
+assuming the following sizes and alignments:
+\begin{tabular}{|c||c|c|}
+\hline
+Type & Size (bytes) & Alignment (bytes) \\
+\hline
+\hline
+char  & 1 & 1\\
+short & 2 & 2\\
+int   & 4 & 4\\
+double& 8 & 4\\ 
+\hline
+\end{tabular}
+\end{itemize}
+
+\vspace{.5cm}
+% answer:
+%
+%struct matrix_entry{
+%  short a;  
+%  short b;
+%  int c;
+%  double d;
+%};
+
+
+
+\end{problem}

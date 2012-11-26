@@ -1,0 +1,44 @@
+%%COMMENT:8:5:Process control:
+\begin{problem}{5}
+
+Consider the following C program:
+
+\begin{verbatim}
+  #include <sys/wait.h>
+
+  main() {
+    int status;
+  
+    printf("%s\n", "Hello");
+    printf("%d\n", !fork());
+
+    if(wait(&status) != -1)
+      printf("%d\n", WEXITSTATUS(status));
+
+    printf("%s\n", "Bye");
+
+    exit(2);
+  }
+\end{verbatim}
+
+Recall the following:
+\begin{itemize}
+\item Function {\tt fork} returns 0 to the child process and the child's process Id to the parent.
+\item Function {\tt wait} returns {\tt -1} when there is an error, e.g.,
+when the executing process has no child.
+\item Macro {\tt WEXITSTATUS} extracts the exit status of the
+terminating process.
+\end{itemize}
+
+
+What is a valid output of this program? 
+{\em Hint: there are several correct solutions.}
+
+%Answer
+% Hello	
+% 1		0		1  
+% Bye   or 	1	or	0 
+% 0    		Bye		Bye  
+% 2  
+% Bye
+\end{problem}

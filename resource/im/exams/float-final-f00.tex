@@ -1,0 +1,57 @@
+%%COMMENT:2:8:Floating point classification:
+\begin{problem}{8}
+
+The following procedure takes a single-precision floating point number
+in IEEE format and prints out information about what category of
+number it is.  Fill in the missing code so that it performs this
+classification correctly.
+
+{\large
+\begin{alltt}
+void classify_float(float f)
+\{
+  {\it /* Unsigned value {\tt u} has same bit pattern as {\tt f} */}
+  unsigned u = *(unsigned *) &f;
+  {\it /* Split {\tt u} into the different parts */}
+  int sign = (u >> 31) & 0x1;    {\it // The sign bit}
+
+  int exp  = _______________;    {\it // The exponent field}
+
+  int frac = _______________;    {\it // The fraction field}
+
+  {\it /* The remaining expressions can be written in terms of the
+     values of {\tt sign}, {\tt exp}, and {\tt frac} */}
+
+  if (______________________)
+    printf("Plus or minus zero\verb@\@");
+
+  else if (______________________)
+    printf("Nonzero, denormalized\verb@\@");
+
+  else if (______________________)
+    printf("Plus or minus infinity\verb@\@");
+
+  else if (______________________)
+    printf("NaN\verb@\@");
+
+  else if (______________________)
+    printf("Greater than -1.0 and less than 1.0\verb@\@");
+
+  else if (______________________)
+    printf("Less than or equal to -1.0\verb@\@");
+  else
+    printf("Greater than or equal to 1.0\verb@\@");
+\}
+\end{alltt}
+}
+
+% Answers
+% (u >> 23) & 0xFF
+% u & 0x7FFFFF
+% (exp == 0 && frac == 0)
+% (exp == 0)
+% (exp == 0xFF && frac == 0)
+% (exp == 0xFF)
+% (exp <= 126)
+% (sign == 1)
+\end{problem}

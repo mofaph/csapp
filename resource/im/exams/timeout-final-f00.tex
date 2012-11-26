@@ -1,0 +1,160 @@
+%%COMMENT:8:8:Process control and signals (timeout version of fgets):
+\subsection*{Process control} 
+
+The next problem concerns the following four versions of the {\tt
+tfgets} routine, a timeout version of the Unix {\tt fgets} routine.
+
+The {\tt tfgets} routine waits for the user to type in a string and
+hit the return key. If the user enters the string within 5 seconds,
+the {\tt tfgets} returns normally with a pointer to the
+string. Otherwise, the routine ``times out'' and returns a NULL
+string.
+
+
+\subsection*{{\tt tfgets}: Version A}
+
+
+{\small
+\begin{verbatim}
+void handler(int sig) {
+  siglongjmp(env, 1);
+}
+
+char *tfgets(char *s, int size, FILE *stream) {
+  pid_t pid;
+  signal(SIGCHLD, handler);
+
+  if (!sigsetjmp(env, 1)) {
+    pid = fork();
+    if (pid == 0) {
+      return fgets(s, size, stream);
+    }
+    else {
+      sleep(5);
+      kill(pid, SIGKILL);
+      wait(NULL);
+      return NULL;
+    }
+  }
+  else {
+    wait(NULL);
+    exit(0); 
+  }
+}
+\end{verbatim}}
+% incorrect: gets the parent and the child mixed up
+
+
+\newpage
+{\small
+\subsection*{{\tt tfgets}: Version B}
+\begin{verbatim}
+void handler(int sig) {
+  wait(NULL);
+  siglongjmp(env,1);
+}
+
+char *tfgets(char *s, int size, FILE *stream) {
+  pid_t pid;
+    
+  signal(SIGUSR2, handler);
+  if (sigsetjmp(env, 1) != 0)
+    return NULL;
+  if ((pid = fork()) == 0) {
+    sleep(5);
+    kill(getppid(), SIGUSR2);
+    exit(0);
+  }
+  fgets(s, size, stream);
+  kill(pid, SIGKILL);
+  wait(NULL);
+  return s;
+}
+\end{verbatim}}
+% OK
+
+\subsection*{{\tt tfgets}: Version C}
+{\small
+\begin{verbatim}
+void handler(int sig) {
+  wait(NULL);
+  siglongjmp(env, 1);
+}
+
+char *
+tfgets(char *s, int size, FILE *stream) {
+  pid_t pid;
+  str = NULL;
+  signal(SIGCHLD, handler);
+
+  if ((pid = fork()) ==  0) { 
+    sleep(5);
+    exit(0);
+  }
+  else { 
+    if (sigsetjmp(env, 1) == 0) {
+      str = fgets(s, size, stream);
+      kill(pid, SIGKILL);
+      pause();
+    }
+    return str;
+  }
+}
+\end{verbatim}}
+% OK
+
+\newpage
+\subsection*{{\tt tfgets}: Version D}
+
+{\small
+\begin{verbatim}
+void handler(int sig) {
+  wait(NULL);
+  siglongjmp(env, 1);
+}
+
+char *
+tfgets(char *s, int size, FILE *stream) {
+  pid_t pid;
+  str = NULL;
+  signal(SIGCHLD, handler);
+
+  if ((pid = fork()) ==  0) {
+    sleep(5);
+    return NULL;
+  }
+  else {
+    if (sigsetjmp(env, 1) == 0) {
+      str = fgets(s, size, stream);
+      kill(pid, SIGKILL);
+      pause();
+    }
+    return str;
+  }
+}
+\end{verbatim}}
+% incorrect: returns from child instead of exiting
+
+\newpage
+\begin{problem}{8}
+This problem concerns the four versions of {\tt tfgets} from the
+previous pages. Some of them are correct,  and others are 
+flawed because the author didn't understand basic concepts of
+concurrency and signaling. 
+
+Circle the versions that are correct, in the sense that they return
+the input string if typed within 5 seconds, timeout after 5
+seconds by returning NULL, and correctly reap their terminated
+children.
+\end{problem}
+
+\begin{verbatim}
+Version A         Version B         Version C         Version D         
+\end{verbatim}
+
+Note: The {\tt pause} function sleeps until a signal is
+received and then returns.
+
+%Answer: B and C are correct
+% A gets the parent and child confused.
+% D returns from the child instead of exiting.

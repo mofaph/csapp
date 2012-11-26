@@ -1,0 +1,45 @@
+#####################################################################
+# Binary distribution of the Y86 tools (SunOS/Sparc version)
+#
+# Copyright (c) 2002, R. Bryant and D. O'Hallaron, All rights reserved.
+# May not be used, modified, or copied without permission.
+#
+######################################################################
+
+This directory contains the binary distribution of the Y86 tools for
+SunOS/Sparc systems. It is designed for instructors and students who
+are using the textbook, "Computer Systems: A Programmer's
+Perspective", R. Bryant and D. O'Hallaron, Prentice Hall, 2002. 
+
+The GUI libraries are statically linked into the binaries, so you
+don't need to have Tcl/Tk installed on your system to run the
+simulators. This is particularly handy if you just want to use the Y86
+simulators for demonstration purposes.
+
+******
+Files
+******
+
+README		This file
+asum.{ys,yo}	Running example Y86 program from the CS:APP text
+yas*		Y86 assembler
+yis*		Y86 instruction simulator
+ssim*		SEQ simulator
+ssim+*		SEQ+ simulator
+psim*		PIPE simulator
+psim-broken*	A broken version of PIPE that lacks hazard handling
+		Very useful for demonstrating hazards in class.
+
+seq.tcl		Supporting Tcl scripts for ssim, ssim+, and psim
+seq+.tcl
+pipe.tcl		
+
+******
+Target
+******
+
+The distribution has been tested on a Sunos 5.7/Sparc system:
+
+unix> uname -a
+SunOS courseweb 5.7 Generic_106541-09 sun4m sparc SUNW,SPARCstation-20
+

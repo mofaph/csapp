@@ -1,0 +1,113 @@
+%%COMMENT:3:14:Array layout and access:
+\begin{problem}{14}
+
+Consider the source code below, used to keep track of the rooms
+currently reserved in a family-run hotel. Each entry in the {\tt
+residents} array stores a name of the customer reserving the
+room. {\tt FLOORS} represents the number of floors in the hotel.  {\tt
+ROOMS} represents the number of rooms per floor.  Both are constants
+declared with \verb@#define@. LEN, the maximum number of bytes
+allocated for a name, is defined to be 12.
+
+\begin{verbatim}
+char residents[FLOORS][ROOMS][LEN];
+
+void
+reserve_room(int floor, int room, char *custname)
+{
+        strcpy(residents[floor][room], custname);
+}
+
+
+\end{verbatim}
+
+The assembly code for the function {\tt reserve\_room} looks like this:
+
+\begin{verbatim}
+reserve_room:
+        pushl %ebp
+        movl %esp,%ebp
+        movl 12(%ebp),%eax
+        movl 16(%ebp),%edx
+        pushl %edx
+        movl 8(%ebp),%edx
+        sall $4,%edx
+        subl 8(%ebp),%edx
+        leal (%eax,%eax,2),%eax
+        leal residents(,%eax,4),%eax
+        leal (%eax,%edx,4),%edx
+        pushl %edx
+        call strcpy
+        movl %ebp,%esp
+        popl %ebp
+        ret
+\end{verbatim}
+
+\begin{choice}
+\item What is the value of {\tt ROOMS}?
+
+\vspace{.4 in}
+%% Answer: 5
+
+\item Due to a strange bug, the program accesses {\tt
+residents[0][1][-2]}. What value is actually being accessed? (Express
+your answer as an \emph{integer} \emph{triplet (-,-,-)}. You may 
+assume that FLOORS and ROOMS are both greater than 1)
+
+\vspace{.4 in}
+%% Answer: (0, 0, 10)
+
+\end{choice}
+\end{problem}
+
+\newpage
+
+C. The programmer realizes that this implementation is wasteful of
+memory. Successive fires in several memory chip factories in Taiwan
+drive up memory prices and finally convince him to improve the memory
+efficiency of his implementation to maintain the competitiveness
+of the family hotel. 
+
+The declaration of {\tt residents} is changed to be a two dimensional
+array of pointers to character strings (names).  The new code
+allocates memory for customer names only for those rooms that are
+actually reserved. Otherwise, {\tt residents[f][r]} stores a {NULL}
+pointer.  {\bf For simplicity, assume there is no storage overhead
+due to {\tt malloc}}.
+
+The new declaration looks like this:
+
+\begin{verbatim}
+char *residents[FLOORS][ROOMS];
+
+void
+reserve_room(int floor, int room, char *custname)
+{
+    residents[floor][room] = malloc(LEN);
+    strcpy(residents[floor][room], custname);	
+}
+\end{verbatim}
+
+After a few months. The programmer goes back to review the memory
+savings of his improved scheme. During that period, the hotel was 20\%
+reserved. The programmer is delighted because the savings are found to
+be 168 bytes!  How many floors does this hotel have? (that is, what is
+the value of FLOORS?)
+
+\vspace{.4 in}
+%
+%
+%% Answer: 6
+%
+% One way to think of this problem:
+% There are five rooms per floor. The first scheme allocates 12*5 bytes
+% per floor.
+% The second scheme allocates 4 bytes for empty rooms (null ptr) and
+% *4+12=16* bytes for reserved rooms.
+% With 20% utilization, that means 4*4 + 1*16 = 32 bytes per floor.
+%
+% Thus, the second scheme saves 28 bytes per floor, or 168 bytes per
+% 6 floors.
+%
+
+

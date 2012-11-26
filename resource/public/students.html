@@ -1,0 +1,249 @@
+<html>
+<head>
+<title>CS:APP Student Site</title>
+</head>
+
+<body bgcolor=white>
+
+<img src="mountain-thumb.gif" align=left>
+<h2>
+Student Site<br>
+Computer Systems: A Programmer's Perspective (CS:APP)
+<p>
+</h2>
+<i>
+<a href="http://www.cs.cmu.edu/~bryant">Randal E. Bryant</a> and <a
+href="http://www.cs.cmu.edu/~droh">David R. O'Hallaron</a>
+</i>
+<br clear=all>
+<br>
+
+<a href="http://csapp.cs.cmu.edu">CS:APP Home Page</a>
+<br>
+<img src="line_marble1.gif" width=600 height=8>
+
+<table width=780><tr><td>
+
+<p>
+This page contains additional resources for students using the 
+CS:APP text.
+
+
+<h3>Textbook</h3>
+<ul>
+<li><a href="figures.html">Original Powerpoint line drawings</a>
+<li><a href="code.html">Code examples</a>
+</ul>
+
+<h3>C/Unix</h3>
+<ul>
+<li><a href="unixfaq.html">CS:APP Unix FAQ</a></li>
+
+<li><a href="http://heather.cs.ucdavis.edu/~matloff/unix.html">
+Prof. Norm Matloff's Unix/C Tutorial Center</a>
+
+</ul>
+
+<h3>GNU/Unix Tools</h3>
+
+<ul>
+<li>The <a href="www.gnu.org">GNU project</a>
+provides <a href="http://www.gnu.org/manual/">online manuals</a> for
+all of the GNU tools, including:
+<ul>
+<li><a href="http://www.gnu.org/software/emacs">
+Emacs</a> (text editor)
+<li><a href="http://www.gnu.org/software/gcc">
+GCC</a> (compiler driver)
+<li><a href="http://www.gnu.org/software/gdb">
+GDB</a> (debugger)
+<li><a href="http://www.gnu.org/software/make">
+Make </a> (program building utility)
+</ul>
+
+<li> 
+<a href="http://heather.cs.ucdavis.edu/~matloff/UnixAndC/CLanguage/Debug.html">
+Prof. Norm Matloff's GDB tutorial</a>
+
+<li> Quick GDB reference
+(
+<a href="docs/gdbnotes.pdf">pdf</a>,
+<a href="docs/gdbnotes.ps">ps</a>,
+<a href="docs/gdbnotes.txt">txt</a>
+)
+
+<li> Quick GDB x86-64 reference
+(
+<a href="docs/GDB-commands-x86-64.txt">txt</a>
+)
+
+</ul>
+
+
+<h3>Pentium Documentation</h3>
+
+<ul>
+<li> Intel Architecture Software Developer's Manual:
+<ul>
+<li> <i>Volume 1: Basic Architecture</i> 
+(<a href="docs/intel-arch.pdf">pdf</a>,
+ <a href="docs/intel-arch.2up.ps.gz">ps2up.gz</a>).
+
+<br>
+Chapters 3--6 contain
+useful information.  Note that much of this documention is
+irrelevant---we are only running in ``flat'' addressing mode, and GAS
+does not support conditional moves, MMX, or SSE instructions.  The
+overall document is 369 pages long.  You probably don't want to print
+it out.
+
+<p>
+<li> <i>Volume 2: Instruction Set Reference</i>  
+(<a href="docs/intel-isr.pdf">pdf</a>,
+ <a href="docs/intel-isr.2up.ps.gz">ps2up.gz</a>).
+
+<br>
+Chapter 3 contains a detailed description of every instruction.  Note
+that they list the operands in the reverse order from their ordering
+in GAS.  This manual is 854 pages long.  You definitely don't want to
+print it out.
+
+<p>
+<li> <i>Volume 3: System Programming</i>
+(<a href="docs/intel-sys.pdf">pdf</a>,
+ <a href="docs/intel-sys.2up.ps.gz">ps2up.gz</a>).
+<br>
+Contains lots of useful information on the interface between the
+hardware and the operating system, including cache and TLB specs,
+virtual memory, exceptions and interrupt handling, and processes.
+
+</ul>
+</ul>
+
+<h3>Chapter 2: Representing and Manipulating Information</h3>
+<ul>
+<li>Practice Problem 2.9: This problem uses the RGB color system 
+as an illustration of a Boolean algebra.
+Here's a <a href="rgb-table.gif">full color depiction</a>
+of this color system.
+<li>Writing TMin as an integer constant in C (as is done in Figure 2.13 and Practice Problem 2.20) is a bit tricky.
+See the <a href="tmin.html">Note on writing TMin in C</a> for a more detailed
+explanation.
+
+<li> A note on <a href="http://www.cygnus-software.com/papers/comparingfloats/comparingfloats.htm">comparing floating point numbers</a>
+
+</ul>
+
+<h3>Chapter 3: Machine-Level Representation of Programs</h3>
+
+<ul>
+<li>Description of 
+<a href="http://members.ozemail.com.au/~geoffch/security/aim/">
+AOL's buffer overflow exploit</a> on their own AIM clients.
+
+<li>Description of the 1988 Internet Worm 
+(<a href="docs/spaffordworm.pdf">pdf</a>).
+<li>Specifying byte operands for inline assembly with GCC.  
+See <a href="byteasm.html">Note on byte operands with inline assembly</a>.
+
+</ul>
+
+<h3>Chapter 4: Processor Architecture</h3>
+
+<ul> 
+<li>Y86 tools and documentation
+<ul>
+<li> 
+<a href="sim.tar">Source distribution</a>
+(<a href="README.sim">README</a>)
+<!--<img alt="[NEW]" width=31 height=12 src="new.gif">-->
+
+<li>
+<a href="y86binaries/y86-linux.tar">Linux/Pentium binary distribution</a>
+(<a href="y86binaries/y86-linux/README">README</a>)
+
+<li> 
+<a href="y86binaries/y86-sunos.tar">SunOS/Sparc binary distribution</a>
+(<a href="y86binaries/y86-sunos/README">README</a>)
+
+<li>Simulator guide (<a href="simguide.pdf">pdf</a>)
+
+<li>Technical report describing a successful effort at formally
+verifying the pipelined Y86 implementations.
+(<a href="http://www.cs.cmu.edu/~bryant/pubdir/CMU-CS-05-195.pdf">pdf</a>)
+</ul>
+</ul>				
+
+<h3>Chapter 5: Optimizing Program Performance</h3>
+
+<ul>
+<li>Text files to benchmark word frequency analysis program
+<ul>
+<li><a href="shakespeare.txt">Full text</a> of the collected works of Shakespeare.
+<li><a href="moby.txt">Full text</a> of Moby Dick.
+</ul>
+</ul>
+
+<h3>Chapter 6: The Memory Hierarchy</h3>
+
+<ul>
+<li>Generate your own memory using the 
+<a href="http://www.cs.inf.ethz.ch/cops/ECT/">ECT memperf</a> tool
+developed by Tom Stricker (the inventor of the memory mountain) 
+and Christian Kurmann at ETH.
+
+<li>A less sophisticated program from the CS:APP book for generating
+the memory mountain (<a href="mountain.tar">tar</a>)
+</ul>
+
+<h3>Chapter 10: Virtual Memory</h3>
+
+<ul>
+<li> P. Wilson, M. Johnstone, M. Neely, and D. Boles, <i>Dynamic
+Storage Allocation: A Survey and Critical Review</i>, International
+Workshop on Memory Management, Kinross, Scotland, Sept, 1995.
+(<a href="docs/dsa.ps">ps</a>). 
+
+<br>Comprehensive reference on storage allocators.
+</ul>
+
+
+<h3>Chapter 12: Network Programming</h3>
+<ul>
+<li><i>The Tiny Web server</i> (<a href="tiny.tar">tiny.tar</a>).
+<br>
+Expands with <kbd>tar xvf tiny.tar</kbd> into a directory called
+<kbd>./tiny</kbd> that contains everything you need to test the Tiny
+web server, including sample HTML files, GIFS, CGI scripts, and the
+<kbd>csapp.c</kbd> and <kbd>csapp.h</kbd> files from Appendix B of the
+text. Compiled and tested on Linux boxes.
+
+<li>
+The authoritative list of
+<a href="http://www.iana.org/assignments/media-types"> 
+ MIME types</a>.
+
+</ul>
+
+
+<hr>
+
+</td></tr></table>
+
+
+<a href="mailto:randy.bryant@cs.cmu.edu, droh@cs.cmu.edu">
+Randy Bryant and Dave O'Hallaron</a> 
+<br>
+<p>
+<!-- hhmts start -->
+Last modified: Sat Dec  8 00:36:28 EST 2007
+<!-- hhmts end -->
+
+</body>
+</html>
+
+
+
+
+
+

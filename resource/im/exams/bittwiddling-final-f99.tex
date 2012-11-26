@@ -1,0 +1,80 @@
+%%COMMENT:2:12:Bit manipulation (matching problem):
+\begin{problem}{12}
+
+\noindent
+In the following questions assume the variables {\tt a} and {\tt b} are signed
+integers and that the machine uses two's complement representation.  Also
+assume that {\tt MAX\_INT} is the maximum integer, {\tt MIN\_INT} is
+the minimum integer, and {\tt W} is one less than the word length
+(e.g., {\tt W} = 31 for 32-bit integers).
+
+\noindent
+
+Match each of the descriptions on the left with a line of code
+on the right (write in the letter).  You will be given 2 points
+for each correct match.
+
+\vspace{0.3in}
+\begin{minipage}{2.1in}
+1. One's complement of {\tt a} \\
+% Answer: f
+
+\makebox[.3in]{}\hrulefill \mbox{}\\[.1in]
+
+2. {\tt a}.\\
+% Answer: b
+
+\makebox[.3in]{}\hrulefill \mbox{}\\[.1in]
+
+3. \verb@ a & b@.\\
+% Answer: a
+
+\makebox[.3in]{}\hrulefill \mbox{}\\[.1in]
+
+4. \verb@ a * 7@.\\
+% Answer: c
+
+\makebox[.3in]{}\hrulefill \mbox{}\\[.1in]
+
+5. \verb@ a / 4 @.\\
+% Answer: e
+
+\makebox[.3in]{}\hrulefill \mbox{}\\[.1in]
+
+6. \verb@ (a < 0) ? 1 : -1 @.\\
+% Answer: h
+
+\makebox[.3in]{}\hrulefill \mbox{}\\[.1in]
+
+\end{minipage}\makebox[1in]{}
+\begin{minipage}{3.3in}
+
+a. \verb@ ~(~a | (b ^ (MIN_INT + MAX_INT))) @\\[.2in]
+% calculates a & b
+
+b. \verb@ ((a ^ b) & ~b) | (~(a ^ b) & b)@\\[.2in]
+% calculates a
+
+c. \verb@ 1 + (a << 3) + ~a @\\[.2in]
+% calculates a * 7
+
+d. \verb@ (a << 4) + (a << 2) + (a << 1) @\\[.2in]
+% calculates a*22
+
+e. \verb@ ((a < 0) ? (a + 3) : a) >> 2 @\\[.2in]
+% calculates a / 4
+
+f. \verb@ a ^ (MIN_INT + MAX_INT)@\\[.2in]
+% calculates ~a
+
+g. \verb@ ~((a | (~a + 1)) >> W) & 1@\\[.2in]
+% calculates !a
+
+h. \verb@ ~((a >> W) << 1)@\\[.2in]
+% calculates (a < 0) ? 1 : -1
+
+i. \verb@ a >> 2@\\[.2in]
+% calculates a >> 2
+
+\end{minipage}
+\end{problem}

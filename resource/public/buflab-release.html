@@ -1,0 +1,74 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html>
+  <head>
+    <title>Buffer Lab Release Notes</title>
+  </head>
+
+  <body bgcolor=white>
+    <h1>Buffer Lab Release Notes</h1>
+
+<h2>4/28/2004</h2>
+<ul>
+<li> Closed a loophole that allowed some students to use the "candle"
+exploit string to receive credit for the "sparkler" and "firecracker"
+stages. The fix is a simple check to make sure validation only happens
+after proper function entry. 
+<i>Thanks to Prof. Bill Bynum, William and Mary.</i> 
+</ul>
+
+<h2>1/20/2004</h2>
+<ul>
+<li>Some recent versions of Linux include a shield to avoid stack exploit problems.  With this shield in place, the lab becomes much too difficult.
+On some systems, the shield can be disabled temporarily (until the machine is rebooted) by writing into the proc file system:
+<br>
+On older Linux 2.4 systems:
+<br>
+<kbd>echo 0 > /proc/sys/kernel/exec-shield-randomize</kbd>
+<br>
+On newer Linux 2.6 systems:
+<br>
+<kbd>echo 0 > /proc/sys/kernel/randomize_va_space</kbd>
+<p>
+You can make this happen automatically at boot time by including one
+of the above commands in <kbd>/etc/rc.d/rc.local</kbd>
+<br>
+<i>Thanks to Umberto Villano.</i> 
+</ul>
+
+<h2>3/31/2003</h2>
+<ul>
+<li> The old autograder would fail on programs compiled with newer
+versions of GCC because these versions use different amounts
+of stack padding than older versions. The new autograder now
+detects the amount of padding automatically, and thus works with
+any version of GCC.  <i>Thanks to Prof. Chris Carothers, RPI.</i> 
+<p>
+<li> The autograder now includes the buffer bomb generation
+number on the status Web page. 
+</ul>
+
+<h2>10/16/2002</h2>
+<ul>
+<li> Minor modifications to improve the clarity of the writeup.
+<p>
+<li> Minor modifications to the autograders:
+<ul>
+<li> <kbd>gengrades.pl</kbd> now gives 0 points for an invalid submission rather
+than 1/4 credit. 
+<li> <kbd>genhtml.pl</kbd> no longer prints the border around icons.
+<li> <kbd>genhtml.pl</kbd> now uses smaller more attractive icons.
+</ul>
+</ul>
+
+<h2>6/3/2002</h2>
+<ul>
+<li> Initial release.
+</ul>
+
+
+    <hr>
+<!-- hhmts start -->
+Last modified: Thu Jun 15 21:54:42 EDT 2006
+<!-- hhmts end -->
+  </body>
+</html>

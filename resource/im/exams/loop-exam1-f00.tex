@@ -1,0 +1,67 @@
+%%COMMENT:3:8:Decompiling a C ``for'' loop:
+\begin{problem}{8}
+Condider the following assembly code for a C {\tt for} loop:
+
+\begin{verbatim}
+loop:
+        pushl %ebp
+        movl %esp,%ebp
+        movl 8(%ebp),%ecx
+        movl 12(%ebp),%edx
+        xorl %eax,%eax
+        cmpl %edx,%ecx
+        jle .L4
+.L6:
+        decl %ecx
+        incl %edx
+        incl %eax
+        cmpl %edx,%ecx
+        jg .L6
+.L4:
+        incl %eax
+        movl %ebp,%esp
+        popl %ebp
+        ret
+\end{verbatim}
+
+Based on the assembly code above, fill in the blanks below in its
+corresponding C source code.  (Note: you may only use the symbolic
+variables {\tt x}, {\tt y}, and {\tt result} in your expressions below
+--- {\em do not use register names.})
+
+\begin{verbatim}
+
+int loop(int x, int y)
+{
+   int result;
+
+   for (_____________; ___________; result++ ) {
+
+      __________;
+
+      __________;
+   }
+
+   __________;
+
+   return result;
+}
+
+\end{verbatim}
+
+% Answer:
+%
+%int loop(int x, int y)
+%{
+%	int result;
+%
+%	for (result = 0; x > y; result++) {
+%		x--;
+%		y++;
+%	}
+%	result++;
+%
+%	return result;
+%}
+
+\end{problem}

@@ -1,0 +1,96 @@
+%%COMMENT:3:6:Stack discipline:
+This next problem will test your understanding of stack frames.  It is
+based on the following recursive C function:
+
+{\small\begin{verbatim}
+int silly(int n, int *p)
+{
+    int val, val2;
+
+    if (n > 0)
+        val2 = silly(n << 1, &val);
+    else
+        val = val2 = 0;
+
+    *p = val + val2 + n;
+
+    return val + val2;
+}
+\end{verbatim}}
+
+This yields the following machine code:
+
+{\small\begin{verbatim}
+silly:
+        pushl %ebp
+        movl %esp,%ebp
+        subl $20,%esp
+        pushl %ebx
+        movl 8(%ebp),%ebx
+        testl %ebx,%ebx
+        jle .L3
+        addl $-8,%esp
+        leal -4(%ebp),%eax
+        pushl %eax
+        leal (%ebx,%ebx),%eax
+        pushl %eax
+        call silly
+        jmp .L4
+        .p2align 4,,7
+.L3:
+        xorl %eax,%eax
+        movl %eax,-4(%ebp)
+.L4:
+        movl -4(%ebp),%edx
+        addl %eax,%edx
+        movl 12(%ebp),%eax
+        addl %edx,%ebx
+        movl %ebx,(%eax)
+        movl -24(%ebp),%ebx
+        movl %edx,%eax
+        movl %ebp,%esp
+        popl %ebp
+        ret
+\end{verbatim}}
+
+\newpage
+
+\begin{problem}{6}
+
+\begin{choice}
+
+\item
+Is the variable {\tt val} stored on the stack? If so, at what byte offset
+(relative to {\tt \%ebp}) is it stored, and why is it necessary to store it
+on the stack?
+%answer: yes, -4, Need to pass pointer to it to recursive call
+
+\vspace{1.0 in}
+
+\item
+Is the variable {\tt val2} stored on the stack? If so, at what byte offset
+(relative to {\tt \%ebp}) is it stored, and why is it necessary to store it
+on the stack?
+%answer: no
+
+\vspace{1.0 in}
+
+\item 
+What (if anything) is stored at {\tt -24(\%ebp)}?
+If something is stored there, why is it necessary to store it?
+
+\vspace{0.5 in}
+%answer: the value of %ebx is saved here, because %ebx is a
+%callee-save register.
+
+
+\item 
+What (if anything) is stored at {\tt -8(\%ebp)}?
+If something is stored there, why is it necessary to store it?
+%answer: nothing is stored here.
+
+\vspace{0.5 in}
+
+\end{choice}
+
+\end{problem}

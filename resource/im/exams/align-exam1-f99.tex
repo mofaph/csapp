@@ -1,0 +1,83 @@
+%%COMMENT:2:6:Structure and union alignment:
+\begin{problem}{6}
+Consider the following datatype definitions on an IA32 (x86) machine.
+
+\begin{minipage}[t]{3in}
+\begin{verbatim}
+        typedef struct {
+          char  c;
+          double *p;
+          int i;
+          double d;
+          short s;
+        } struct1;
+\end{verbatim}
+\end{minipage}
+\begin{minipage}[t]{3in}
+\begin{verbatim}
+        typedef union {
+          char  c;
+          double *p;
+          int i;
+          double d;
+          short s;
+        } union1;
+\end{verbatim}
+\end{minipage}
+\end{problem}
+
+A. Using the template below (allowing a maximum of 32 bytes), indicate
+the allocation of data for a structure of type {\tt struct1}.  Mark
+off and label the areas for each individual element (there are 5 of
+them).  Cross hatch the parts that are allocated, but not used (to
+satisfy alignment).  
+
+Assume the alignment rules discussed in lecture: data types
+of size $x$ must be aligned on $x$-byte boundaries.  {\bf Clearly
+indicate the right hand boundary of the data structure with a vertical
+line}.
+
+
+{\tiny
+\begin{verbatim}
+  0   1   2   3   4   5   6   7   8   9  10  11  12  13  14  15  16  17  18  19  20  21  22  23  24  25  26  27  28  29  30  31
++---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+
+|                                                                                                                               |
++---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+
+\end{verbatim}
+}
+
+% answer:
+%  0   1   2   3   4   5   6   7   8   9  10  11  12  13  14  15  16  17  18  19  20  21  22  23  24  25  26  27  28  29  30  31
+%+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+
+%| c   X   X   X   p   p   p   p   i   i   i   i   X   X   X   X   d   d   d   d   d   d   d   d   s   s   X   X   X   X   X   X 
+%+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+---+
+
+B. How many bytes are  allocated for an object of type {\tt struct1}?
+\shortanswer{.4}
+% answer: 32
+
+C. What alignment is required for an object of type {\tt struct1}? 
+(If an object must be aligned on an $x$-byte boundary, then your answer
+should be $x$.)
+
+\shortanswer{.4}
+% answer: 8
+
+D. If we define the fields of {\tt struct1} in a different order, we can
+reduce the number of bytes wasted by each variable of type {\tt
+struct1}.  What is the number of {\bf unused, allocated} bytes in the
+best case?
+\shortanswer{.4}
+% answer: 5
+
+E. How many bytes are  allocated for an object of type {\tt union1}?
+\shortanswer{.4}
+% answer: 8
+
+F. What alignment is required for an object of type {\tt union1}?
+(If an object must be aligned on an $x$-byte boundary, then your answer
+should be $x$.)
+\shortanswer{.4}
+% answer: 8
+

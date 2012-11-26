@@ -1,0 +1,226 @@
+<html>
+<head>
+<title>CS:APP Labs</title>
+</head>
+
+<body bgcolor = "ffffff">
+
+<img src="mountain-thumb.gif" align=left>
+
+<h2><br>
+Labs for<br>
+Computer Systems: A Programmer's Perspective (CS:APP)<br>
+</h2>
+<i>
+<a href="http://www.cs.cmu.edu/~bryant">Randal E. Bryant</a> and <a
+href="http://www.cs.cmu.edu/~droh">David R. O'Hallaron</a>
+</i>
+<br clear=all>
+
+
+<a href="http://csapp.cs.cmu.edu/public/instructors.html">Instructor Site</a>
+<br>
+<img src="line_marble1.gif" width=600 height=8>
+
+<blockquote>
+<b>Conditions of use: If you are an instructor with a CS:APP account,
+then you have permission to download, inspect, and try out these labs.
+However, you may use them in courses only if you have adopted the
+CS:APP textbook.
+</b>
+</blockquote>
+
+<p>
+This page contains a complete set of turnkey labs for the CS:APP
+text. The labs all share some common features, described <a
+href="labinfo.html">here</a>.
+
+<p>
+Each lab is distributed in a self-contained tar file and has been
+compiled with GCC 2.95.3 and tested on a Linux/IA32 machine.  You will
+need a <a
+href="http://csapp.cs.cmu.edu/public/loginrequest.html">CS:APP
+account</a> to download the code. To untar <kbd>foo.tar</kbd>, type
+"<kbd>tar xvf foo.tar</kbd>" to the Unix shell. This will create a
+directory called "<kbd>foo</kbd>" that contains all of the material
+for the lab. 
+
+<p>
+Labs that were updated after Sep 1, 2006 
+are marked as <img alt="[NEW]" width=31 height=12 src="new.gif">.
+
+<ul>
+<li> <a href="http://csapp.cs.cmu.edu/im/labs/datalab.tar"><em>Data
+Lab</em></a> 
+<i>[Updated Aug 29, 2003]</i> 
+(<a href="http://csapp.cs.cmu.edu/public/datalab.pdf">View the writeup</a>)
+(<a href="datalab-release.html">Release Notes</a>)
+<!--<img alt="[NEW]" width=31 height=12 src="new.gif">-->
+
+
+<blockquote>
+Students implement simple logical
+and arithmetic functions, but using a highly restricted subset of C.
+For example, they must compute the absolute value of a number using
+only bit-level operations.  This lab helps students understand the
+bit-level representations of C data types and the bit-level behavior
+of the operations on data. 
+
+
+</blockquote>
+
+<li> <a href="http://csapp.cs.cmu.edu/im/labs/bomblab.tar">
+<em>Bomb Lab</em></a> 
+
+<i>[Updated Mar 12, 2003]</i> 
+
+(<a href="http://csapp.cs.cmu.edu/public/bomblab.pdf">View the writeup</a>)
+(<a href="bomblab-release.html">Release Notes</a>)
+<!--<img alt="[NEW]" width=31 height=12 src="new.gif">-->
+
+
+<blockquote>
+A "binary bomb" is a program provided to students as an object code
+file.  When run, it prompts the user to type in 6 different strings.
+If any of these is incorrect, the bomb ``explodes,'' printing an error
+message and logging the event on a grading server.  Students must
+``defuse'' their own unique bomb by disassembling and reverse
+engineering the program to determine what the 6 strings should be.
+The lab teaches students to understand assembly language, and also
+forces them to learn how to use a debugger.  It's also great fun. 
+A legendary lab among the CMU undergrads. 
+<p>
+Here's a <a href="bomb.tar">Linux/IA32
+binary bomb</a>
+that you can try out for yourself. 
+To download using either IE or Netscape, left click
+and save to a file called <kbd>bomb.tar</kbd>. Then copy <kbd>bomb.tar</kbd>
+to a Linux machine and expand into the binary executable <kbd>bomb</kbd> 
+by typing "<kbd>tar xvf bomb.tar</kbd>". 
+The feature that notifies the grading server has been 
+disabled, so feel free to explode this bomb with impunity.
+If you're an instructor with a CS:APP account, then 
+you can download the 
+<a href="http://csapp.cs.cmu.edu/im/bomb-solution.tar">solution</a>.
+
+</blockquote>
+
+<li> <a href="http://csapp.cs.cmu.edu/im/labs/buflab.tar"><em>Buffer
+Lab</em></a>
+
+<i>[Updated Apr 28, 2004]</i> 
+(<a href="http://csapp.cs.cmu.edu/public/buflab.pdf">View the writeup</a>)
+(<a href="buflab-release.html">Release Notes</a>)
+<!--<img alt="[NEW]" width=31 height=12 src="new.gif">-->
+
+<blockquote>
+Students modify the run-time behavior of a binary executable by
+exploiting a buffer overflow bug. This lab teaches the students about
+the stack discipline and teaches them about the danger of writing code
+that is vulnerable to buffer overflow attacks.
+</blockquote>
+
+<li> 
+<a href="http://csapp.cs.cmu.edu/im/labs/archlab.tar">
+<em>Architecture Lab</em></a> 
+
+<i>[Updated Nov 4, 2004]</i> 
+(<a href="http://csapp.cs.cmu.edu/public/archlab.pdf">View the writeup</a>)
+(<a href="archlab-release.html">Release Notes</a>)
+<!--<img alt="[NEW]" width=31 height=12 src="new.gif">-->
+
+
+<blockquote>
+Students are given a small default Y86 array copying function and a
+working pipelined Y86 processor design that runs the copy function in
+some nominal number of clock cycles per array element (CPE).  The
+students attempt to minimize the CPE by modifying both the function
+and the processor design. This gives the students a deep appreciation
+for the interactions between hardware and software.
+<p>
+Note: The lab materials include the master source distribution of the Y86
+processor simulators and the <em>Y86 Guide to Simulators</em>.
+</blockquote>
+
+<li>
+<a href="http://csapp.cs.cmu.edu/im/labs/perflab.tar"><em>Performance
+Lab</em></a>
+
+<i>[Updated Jun 26, 2003]</i> 
+(<a href="http://csapp.cs.cmu.edu/public/perflab.pdf">View the writeup</a>)
+(<a href="perflab-release.html">Release Notes</a>)
+<!--<img alt="[NEW]" width=31 height=12 src="new.gif">-->
+
+<blockquote>
+Students optimize the performance of an application
+kernel function such as convolution or matrix transposition.  This lab
+provides a clear demonstration of the properties of cache
+memories and gives them experience with low-level program
+optimization.
+</blockquote>
+
+<li>
+<a href="http://csapp.cs.cmu.edu/im/labs/shlab.tar"><em>Shell
+Lab</em></a>
+
+<i>[Updated July 28, 2003] </i>
+(<a href="http://csapp.cs.cmu.edu/public/shlab.pdf">View the writeup</a>)
+(<a href="shlab-release.html">Release Notes</a>)
+<!--<img alt="[NEW]" width=31 height=12 src="new.gif">-->
+
+<blockquote>
+Students implement their own simple Unix shell program with job
+control, including the <kbd>ctrl-c</kbd> and <kbd>ctrl-z</kbd> 
+keystrokes, <kbd>fg</kbd>, <kbd>bg</kbd>, and <kbd>jobs</kbd>
+commands.  This is the students' first introduction to application
+level concurrency, and gives them a clear idea of Unix process
+control, signals, and signal handling.
+</blockquote>
+
+<li> <a
+href="http://csapp.cs.cmu.edu/im/labs/malloclab.tar"><em>Malloc
+Lab</em></a>
+
+<i>[Updated April 28, 2004]</i> 
+(<a href="http://csapp.cs.cmu.edu/public/malloclab.pdf">View the writeup</a>)
+(<a href="malloclab-release.html">Release Notes</a>)
+<!--<img alt="[NEW]" width=31 height=12 src="new.gif">-->
+
+<blockquote>
+Students implement their own versions of <kbd>malloc</kbd>,
+<kbd>free</kbd>, and <kbd>realloc</kbd>.  This lab gives students a
+clear understanding of data layout and organization, and requires them
+to evaluate different trade-offs between space and time
+efficiency. One of our favorite labs. When students finish this one,
+they really understand pointers!
+</blockquote>
+
+<li> <a 
+href="http://csapp.cs.cmu.edu/im/labs/proxylab.tar">
+<em>Proxy Lab</em></a>
+
+<i>[Updated Mar 26, 2003]</i> 
+(<a href="http://csapp.cs.cmu.edu/public/proxylab.pdf">View the writeup</a>)
+(<a href="proxylab-release.html">Release Notes</a>)
+<!--<img alt="[NEW]" width=31 height=12 src="new.gif">-->
+
+<blockquote>
+Students implement a concurrent Web proxy that sits between their
+browser and the rest of the World Wide Web.  This lab exposes the
+students to the interesting world of network programming, and ties
+together many of the concepts from the course, such as byte ordering,
+process control, signals, signal handling, file I/O, concurrency, and
+synchronization.
+</blockquote>
+
+</ul>
+
+
+<hr>
+Questions or problems with your account? 
+Forget your password?
+Send mail to 
+<a href="mailto:droh@cs.cmu.edu">Dave O'Hallaron</a>
+<br>
+</body>
+</html>

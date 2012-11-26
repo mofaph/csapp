@@ -1,0 +1,88 @@
+%%COMMENT:2:8:Floating point encoding:
+\begin{problem}{8}
+Consider the following 5-bit floating point representation based on the
+IEEE floating point format:
+\begin{itemize}
+\item There is a sign bit in the most significant bit.
+\item The next two bits are the exponent.  The exponent bias is 1.
+\item The last two bits are the significand.
+\end{itemize}
+The rules are like those in the IEEE standard (normalized,
+denormalized, representation of 0, $\infty$, and NAN).
+As described in Class 10, the floating point format encodes
+numbers in a form:
+\begin{displaymath}
+(-1)^s \times m \times 2^E
+\end{displaymath}
+where $m$ is the {\em mantissa} and $E$ is the exponent. 
+The table below enumerates the entire non-negative range for this
+5-bit floating point representation. Fill in the blank table entries
+using the following directions:
+\begin{description}
+\item[$E$:] The integer value of the exponent.
+\item[$m$:] The fractional value of the mantissa. 
+{\bf Your answer must be expressed as a fraction of the form $x/4$.} 
+\item[Value:] The numeric value represented.  {\bf Your answer
+must be expressed as a fraction of the form $x/4$}.
+\end{description}
+You need not fill in entries marked ``---''.
+
+\begin{center}
+\renewcommand{\arraystretch}{1.5}
+\begin{tabular}{|l||c|c|c|}
+\hline
+{Bits} & \makebox[.75in]{$E$} &
+\makebox[.75in]{$m$} & \makebox[.75in]{Value} \\
+\hline
+\hline
+0 00 00 & --- &  ---  & 0 \\
+%Answer: all zeros
+\hline
+
+0 00 01 &  &  &  \\
+%Answer: 0 00 01 & $0$ & $1/4$ & $1/4$ \\
+\hline
+
+0 00 10 &  &  &  \\
+%Answer: 0 00 10 & $0$ & $2/4$ & $2/4$ \\
+\hline
+
+0 00 11 &  &  &  \\
+%Answer: 0 00 11 & $0$ & $3/4$ & $3/4$ \\
+\hline
+
+0 01 00 &  &  &  \\
+%Answer: 0 01 00 & $0$ & $4/4$ & $4/4$ \\
+\hline
+
+0 01 01 &  &  &  \\
+%Answer: 0 01 01 & $0$ & $5/4$ & $5/4$ \\
+\hline
+
+0 01 10 &  &  &  \\
+%Answer: 0 01 10 & $0$ & $6/4$ & $6/4$ \\
+\hline
+
+0 01 11 &  &  &  \\
+%Answer: 0 01 11 & $0$ & $7/4$ & $7/4$ \\
+\hline
+
+0 10 00 & $1$ & $4/4$ & $8/4$ \\
+\hline
+
+0 10 01 &  &  &  \\
+%Answer: 0 10 01 & $1$ & $5/4$ & $10/4$ \\
+\hline
+
+0 10 10 & &  &  \\
+%Answer: 0 10 10 & $1$ & $6/4$ & $12/4$ \\
+\hline
+
+0 10 11 &  &  &  \\
+%Answer: 0 10 11 & $1$ & $7/4$ & $14/4$ \\
+\hline
+
+\end{tabular}
+\end{center}
+
+\end{problem}

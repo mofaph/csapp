@@ -1,0 +1,91 @@
+%%COMMENT:2:12:Floating point puzzles (interesting values):
+\begin{problem}{12}
+Consider the following 16-bit floating point representation based on the
+IEEE floating point format:
+\begin{itemize}
+\item There is a sign bit in the most significant bit.
+\item The next seven bits are the exponent.  The exponent bias is 63.
+\item The last eight bits are the significand.
+\end{itemize}
+The rules are like those in the IEEE standard (normalized,
+denormalized, representation of 0, infinity, and NAN).
+
+As described in Class 10, we consider the floating point format to
+encode numbers in a form:
+\begin{displaymath}
+(-1)^s \times m \times 2^E
+\end{displaymath}
+where $m$ is the {\em mantissa} and $E$ is the exponent.
+
+
+
+Fill in the table below
+for the following numbers, with the following instructions for each column:
+\begin{description}
+\item[Hex:]
+The 4 hexadecimal digits
+describing the encoded form.  
+\item[$m$:] The fractional value of the mantissa.  This should be a
+number of the form $x$ or $x/y$, where $x$ is an integer, and $y$ is
+an integral power of 2.  Examples include: 0, 67/64, and 1/256.
+\item[$E$:]
+The integer value of the exponent.
+\item[Value:] The numeric value represented.  Use the notation
+$x$ or $x \times 2^{z}$, where $x$ and $z$ are integers.
+\end{description}
+
+As an example, to represent the number $7/2$, we would have $s = 0$,
+$m = 7/4$, and $E = 1$.  Our number would therefore have an exponent
+field of {\tt 0x40} (decimal value $63+1 = 64$) and a significand
+field {\tt 0xC0} (binary $11000000_2$), giving a hex representation
+{\tt 40C0}.
+
+You need not fill in entries marked ``---''.
+
+\begin{center}
+\renewcommand{\arraystretch}{1.5}
+\begin{tabular}{|l|c|c|c|c|}
+\hline
+Description & \makebox[.75in]{Hex} &
+ \makebox[.75in]{$m$} & \makebox[.75in]{$E$} & \makebox[.75in]{Value} \\
+\hline
+$-0$ & & & & --- \\
+\comment{
+answer: & {\tt 8000} &  0 & -62 & -0 \\
+}
+
+\hline
+Smallest value $> 1$ &&&&\\
+\comment{
+answer: & {\tt 3F01} & $257/256$ & 0 & $257/256$ \\
+}
+
+
+%% Omitted for time reasons
+%%\hline
+%%256 &&&& ---- \\
+%%\comment{
+%%answer: & {\tt 4700} & $1$ & 71 & --- \\
+%%}
+
+
+\hline
+Largest Denormalized &&&& \\
+\comment{
+answer: & {\tt 00FF} & $255/256$ & -62 & $255 \times 2^{-70}$ \\
+}
+\hline
+$-\infty$ & & --- & --- & --- \\
+\comment{
+answer: & {\tt FF00} & & & & \\
+}
+\hline
+Number with hex representation {\tt 3AA0} &--- &&& \\
+\comment{
+answer: & & $13/8$ & $-5$ & $13/256$ \\
+}
+\hline
+\end{tabular}
+\end{center}
+
+\end{problem}

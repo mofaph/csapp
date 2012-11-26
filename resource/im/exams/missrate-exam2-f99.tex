@@ -1,0 +1,99 @@
+%COMMENT:6:12:High-level cache miss rate analysis:
+\begin{problem}{12}
+
+3M decides to make Post-Its by printing yellow squares on white pieces
+of paper. As part of the printing process, they need to set the CMYK
+(cyan, magenta, yellow, black) value for every point in the square.
+3M hires you to determine the efficiency of the following algorithms
+on a machine with a 2048-byte direct-mapped data cache with 32 byte blocks.
+
+You are given the following definitions:
+
+\begin{verbatim}
+struct point_color {
+    int c;
+    int m;
+    int y;
+    int k;
+};
+
+struct point_color square[16][16];
+register int i, j;
+
+\end{verbatim}
+
+Assume:
+\begin{itemize}
+\item \verb|sizeof(int) = 4|
+\item \verb|square| begins at memory address 0
+\item The cache is initially empty.
+\item The only memory accesses are to the entries of the array \verb|square|. 
+Variables \verb|i| and \verb|j| are stored in registers.
+\end{itemize}
+
+\end{problem}
+
+A. What percentage of the writes in the following code will miss in the cache?
+
+\begin{verbatim}
+for (i=0; i<16; i++){
+    for (j=0; j<16; j++) {
+        square[i][j].c = 0;
+        square[i][j].m = 0;
+        square[i][j].y = 1;
+        square[i][j].k = 0;
+    }
+}
+\end{verbatim}
+
+% Answer: 12.5
+
+\vspace{0.25in}
+
+Miss rate for writes to {\tt square}: \verb|_______| \%
+
+\vspace{0.25in}
+
+B. What percentage of the writes in the following code will miss in the cache?
+
+\begin{verbatim}
+for (i=0; i<16; i++){
+    for (j=0; j<16; j++) {
+        square[j][i].c = 0;
+        square[j][i].m = 0;
+        square[j][i].y = 1;
+        square[j][i].k = 0;
+    }
+}
+\end{verbatim}
+
+% Answer: 25
+
+\vspace{0.25in}
+
+Miss rate for writes to {\tt square}: \verb|_______| \%
+
+\vspace{0.25in}
+
+C. What percentage of the writes in the following code will miss in the cache?
+
+\begin{verbatim}
+for (i=0; i<16; i++){
+    for (j=0; j<16; j++) {
+        square[i][j].y = 1;
+    }
+}
+for (i=0; i<16; i++) {
+    for (j=0; j<16; j++) {
+        square[i][j].c = 0;
+        square[i][j].m = 0;
+        square[i][j].k = 0;
+    }
+}
+\end{verbatim}
+
+% Answer: 25
+
+\vspace{0.25in}
+
+Miss rate for writes to {\tt square}: \verb|_______| \%

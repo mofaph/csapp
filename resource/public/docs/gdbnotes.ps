@@ -1,0 +1,197 @@
+%!PS-Adobe-3.0
+%%Creator: enscript
+%%For: bass.cmcl.cs.cmu.edu:droh (Dave OHallaron)
+%%Title: gdbnotes.txt
+%%CreationDate: Sun Aug 26 16:20:01 2001
+%%DocumentNeededResources: font Courier-Bold Courier
+%%Pages: (atend)
+%%BeginProlog
+% COPYRIGHT NOTICE
+% Copyright (c) 1994 Carnegie Mellon University
+% All Rights Reserved.
+% 
+% See <cmu_copyright.h> for use and distribution information.
+% 
+% 
+% HISTORY
+% $Log: enscript.pro,v $
+% Revision 1.1.2.1  1995/11/01  13:32:24  moore
+% 	Created from Transcript 4.0 sources
+% 	[1995/10/31  15:23:08  moore]
+%
+% $EndLog$
+% Start of enscript.pro -- prolog for text file translator
+% Copyright (c) 1984,1985,1987 Adobe Systems Incorporated. All Rights Reserved. 
+% GOVERNMENT END USERS: See Notice file in TranScript library directory
+% -- probably /usr/lib/ps/Notice
+% RCSID: $Header: /afs/cs.cmu.edu/misc/transcript/rcs/lib/enscript.pro,v 1.1.2.1 1995/11/01 13:32:24 moore Exp $
+/$enscript 50 dict def $enscript begin
+/S/show load def
+/bd { bind def } bind def
+/X{exch 0 rmoveto S} bd
+/Y{exch 0 exch rmoveto S} bd
+/B{3 1 roll moveto S} bd
+/F{$fd exch get setfont} def
+/U{1440 mul}def
+/UP{U 72 div}def
+/StartPage{/svpg save def .05 dup scale} bd
+/EndPage{svpg restore showpage} bd
+/DoPreFeed{/statusdict where{pop
+ statusdict/prefeed known{statusdict exch/prefeed exch put 0}if}if pop} bd
+/SetUpFonts
+ {dup/$fd exch array def{findfont exch scalefont $fd 3 1 roll put}repeat}def
+/InitGaudy{/Columns exch def
+ /ftD /Times-Bold findfont 12 UP scalefont def
+ /ftF /Times-Roman findfont 14 UP scalefont def
+ /ftP /Helvetica-Bold findfont 30 UP scalefont def} bd
+/LB{/pts exch UP def /charcolor exch def /boxcolor exch def /font exch def
+ /label exch def /dy exch def /dx exch def /lly exch def /llx exch def
+ gsave boxcolor setgray
+ llx lly moveto dx 0 rlineto 0 dy rlineto dx neg 0 rlineto closepath fill
+ /lines label length def
+ /yp lly dy add dy lines pts mul sub 2 div sub pts .85 mul sub def
+ font setfont charcolor setgray
+ label {dup stringwidth pop 2 div llx dx 2 div add exch sub yp moveto show
+   /yp yp pts sub def}forall grestore} bd
+/Gaudy{/plength exch def /BarLength exch def /hy exch def /hx exch def
+ /Page exch def /Date exch def  /File exch def /Comment exch def
+ hx hy  BarLength 144 sub .25 U [File] ftF .97 0 14 LB
+ hx hy 360 add BarLength 144 sub .25 U [Comment] ftF 1 0 14 LB
+ hx hy 1 U .5 U Date ftD .7 0 12 LB
+ BarLength 1080 sub hy 1 U .5 U [Page] ftP .7 1 30 LB
+ 2 1 Columns {1 sub plength Columns div mul 172.80 sub hy moveto 0 0 hy sub rlineto
+ stroke}for } bd
+/Landscape { 90 rotate 0 exch translate } bd
+%%EndProlog
+%%BeginSetup
+%%IncludeResource: font Courier-Bold
+1    200.000 /Courier-Bold
+%%IncludeResource: font Courier
+0    140.000 /Courier
+2 SetUpFonts
+%%EndSetup
+%%Page: ? 1
+StartPage
+-12240 Landscape
+1 F
+360 11530 (gdbnotes.txt        Sun Aug 26 16:15:56 2001        1)B
+0 F
+360 11210(Starting:)B
+1032 11050(gdb)B
+1032 10890(gdb <file>)B
+1032 10730(gdb -h )B
+756(\(lists command line options\))X
+360 10410(Exiting:)B
+-160(quit)Y
+1032 10090(Ctrl-d)B
+1032 9930(Note: Ctrl-C does not exit from gdb, but halts the current)B
+1704 9770(gdb command)B
+360 9290(General commands)B
+1032 8970(run)B
+1092(\(start your program\))X
+1032 8810(kill)B
+1008(\(stop the program\))X
+360 8330(Breakpoints)B
+1032 8010(break FUNCTION)B
+168(\(set a breakpoint at the entry to the function\))X
+1032 7850(break *ADDRESS)B
+168(\(set a breakpoint at the specified address\))X
+1032 7530(disable <NUM>)B
+252(\(disable the breakpoint with that number\))X
+1032 7370(enable <NUM>)B
+336(\(enable the breakpoint with that number\))X
+1032 7050(clear FUNCTION)B
+168(\(clear any breakpoints at the entry to the function\))X
+1032 6730(delete <NUM>)B
+336(\(deletes the breakpoint with that number\))X
+1032 6570(delete)B
+840(\(deletes all breakpoints\))X
+360 6090(Working at breakpoints)B
+1032 5770(stepi)B
+924(\(execute one machine code instruction\))X
+1032 5610(stepi <NUM>)B
+420(\(execute NUM instructions\))X
+1032 5450(step)B
+1008(\(execute one C statement\))X
+1032 5130(nexti)B
+924(\(like stepi, but proceed through subroutine calls\))X
+1032 4970(nexti <NUM>)B
+1032 4810(next)B
+1032 4490(until LOCATION)B
+168(\(continue running until LOCATION is reached\))X
+1032 4170(continue)B
+672(\(resume execution\))X
+1032 4010(continue <NUM>)B
+168(\(continue, ignoring this breakpoint NUM times\))X
+1032 3690(finish)B
+840(\(run until the current function returns\))X
+1032 3370(backtrace)B
+588(\(print the current address and stack backtrace\))X
+1032 3210(where)B
+924(\(print the current address and stack backtrace\))X
+360 2890(Examining code)B
+1032 2570(print/a $pc)B
+420(\(print the program counter\))X
+1032 2410(print $sp)B
+588(\(print the stack pointer\))X
+1032 2250(disas)B
+924(\(display the function around the current line\))X
+1032 2090(disas ADDR )B
+420(\(display the function around the address\))X
+1032 1930(disas ADDR1 ADDR2 \(display the function between the addresses\))B
+360 1610(Examining data)B
+1032 1290(print $eax)B
+504(\(print the contents of %eax\))X
+1032 1130(print/x $eax)B
+336(\(print the contents of %eax as hex\))X
+1032 970(print/a $eax)B
+336(\(print the contents of %eax as an address\))X
+1032 810(print/d $eax)B
+336(\(print the contents of %eax as decimal\))X
+1032 650(print/t $eax)B
+336(\(print the contents of %eax as binary\))X
+8592 11210(print/c $eax)B
+336(\(print the contents of %eax as a character\))X
+8592 10890(print 0x100)B
+420(\(print decimal repr. of hex value\))X
+8592 10730(print/x 555)B
+420(\(print hex repr. of decimal value\))X
+8592 10410(x ADDR)B
+840(\(print the contents of ADDR in memory\))X
+8592 10250(x/NFU ADDR)B
+504(\(print the contents at ADDR in memory:)X
+10608 10090(N = number of units to display)B
+10608 9930(F = display format)B
+10608 9770(U = b \(bytes\), h \(2 bytes\), w \(4 bytes\)\))B
+7920 9450(Autodisplaying information)B
+8592 9130(display $eax)B
+336(\(print contents of %eax every time the)X
+9936 8970(program stops\))B
+8592 8810(display)B
+756(\(print the auto-displayed items\))X
+8592 8650(delete display <NUM>)B
+336(\(stop displaying item NUM\))X
+7920 8330(Useful information commands)B
+8592 8170(help info)B
+8592 8010(info program)B
+336(\(current status of the program\))X
+8592 7850(info functions)B
+168(\(functions in program\))X
+8592 7690(info stack      \(backtrace of the stack\))B
+8592 7530(info frame)B
+504(\(information about the current stack frame\))X
+8592 7370(info scope )B
+420(\(variables local to the scope\))X
+8592 7210(info variables)B
+168(\(global and static variables\))X
+8592 7050(info registers  \(registers and their contents\))B
+8592 6890(info breakpoints \(status of user-settable breakpoints\))B
+8592 6730(info address SYMBOL)B
+420(\(use for looking up addresses of functions\))X
+7920 6410(Running gdb in emacs)B
+8592 6250(M-x gdb)B
+8592 6090(C-h m to see the features of GDB mode)B
+EndPage
+%%Trailer
+end
+%%Pages: 1

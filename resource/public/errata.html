@@ -1,0 +1,2299 @@
+<html>
+<head>
+<title>CS:APP Errata</title>
+</head>
+
+<body bgcolor=white>
+
+<img src="mountain-thumb.gif" align=left>
+<h2>
+<br>
+Errata for<br>
+Computer Systems: A Programmer's Perspective (CS:APP)
+<p>
+</h2>
+<i>
+<a href="http://www.cs.cmu.edu/~bryant">Randal E. Bryant</a> and <a
+href="http://www.cs.cmu.edu/~droh">David R. O'Hallaron</a>
+</i>
+<br clear=all>
+<br>
+
+<a href="http://csapp.cs.cmu.edu">CS:APP Home Page</a>
+<br>
+<img src="line_marble1.gif" width=600 height=8>
+
+<table width=750><tr><td>
+
+<p>
+Please report any new errata to 
+<a href="mailto:randy.bryant@cs.cmu.edu, droh@cs.cmu.edu">
+Randy Bryant and Dave O'Hallaron</a>.
+<br>
+ 
+Errata posted after Sept 1, 2006 are marked as 
+<img alt="[NEW]" width=31 height=12 src="new.gif">
+
+<br>
+<!-- Created: Thu Mar  7 17:35:45 EST 2002 -->
+<!-- hhmts start -->
+Last modified: Wed Jan  2 22:25:37 EST 2008
+<!-- hhmts end -->
+     
+<ul>
+<li>
+<a href="#na1">Errata for first North American printing [2003, ISBN 0-13-034074-X, hardcover]</a>
+<li>
+<a href="#int1">Errata for first international printing [2003, ISBN 0-13-178456-0, softcover]</a>
+</ul>
+
+<a NAME="na1"></a>
+<hr>
+<h2>First North American Printing [2003, ISBN 0-13-034074-X, hardcover]</h2>
+
+Note that some of these errors have been corrected in more recent
+printings of the book.
+
+<ul>
+<li><b>Preface</b>
+<ul>
+<li> p. xvii (last paragraph): "Figure .1" should be "Figure P.1"
+<li> p. xxiii (line 7): "topic of the next section"
+should read "topic of the next chapter"
+<li> p. xxiii (line 8): "students to point" should read "students
+to the point"
+<li> p. xxiii and p. xxiv (last paragraphs): 
+"Figure .2" should be "Figure P.2"
+<li> p. xxvi (Last paragraph):  The name "Sandhya Dwarkadas" was mispelled.
+<br><i><font size=-1>Posted 01/12/2005. Michael Scott</font></i>
+<li> p. xxvi, last paragraph: Acknowledge Al Davis (Univ. of Utah) as 
+a beta tester. 
+</ul>
+<li><b>Chapter 1: A Tour of Computer Systems</b>
+
+<ul>
+<li> 
+p. 15, 3rd paragagraph. "to <font color=red><b>a</b></font> some new process" should read
+"to some new process". 
+<br><i><font size=-1>Posted 5/12/2003. Jeff Goldblat</i></font>
+</ul>
+
+<li><b>Chapter 2: Representing and Manipulating Information</b>
+<ul>
+
+<li> p. 30, Problem 2.2: The fourth case in the table should have entry
+<kbd>0x20000</kbd> rather than <kbd>0x2000</kbd>
+
+<li>p. 36, Lines 3-6 below disassembler output.  This line should read:
+<br>
+"For now, we simply note that this line states that the hexadecimal
+byte sequence <kbd>01 05 64 94 04 08</kbd> is the byte-level representation of an
+instruction that adds a word of data to the value stored in memory at
+address <kbd>0x8049464</kbd>."
+<br><i><font size=-1>Posted 09/25/2003. Anne Rogers</i></font>
+
+<li> p. 36, Aside "New to C?: Naming data types with typedef."  The
+last sentence should end "... the declaration of a variable of
+type '<kbd>unsigned char <font color=red>*</font></kbd>'."
+<br><i><font size=-1>Posted 12/03/2007. Carl Marcinik</font></i>
+<img alt="[NEW]" width=31 height=12 src="new.gif">
+
+<li> p. 38, "New to C?: Pointers and arrays" section.  The 3rd
+sentence should read 
+"In C, we can dereference a pointer with array
+notation, and we can reference array elements with pointer notation."
+
+<li>p. 51, Fig. 2.8: under "unsigned short": 
+Guaranteed max and typical 32-bit 
+max should be 6<font color=red><b>5</b></font>,535 
+not 6<font color=red><b>3</b></font>,535. 
+<br><i><font size=-1>Posted 6/23/2003. Daniel Amelang</i></font>
+
+<li>p. 57, just before Equation 2.3:
+"If we let x = B2T_w(vec{x}) ..." should be
+"If we let vec{x} = T2B_w(x) ...".
+<br><i><font size=-1>Posted 8/7/2003. Thomas Niemann</i></font>
+
+<li> p. 60, Figure 2.13:
+<ul>
+<li> Change the value <kbd>-2147483648</kbd> in entries four and five
+to <kbd>-2147483647-1</kbd> <li>Add the following sentences to the
+caption: 
+``We must write
+TMin_32 in C as <kbd>-2147483647-1</kbd>, rather than
+<kbd>-2147483648</kbd>,
+to avoid overflow problems.  The compiler processes an expression of the
+form <kbd>-</kbd><em>X</em> by first reading the expression <em>X</em> and then
+negating it, but <kbd>2147483648</kbd> is too large to represent as a
+32-bit, two's complement number.''
+</ul>
+See the <a href="tmin.html">Note on writing TMin in C</a> for a more detailed
+discussion.
+
+
+<li> p. 60, Problem 2.20:
+<ul>
+<li>The value <kbd>-2147483648</kbd> should be written
+<kbd>-2147483647-1</kbd> in entries 1, 2, and 4, and as
+<kbd>(-2147483647-1)</kbd> in entries 3 and 5.
+See the <a href="tmin.html">Note on writing TMin in C</a> for a discussion.
+<li> 2nd & 3rd entries in table should have <kbd>-2147483647</kbd>
+rather than <kbd>-21474836487</kbd>.
+<li> 4th & 5th entries in table should have <kbd>2147483647</kbd>
+rather than <kbd>21474836487</kbd>.
+</ul>
+
+<li> p. 61, second paragraph.  The first line should read: "As an
+example, consider the effect of executing the following code when integer variable
+<kbd>val</kbd> is set to <kbd>-12345</kbd>:"
+<br><i><font size=-1>Posted 10/18/2007. Carl Marcinik</font></i>
+<img alt="[NEW]" width=31 height=12 src="new.gif">
+
+
+<li> p. 64, multiple places.  Several of the bit vectors have one too
+many bits:
+<ol>
+<li> [x_{w}, x_{w-1}, ..., x_0] should be [x_{w-1}, x_{w-2}, ..., x_0]
+in the following places:
+<ul>
+<li> Left hand side of the first equation
+<li> In the text of the second paragraph
+<li> On the right hand sides of Equations 2.7 and 2.8.
+</ul>
+<li> [x_{k}, x_{k-1}, ..., x_0] should be [x_{k-1}, x_{k-2}, ..., x_0]
+in the following places:
+<ul>
+<li> Bottom line of equation
+<li> In the text of the second paragraph
+<li> On the left hand sides of Equations 2.7 and 2.8.
+</ul>
+</ol>
+<i><font size=-1>Posted 11/18/2003. Rui Carvalho</font></i>
+
+
+<li> p. 64, Equation 2.8.
+Inner function on right hand side should be B2U rather than B2T.
+<br><i><font size=-1>Posted 05/04/2006. Will Marrero</font></i>
+
+<li> p. 69, middle line of equation at bottom: There should be no minus signs in front of x_{w-1} and y_{w-1}.
+<br><i><font size=-1>Posted 09/18/2003. Simone Martins</font></i>
+
+<li> p. 72, Practice Problem 2.25: In the third column heading, the "4" should
+be a "5".
+
+<li> p. 73, 2nd & 3rd lines.  All subscripts "w+1" should read "w-1".
+<br><i><font size=-1>Posted 09/13/2005. Day Zhong</font></i>
+
+<li> p. 73, 4th line should read "for x in the range -2^{w-1} <= x < 2^{w-1}"
+<br><i><font size=-1>Posted 07/19/2004. Yin Yongsheng</font></i>
+
+<li>p. 75, 5th line after Equation 2.15.
+Should read
+"... complement product B2T(x) * B2T(y)" (y instead of x at the end).
+<br><i><font size=-1>Posted 09/15/2005. Jordan Brough</font></i>
+
+
+<li> p. 77, Practice Problem 2.28.  Parameter k can be 0, 1, 2, or 3.
+<br><i><font size=-1>Posted 09/08/2003. Darren Shultz</font></i>
+
+<li> p. 77, Practice Problem 2.28.
+The expression <kbd>a&lt;&lt;k + b</kbd>
+should be written as
+ <kbd>(a&lt;&lt;k) + b</kbd> to avoid problems with operator precedence.  Similarly we should write <kbd>(a&lt;&lt;1) + a</kbd>.
+<br><i><font size=-1>Posted 01/02/2008. Zeyang Li</font></i>
+<img alt="[NEW]" width=31 height=12 src="new.gif">
+
+<li>p. 78, 3rd line.
+The equation for x' should be SUM(i=k,w-1) x_i * 2^(i-k).
+<br><i><font size=-1>Posted 04/22/2005. Guanpeng Xu</font></i>
+
+<li>p. 78, End of second full paragraph.  Last sentence should read
+"Thus, this shifted bit vector is the two's complement representation
+of |_ x / 2^k _|," (rather than 
+|_ x / y _|.)
+<br><i><font size=-1>Posted 04/22/2005. Randy Bryant</font></i>
+
+<li> p. 82, Problem 2.31: The entry at row 7, column 3 should be
+<kbd>5.625</kbd> rather than <kbd>5.375</kbd>.
+
+<li> p. 91, Section 2.4.5, 3rd paragraph, 1st line.  The word
+"complement" should not be italicized, and there should be a space
+before it.
+<br><i><font size=-1>Posted 12/02/2003. Mark Morrissey</font></i>
+
+
+<li> p. 104, Problem 2.54, second paragraph.  The last part of the sentence should read "... we convert them to other unsigned values ...".
+<br><i><font size=-1>Posted 10/18/2007. Carl Marcinik</font></i>
+<img alt="[NEW]" width=31 height=12 src="new.gif">
+
+
+<li> p. 107, Problem 2.61.  Local variable <kbd>sig</kbd> should be
+renamed <kbd>frac</kbd>, and referred to as the fraction, rather than
+the significand.
+<br><i><font size=-1>Posted 08/08/2006. Randy Bryant</font></i>
+
+<li> p. 108, Problem 2.1 solution: In the answer to D, one of the hexadecimal digits was
+omitted, along with its binary encoding.  It should read:
+<br>
+<kbd>Binary      11 0101 1011 0111 1110 0110</kbd>
+<br>
+<kbd>Hexadecimal  3    5    B    7    E    6</kbd>
+<br><i><font size=-1>Posted 10/07/2002. John Hampton</font></i>
+
+<li> p. 108, Problem 2.2 solution:
+Cases 3 through 5 in the table should read
+<br>
+<kbd>13 8192 0x2000</kbd>
+<br>
+<kbd>17 131072 0x20000</kbd>
+<br>
+<kbd>16 65536 0x10000</kbd>
+<br><i><font size=-1>Posted 10/07/2002. John Hampton</font></i>
+
+<li>p. 109, Problem 2.4 Solution, part D.  The first part should read
+<br><kbd>0x50da-0x502c = 0xae</kbd>.
+<br><i><font size=-1>Posted 06/14/2004. Alan West</font></i>
+
+
+<li> p. 114, Problem 2.20 solution:
+<ul>
+<li>The value <kbd>-2147483648</kbd> should be written
+<kbd>-2147483647-1</kbd> in entries 1, 2, and 4, and as
+<kbd>(-2147483647-1)</kbd> in entries 3 and 5.
+See the <a href="tmin.html">Note on writing TMin in C</a> for a discussion.
+<li> 2nd & 3rd entries in table should have <kbd>-2147483647</kbd>
+rather than <kbd>-21474836487</kbd>.
+<li> 4th & 5th entries in table should have <kbd>2147483647</kbd>
+rather than <kbd>21474836487</kbd>.
+</ul>
+
+<li> p. 116, Problem 2.25
+solution: In the third column heading, the "4" should be a "5".
+
+<li> p. 117, Problem 2.27 solution: The entry for row 5, column 5 (the
+two's complement representation of 1 * -1 truncated to 3 bits) should
+be "<kbd>-1 [111]</kbd>". rather than "<kbd>7 [111]</kbd>".
+<br><i><font size=-1>Posted 01/22/2003. Al Davis</font></i>
+
+<li> p. 118, Problem 2.31 solution: Row 5 should read: "<kbd>45/16 10.1101 2.8125</kbd>".
+<br><i><font size=-1>Posted 01/22/2003. Al Davis</font></i>
+
+<li> p. 118, Problem 2.32 solution: The subproblems (A--D) and the answers (A--C) don't line up:
+<ul>
+<li>The answer to subproblem B is given in A (9.54 X 10^{-8})
+<li>The answer to C is given in B (0.343)
+<li>The answer to D is given in C (687).
+</ul>
+<i><font size=-1>Posted 12/07/2004. Thomas Gross</font></i>
+
+<li>p. 120, Problem 2.37 solution for part H.  The problem states that
+the value for d is not infinity or NaN, so we must find another
+counterexample.  Here is one: when d is 1.0E25 and f is 1.0, then
+(d+f) will be rounded to 1.0E25 and so (d+f)-d will evaluate to 0.0.
+<br><i><font size=-1>Posted 01/03/2006. Ricky Liu</font></i>
+</ul>
+
+<li><b>Chapter 3: Machine-Level Representation of Programs</b>
+<ul>
+<li>p. 126, The i486 CPU had 1.2M transistors (not 1.9), and the PentiumPro had 5.5M (not 6.5).
+This leads to a very slight change in the graph for Moore's Law on p. 127,
+but the trend of doubling every 30 months continues to hold.
+<br><i><font size=-1>Posted 01/23/2006. Ricky Liu</font></i>
+
+<li>p. 126, The Pentium 4 was first delivered in 2000, not 2001.
+<br><i><font size=-1>Posted 01/23/2006. Ricky Liu</font></i>
+
+<li>p. 133, first line.  Should read "Then, we could generate an executable program <kbd>prog</kbd> as follows:"
+<br><i><font size=-1>Posted 03/27/2005. Mario Lo Conte</font></i>
+
+<li>p. 133, 5 lines before start of Section 3.2.3.  Should state "On line 6 of the disassembly ...".
+<br><i><font size=-1>Posted 09/16/2002. Arun Krishnaswamy</font></i>
+
+<li>p. 133, Right after disassembly.  Should read "... the disassembly of
+<kbd>code.o</kbd>."
+<br><i><font size=-1>Posted 03/27/2005. Mario Lo Conte</font></i>
+
+<li>
+p. 137, Figure 3.3, 10th row, 4th column.  "Scaled Index" should be "Scaled index" (inconsistent capitalization).
+<br><i><font size=-1>Posted 04/01/2003. Haudy Kazemi</font></i>
+
+<li>
+p. 141, New to C, line 10.  "This also a form of" should be "This is also a form of".
+<br><i><font size=-1>Posted 09/15/2003. Darren Shultz</font></i>
+
+<li>
+p. 147, first paragraph.  The last sentence should read "In general,
+compilers generate code that uses individual registers for multiple
+program values and moves program values among the registers."
+<br><i><font size=-1>Posted 10/15/2006. Nawanan Theera-Ampornpunt</font></i>
+<img alt="[NEW]" width=31 height=12 src="new.gif">
+
+<li>p. 149, End of last complete paragraph.  Add sentence "For reasons that are a bit obscure,
+the <kbd>incl</kbd> and <kbd>decl</kbd> instructions set the zero, sign, and overflow flags, but they leave the
+carry flag unchanged."
+<br><i><font size=-1>Posted 01/23/2006. Ricky Liu</font></i>
+
+<li>
+p. 150, Section 3.6.2, line 5.  Should be "condition code" rather than
+"conditions code".
+<br><i><font size=-1>Posted 10/15/2006. Nawanan Theera-Ampornpunt</font></i>
+<img alt="[NEW]" width=31 height=12 src="new.gif">
+
+<li>p. 150, Figure 3.10, final row.  The result should be <em>D</em> <-- <kbd>CF | ZF</kbd>.
+<br><i><font size=-1>Posted 02/03/2003. Ray I. H. Shih</font></i>
+
+
+
+<li>p. 153, Figure 3.11, final row.  The branch condition should be <kbd>CF | ZF</kbd>.  
+
+<li>p. 153, Figure 3.11, final row. 
+The description should be "Below or ..." (incorrect capitalization).
+<br><i><font size=-1>Posted 04/01/2003. Haudy Kazemi</font></i>
+
+<li>p. 154, line #2 in assembly code listing.  The comment should state:
+"Aligns next instruction to multiple of 16".
+<br><i><font size=-1>Posted 05/02/2004. Randy Bryant</font></i>
+
+<li>p. 156, last line of text.  "... skipping the statement on line 7." should read
+"skipping the statements on lines 7 and 8." 
+<br><i><font size=-1>Posted 01/23/2006. Ricky Liu</font></i>
+
+<li>p. 160, last line of first paragraph:
+"copy" should be "copied".
+<br><i><font size=-1>Posted 05/19/2006. Ronald Jones</font></i>
+
+<li>p. 161, last line of first paragraph.
+Should read "Once the loop exits, val is copied to register %eax ..."
+<br><i><font size=-1>Posted 02/06/2006. James Caroll</font></i>
+
+<li>p. 162, Figure 3.14c.  There should be an additional line:
+<br>
+14 <kbd>movl %ebx, %eax</kbd>
+<br><i><font size=-1>Posted 09/01/2004. Inge Frick</font></i>
+
+<li>p. 163, The last sentence of first paragraph states "This saves
+one instruction in the assembly code," but that's not really true.  The compiler could have generated the instruction
+<br>
+12 <kbd>jns .L10</kbd>
+<br>
+to perform the test <kbd>nmi >= 0</kbd>, so there is no performance
+gain in the compiler-generated code.  The last sentence should
+therefore state "Although this modified test is valid, it gives no
+real performance advantage."  <br><i><font size=-1>Posted
+09/01/2004. Inge Frick</font></i>
+
+
+<li>p. 163, Problem 3.11 assembly code.  There should be an additional line:
+<br>
+12 <kbd>movl %edx,%eax</kbd>
+<br><i><font size=-1>Posted 06/14/2004. Michael Li</font></i>
+
+<li>p. 173, Aside, 4th line from bottom, should read "... P (the caller) must save the value before calling Q ...".
+<br><i><font size=-1>Posted 06/14/2004. Michael Li</font></i>
+
+<li>p. 180, Figure 3.22.  In both stack frames, the offset of the frame pointer should be 0, not -4.
+<br><i><font size=-1>Posted 01/12/2005. Qing Xu</font></i>
+
+<li>p. 180, Figure 3.22.  In both stack frames, the value at offset -24 should be "Saved %ebx", not "Saved %ebp".
+<br><i><font size=-1>Posted 07/01/2004. Steven Zhang</font></i>
+
+<li>p. 182, last paragraph, second line.
+"(except in the first case ...)" should read
+"(except in the first and last cases,
+where the former copies the address, and the latter copies the index)"
+<br><i><font size=-1>Posted 01/23/2006. Ricky Liu</font></i>
+
+<li>
+p. 183, Aside on why to avoid integer multiply.  The Pentium III, on which the book is based, requires 4 clock cycles for integer multiplication.  More recent processors
+from Intel and AMD require between 3 and 10 clock cycles.
+<br><i><font size=-1>Posted 2/21/2007. Yixin Cao</font></i>
+<img alt="[NEW]" width=31 height=12 src="new.gif">
+
+<li>p. 190, Figure 3.25b.  Line 5 should read "int nTjPk = k;".
+<br><i><font size=-1>Posted 10/06/2003. Seiki</font></i>
+
+<li>p. 198, Problem 3.22, part C.
+Line 4 of the code should be removed.
+<br><i><font size=-1>Posted 01/23/2006. Ricky Liu</font></i>
+
+<li>
+p. 200, Paragraph in middle of page beginning "Instead, the compiler will allocate".  In this sentence "S1" should be changed to "S2".
+<br><i><font size=-1>Posted 04/01/2003. Haudy Kazemi</font></i>
+
+<li>p. 213, stack diagram at bottom.
+Step 8 value should be (a-b)/(-b+c).
+<br><i><font size=-1>Posted 01/23/2006. Ricky Liu</font></i>
+
+<li>p. 219, second example.
+<kbd>fmul</kbd> should be <kbd>fmull</kbd>.
+<br><i><font size=-1>Posted 01/23/2006. Ricky Liu</font></i>
+
+<li>
+p. 219, second example.  The example expression should be <kbd>x =
+(-(a*b)+c)*(a*b)</kbd>.  The expression in the box for step 6 should
+be (-(a*b)+c)*(a*b).
+<br><i><font size=-1>Posted 06/04/2004. Thomas Niemann</font></i>
+
+<li>p. 219, second example.
+There should be a seventh step
+with the instruction <kbd>fstpl x</kbd>.
+<br><i><font size=-1>Posted 01/23/2006. Ricky Liu</font></i>
+
+
+<li>
+p. 221, Practice Problem 3.28.  There should be one more line of code at the end:
+<br>
+12<kbd>   	fsubrp %st,%st(1)</kbd>
+<br><i><font size=-1>Posted 04/04/2003. Christian Dufour</font></i>
+
+<li>p. 222, second to last line of text, and last two entries of table in Figure 3.36.
+The binary representations of 69 and 64 are [01000101] and [01000000], respectively.
+<br><i><font size=-1>Posted 01/23/2006. Ricky Liu</font></i>
+
+<li>
+p. 228, second paragraph.
+We stated that with GCC's inline assembly
+"...there are no direct ways to specify a program value to use as the
+destination operand for the <kbd>setae</kbd> instruction, since the
+operand must be a single byte."  In fact, you can specify
+single-byte operands with <kbd>gcc</kbd> by declaring variables of
+type <kbd>char</kbd>.
+See <a href="byteasm.html">Note on byte operands with inline assembly</a>.
+<br><i><font size=-1>Posted 04/07/2003. Michael Trigoboff</font></i>
+
+
+<li>
+p. 229, first two lines (lines 13-14 of okmul.c).  Recent versions of
+GCC do not allow a quoted string to split across multiple lines, and so attempting to compile this code gives an error message.  Instead, the lines should be written as two separate strings, as follows:
+<br>
+<kbd>
+    asm("movl %2,%%eax; mull %3; movl %%eax,%0;"
+<br>
+           "setae %%dl; movzbl %%dl,%1"  
+</kbd>
+<br><i><font size=-1>Posted 10/18/2007. Wang Yuanxuan</font></i>
+<img alt="[NEW]" width=31 height=12 src="new.gif">
+
+<li>p. 234, Figure 3.37.  The annotation "default" shown on line 28 with label .L14 should instead be on line 26 with label .L20.
+<br><i><font size=-1>Posted 10/04/2005. Scott Wright</font></i>
+
+<li>p. 241, Solution to Problem 3.8A.  Jump target is 
+<kbd>0x8048d1e - 0x26</kbd> =
+<kbd>0x8048cf8</kbd>. (Remember that <kbd>0xda</kbd> is a one-byte two's complement number).
+<br><i><font size=-1>Posted 07/06/2004. Randy Bryant</font></i>
+
+<li>p. 241, Solution to Problem 3.9b.
+Replace <kbd>||</kbd> with <kbd>&&</kbd>.
+<br>
+<i><font size=-1>Posted 01/22/2003. Al Davis</font></i>
+
+<li>p. 246, Solution to Problem 3.17.  First entry in table.  Total size should be 14 rather than 28.
+<br><i><font size=-1>Posted 10/07/2003. David O'Hallaron</font></i>
+
+<li>
+p. 247, Solution to Problem 3.20, code line 4.  It would be better to use N instead of 255 here.  The C preprocessor would automatically substitute 255 and then scale this by 4 to get 1020.
+<br><i><font size=-1>Posted 2/14/2007. Yixin Cao</font></i>
+<img alt="[NEW]" width=31 height=12 src="new.gif">
+</ul>
+
+
+
+<li><b>Chapter 4: Processor Architecture</b>
+<ul>
+
+<li> p. 259, Figure 4.2.  The boxes for the <kbd>Dest</kbd> fields of
+the <kbd>jXX</kbd> and <kbd>call</kbd> instructions are too wide.
+These fields are 4 bytes long.
+
+<li> p. 265, Aside on "The RISC versus CISC controversy".
+The last word of the fourth line of text should be "instructions",
+not "instruction".
+<br><i><font size=-1>Posted 10/21/2005. Scott Wright</font></i>
+
+<li>p. 270-1, Problem 4.5, code for poptest.  The instruction
+<kbd>movl %esp, %edx</kbd> should precede the instruction that pushes
+<kbd>tval</kbd>.  The first argument to the asm directive then reads:
+<p>
+<kbd>
+   asm("movl %%esp,%%edx; pushl %1; popl %%esp; movl %%esp,%0; movl %%edx,%%esp"
+</kbd>
+<p>
+The existing code causes a segmentation fault.
+<br><i><font size=-1>Posted 01/23/2006. Ricky Liu</font></i>
+
+<li> p. 278, Section 4.2.4. line 5.
+The reference to Figure 4.12
+should instead be to the diagram at the bottom of p. 276.
+<br><i><font size=-1>Posted 01/23/2006. Ricky Liu</font></i>
+
+<li> p. 278, second to last line.
+The value being tested is <em>iexpr</em>, not <em>expr</em>.
+<br><i><font size=-1>Posted 01/23/2006. Ricky Liu</font></i>
+
+<li> p. 288, Practice Problem 4.10, Write back stage.  The second register update should be R[rA] <kbd><--</kbd> valM
+<br><i><font size=-1>Posted 11/07/2002. Max Gebhardt</font></i>
+
+<li>p. 288, Practice Problem 4.11.  
+The second sentence should be "Does this conform ...".
+<br><i><font size=-1>Posted 10/21/2005. Scott Wright</font></i>
+
+<li> p. 292, Fig. 4.20, Decode stage.
+Labels dstA and dstB should be dstE and dstM, respectively
+<br><i><font size=-1>Posted 11/23/2005. Scott Wright</font></i>
+
+<li>p. 299, Figure 4.24, 3rd row from bottom.  The value for <kbd>RESP</kbd> should be 4. 
+<br><i><font size=-1>Posted 05/02/2004. Anita Gupta</font></i>
+
+<li>p. 300, Just before subheading "Decode and Write-Back Stages."
+The formula should read "p + 1 + r + 4i"
+<br><i><font size=-1>Posted 04/02/2004. John Ross</font></i>
+
+<li> p. 301, first paragraph, line 7.
+The write port address inputs are dstE and dstM, not dstA and dstB.
+<br><i><font size=-1>Posted 03/13/2005. Inge Frick</font></i>
+
+<li>p. 305, second line of Section 4.3.5, "PC stage" should be "PC update stage".
+<br><i><font size=-1>Posted 05/19/2006. Ronald Jones</font></i>
+
+<li> p. 306, Fig. 4.30, Decode stage.
+Labels dstA and dstB should be dstE and dstM, respectively.
+<br><i><font size=-1>Posted 11/23/2005. Scott Wright</font></i>
+
+<li> p. 308, second line below diagram.  "This an ..." should be "This is an ...".
+<br><i><font size=-1>Posted 01/23/2006. Ricky Liu</font></i>
+
+<li> p. 311, Figure 4.34.  
+The final number on the timeline should be 600, not 640.
+<br><i><font size=-1>Posted 05/27/2003. J&ouml;rg Brauer</font></i>
+
+<li> p. 322, Aside on "Other branch prediction strategies."  The third
+sentence should read "A slightly more sophisticated strategy, known as
+backward taken, forward not-taken (BTFNT), predicts branches to lower
+addresses than the next instruction will be taken, while those to
+higher addresses will not be taken."
+<br><i><font size=-1>Posted 12/03/2007. Carl Marcinik</font></i>
+<img alt="[NEW]" width=31 height=12 src="new.gif">
+
+
+<li> p. 325, Line 5 of second paragraph.
+Third word "instruction" should be "instructions".
+<br><i><font size=-1>Posted 11/23/2005. Scott Wright</font></i>
+
+<li> p. 326, Figure 4.44, expanded box for Cycle 5 labeled "W".
+The operation <kbd>R[%eax] <-- 10</kbd>
+should read <kbd>R[%edx] <-- 10</kbd>.
+<br><i><font size=-1>Posted 03/19/2007. Devon Macey</font></i>
+<img alt="[NEW]" width=31 height=12 src="new.gif">
+
+<li> p. 326, Line 1 of first full paragraph.
+Last word "instructions" should be "instruction".
+<br><i><font size=-1>Posted 11/23/2005. Scott Wright</font></i>
+
+<li> p. 331, Fig. 4.49, expanded box for Cycle 6.
+Box labeled "M" should have label "W".
+<br><i><font size=-1>Posted 11/23/2005. Scott Wright</font></i>
+
+<li> p. 332, Fig. 4.51, expanded box for Cycle 4, box labeled "M".
+Labels "W_dstE" and "W_valE" should be "M_dstE" and "M_valE", respectively.
+<br><i><font size=-1>Posted 11/23/2005. Scott Wright</font></i>
+
+<li> p. 335, line 4.
+Should refer to pipeline register E, not M.
+<br><i><font size=-1>Posted 03/13/2005. Inge Frick</font></i>
+
+<li> p. 335, Fig. 4.54, near bottom.
+Arrow labeled "Error" should point to the line "valB <-- R[%eax] = 0".
+<br><i><font size=-1>Posted 11/23/2005. Scott Wright</font></i>
+
+<li> p. 336, Line 2.
+The address of the irmovl instruction is 0x012, not 0x00c.
+<br><i><font size=-1>Posted 02/06/2006. Ricky Liu</font></i>
+
+<li> p. 336, Line 8 of first full paragraph.
+Should refer to register %ebx rather than %edx. 
+<br><i><font size=-1>Posted 11/23/2005. Scott Wright</font></i>
+
+<li> p. 337, Section 4.5.8, line 4 of first paragraph.
+Missing "of" between "design" and "the".
+<br><i><font size=-1>Posted 11/23/2005. Scott Wright</font></i>
+
+<li> p. 339, Figure 4.57 caption, 5th line.
+"dstA" and "dstB" should be "dstE" and "dstM", respectively
+<br><i><font size=-1>Posted 02/06/2006. Ricky Liu</font></i>
+
+<li> p. 346, Figure 4.63.
+The line of code at address 0x007 should be:
+<br>
+<kbd>0x007: irmovl $1, %eax # Fall through</kbd>
+<br><i><font size=-1>Posted 02/06/2006. Ricky Liu</font></i>
+
+<li> p. 348, Figure 4.65B.
+Label in box on right should be "x" rather than "y"
+<br><i><font size=-1>Posted 10/17/2005. Caren Yang</font></i>
+
+<li> p. 350, 4th line from bottom.  Sentence should read "Clearly, we
+do not want the pipeline to perform both sets of actions." (Omit
+first "to").  And next sentence should read "Instead, we want it to ..." (add "to").
+<br><i><font size=-1>Posted 02/06/2006 and 05/19/2006. Ricky Liu
+and Ronald Jones</font></i>
+
+<li> p. 351, first paragraph, last line.  Omit word "implement" from
+the sentence.
+<br><i><font size=-1>Posted 02/06/2006. Ricky Liu</font></i>
+
+<li> p. 352, Code for <kbd>D_bubble</kbd>.  Should be:
+<kbd>
+<br># Mispredicted branch,
+<br>(E_icode == IJXX && !e_Bch) ||
+<br># or stalling at fetch while ret passes through pipeline
+<br>IRET in { D_icode, E_icode, M_icode } &&
+<br># but not condition for a load/use hazard
+<br>!(E_icode in { IMRMOVL, IPOPL } && E_dstM in { d_srcA, d_srcB });
+</kbd>
+<br><i><font size=-1>Posted 11/24/2005. Randy Bryant</font></i>
+
+<li> p. 363, Problem 4.41, line 3.  Omit word "requires" from
+the sentence.
+<br><i><font size=-1>Posted 02/06/2006. Ricky Liu</font></i>
+
+<li> p. 368, Problem 4.6 Solution.
+The signal should be called <kbd>xor</kbd>, rather than <kbd>eq</kbd>.
+<br><i><font size=-1>Posted 11/16/2005. Betsy Wolff</font></i>
+
+
+<li> p. 368, Problem 4.7 Solution.
+The figure should have an OR gate, rather than an AND gate.
+<br><i><font size=-1>Posted 09/15/2005. Michael Bombyk</font></i>
+
+<li> p. 368, Problem 4.8 Solution.
+The correct code is:
+<br>
+<kbd>
+int Med3 = [<br>
+  (A <= B && B <= C) || (C < B && B < A) : B;<br>
+  (B <= A && A <= C) || (C < A && A < B) : A;<br>
+  1 : C;<br>
+];
+</kbd>
+<br><i><font size=-1>Posted 10/21/2005. Scott Wright</font></i>
+
+</ul>
+<li><b>Chapter 5: Optimizing Program Performance</b>
+<ul>
+<li>p. 388, Table in middle of page.  The entry for Integer + with function <kbd>combine2</kbd> should be 20.66, not 22.61.
+<br><i><font size=-1>Posted 01/20/2004. Thomas Niemann</font></i>
+
+<li>p. 394, Fig 5.10: Line 9 of code (<kbd>*dest = IDENT</kbd>) is not necessary.
+<br><i><font size=-1>Posted 6/23/2003. Daniel Amelang</i></font>
+
+<li> p. 398, 2nd line.  "such transcendental" should be "such as transcendental".
+<br><i><font size=-1>Posted 12/02/2003. Mark Morrissey</font></i>
+
+<li>p. 399, first paragraph under section 5.7.2: should be "...documents the 
+performance of some of <font color=red><b>the</b></font> basic operations...". 
+(Add a "the" after the second "of".)
+<br><i><font size=-1>Posted 6/23/2003. Daniel Amelang</i></font>
+
+<li> p. 402, line after code <kbd>cmpl %esi, %edx.1 -> cc.1</kbd>.
+"... compares the value in %esi ... with the newly computed value for %edx."
+Should read
+"... compares the newly computed value for %edx with the value in %esi ...."
+<br><i><font size=-1>Posted 2/22/2006. Ricky Liu</i></font>
+
+<li> p. 405, second to last line of text.  The reference should be to
+Fig 5.16, not to Fig 5.15.
+<br><i><font size=-1>Posted 2/12/2004. Michael Trigoboff</i></font>
+
+<li>p. 405. last line.   Should read "...parallel on cycle 3 and..." rather than "cycles 3".
+<br><i><font size=-1>Posted 3/16/2005. James Troup</i></font>
+
+<li>p. 409, 3rd line from bottom.  "maximum loop index" should read
+"maximum array index".
+<br><i><font size=-1>Posted 2/22/2006. Ricky Liu</i></font>
+
+<li> p. 410, first text box. <kbd>addl %edx, 3</kbd> should read
+<kbd>addl $3, %edx</kbd>,
+in both the assembly instructions and the execution unit operations.
+<br><i><font size=-1>Posted 7/01/2003. Daniel Amelang</i></font>
+
+<li> p. 410, Figure 5.20.  <kbd>addl %edx.0, 3</kbd> should read
+<kbd>addl $3, %edx.0</kbd>.
+<br><i><font size=-1>Posted 7/01/2003. Daniel Amelang</i></font>
+
+<li> p. 416.  Formulae for PE_n and PO_n.  Both should have n/2-1 as
+their upper bounds.
+<br><i><font size=-1>Posted 2/22/2006. Ricky Liu</i></font>
+
+<li> p. 418, Figure 5.26.  The figure shows two load operations
+starting at cycle 2 and two at cycle 3, but this would not be possible
+with a single load unit.  The six load operations
+should begin at cycles 1 through 6 (from left to right).  This
+will not affect the overall program performance.  <br><i><font
+size=-1>Posted 03/15/2005. Michael Trigoboff</font></i>
+
+<li> p. 421, second line of text.  "accumulate sums" should read
+"accumulate products".
+<br><i><font size=-1>Posted 2/22/2006. Ricky Liu</i></font>
+
+<li> p. 421, Practice Problem 5.5, Part A, "being" should be "been".
+<br><i><font size=-1>Posted 6/23/2003. Daniel Amelang</i></font>
+
+<li> p. 422, last line before Practice Problem 5.6
+Should be "addition" rather than "multiplication".
+<br><i><font size=-1>Posted 03/13/2005. Inge Frick</font></i>
+
+<li>p. 423. last line.   Should read "... (80-bit) ...".
+<br><i><font size=-1>Posted 3/16/2005. James Troup</i></font>
+
+<li>p. 424, Figure 5.27.  The entry for floating point addition that
+is unrolled x4, parallelism x2 should also be shown in boldface,
+since it tied with unroll x8 parallelism x4.
+<br><i><font size=-1>Posted 2/22/2006. Ricky Liu</i></font>
+
+<li>p. 425, Figure 5.28.  The entry for floating point addition that
+is unrolled x4, parallelism x2 should be shown in boldface,
+since it achieves better performance (2.34 vs. 2.36) than does unrolling x8 parallelism x4.
+<br><i><font size=-1>Posted 2/22/2006. Randy Bryant</i></font>
+
+<li>p. 427, Figure 5.29.  Comment on line 6 of assembly code.
+It should read "If >= 0, goto end".
+<br><i><font size=-1>Posted 2/22/2006. Ricky Liu</i></font>
+
+<li> p. 428, Practice Problem 5.7.
+Assembly code line 4 should read 
+<br><kbd>  cmovzl %edx,%eax</kbd>
+<br><i><font size=-1>Posted 11/10/2003. Tim Freeman</i></font>
+
+<li>p. 429, Section 5.13, second paragraph, "All of our programs
+...", should read "The loops of all of our programs ...".
+<br><i><font size=-1>Posted 2/22/2006. Ricky Liu</i></font>
+
+<li>p. 433, second paragraph.  Drop "(a)" in the reference to Figure 5.33.
+<br><i><font size=-1>Posted 2/22/2006. Ricky Liu</i></font>
+
+<li>p. 434, assembly code and its translation at the top of the page.  The code given has
+two bugs: 1) the <kbd>decl</kbd> instruction does not set the
+condition codes, and 2) the loop test should be <kbd>jne</kbd>, not
+<kbd>jnc</kbd>.  The correct last two lines are:
+<kbd>
+<br>
+subl $1, %eax   subl $1, %eax.0 --> %eax.1
+<br>
+jne .l32        jne-taken cc.1
+</kbd>
+<br><i><font size=-1>Posted 2/22/2006. Ricky Liu</i></font>
+
+<li>p. 442, Line 3.  "26946/1007" should read "26,946/1,021".
+<br><i><font size=-1>Posted 2/22/2006. Ricky Liu</i></font>
+
+<li>p. 442, Line 7.  "2.70" should read "2.69".
+<br><i><font size=-1>Posted 2/22/2006. Ricky Liu</i></font>
+
+<li> p. 447, Problem 5.12, Part A, "greater" should be "less".
+<br><i><font size=-1>Posted 2/5/2004. Grant Davis</i></font>
+
+<li> p. 449, Problem 5.17, in text box column labeled "Execution unit operation".  Code  <kbd>movl 4(%edx.0)</kbd> should be
+<kbd>load 4(%edx.0)</kbd>.
+<br><i><font size=-1>Posted 6/23/2003. Daniel Amelang</i></font>
+
+<li> p. 449, Problem 5.18, in text box column labeled "Execution unit operation".  Code  <kbd>movl 4(%edx.0)</kbd> should be
+<kbd>load 4(%ecx.0)</kbd>.
+<br><i><font size=-1>Posted 02/16/2004. Mark Morrissey</i></font>
+
+<li> p. 451, Problem 5.4 Solution, code for <kbd>combine5px8</kbd>.  Fourth line should read:
+<br>
+int limit = length - 7;
+<kbd>
+</kbd>
+<br><i><font size=-1>Posted 6/23/2003. Daniel Amelang</i></font>.
+<i><font size=-1>Errata entry corrected 3/13/2004. Mark Morrissey</i></font>.
+
+<li> p. 453, Solution to Problem 5.6: The second line should
+read "...A3 and A4 take 5 cycles per iteration..."
+
+<li> p. 453, Solution to Problem 5.7.
+The first sentence of the second paragraph should read "This code always dereferences <kbd>xp</kbd> (assembly code line 2)."
+
+<li> p. 453, Problem 5.8D Solution.  The CPE would be 3.00.
+<br><i><font size=-1>Posted 10/21/2003. Joe Trdinich</i></font>
+</ul>
+
+<li><b>Chapter 6: The Memory Hierarchy</b>
+<ul>
+
+<li>p. 474, Line 1.  "0xa" should be "0xa0".
+<br><i><font size=-1>Posted 2/28/2006. Ricky Liu</i></font>
+
+<li> p. 475, Figure 6.14 caption. "SourceDIXtrac" should be "Source: DIXtrac"
+<br><i><font size=-1>Posted 4/7/2005. Dave O'Hallaron</i></font>
+
+<li> p. 476, first line. "more tracks are packed" should be "more
+sectors are packed". 
+<br><i><font size=-1>Posted 3/1/2004. Michael Trigoboff</i></font>
+
+<li> p. 483, first line. "In general the storage devices get faster, cheaper,
+and larger" should be "In general, the storage devices get 
+<font color=red><b>slower</b></font>, cheaper, and larger".
+
+<li>p. 479, 2nd last line: "stride-(N x sizeof(int))" should be "stride-N".
+<br><i><font size=-1>Posted 2/28/2006. Ricky Liu</i></font>
+
+<li>p.480, Figure 6.19, description: "stride-(N x sizeof(int))" 
+should be "stride-N".
+<br><i><font size=-1>Posted 2/28/2006. Ricky Liu</i></font>
+
+<li>p. 505, Impact of Cache Size: 
+"must have a hit time of one clock cycle" should read 
+"must have a short hit time".
+<br><i><font size=-1>Posted 2/28/2006. Ricky Liu</i></font>
+
+<li>p. 509, 1 para, last sentence, 
+"the array size is larger than the cache size" should
+read "the array size is larger than the cache size, and M > E".
+<br><i><font size=-1>Posted 2/28/2006. Ricky Liu</i></font>
+
+<li>p. 511, Problem 6.16 and 6.17, part D:
+"What the miss rate be if the cache were twice as big?"
+should be "What would the miss rate be if the cache had the same
+block size but twice as many sets?"
+<br><i><font size=-1>Posted 2/28/2006. Ricky Liu</i></font>
+
+<li>p. 513, 2nd para, 2nd sentence:
+"start at 1 KB, increasing by a factor of two, to
+a maximum of 8 MB" should be "start at 8 MB, decreasing by a factor 
+of two, to a minimum of 1 KB".
+<br><i><font size=-1>Posted 2/28/2006. Ricky Liu</i></font>
+
+<li>p. 533, Solution to Problem 6.8, Part B, line 4, should
+read "(4096 * 4)/32 = 512 blocks".
+<br><i><font size=-1>Posted 12/29/2003. Suryanto</i></font>
+
+<li>p. 534, Solution to Problem 6.12, line 1,
+"0x1FF4" should be "0x1FE4".
+<br><i><font size=-1>Posted 2/28/2006. Michael Trigoboff</i></font>
+
+<li> p. 536, Solution to Problem 6.16, Line 2. "grid[16][0]" 
+should be "grid[8][0]".
+<br><i><font size=-1>Posted 12/08/2003. Tim Wong</i></font>
+
+<li>p.536, Problem 6.19 Solution, part B, line 4: 
+"256 bytes" should be "256 KB". 
+<br><i><font size=-1>Posted 2/28/2006. Ricky Liu</i></font>
+
+
+</ul>
+<li><b>Chapter 7: Linking</b>
+
+<ul>
+
+<li>p. 546, Line after the code segment, "two integers in .bss" should be 
+"integers in .data".
+<br><i><font size=-1>Posted 4/25/2006. Ricky Liu</i></font>
+
+<li> p. 546, line 5, "corresponds module" should be "corresponds to module".
+<br><i><font size=-1>Posted 5/11/2004. Dirk Maas</i></font>
+
+<li>p. 551, last line, "negative one" should be "negative zero".
+<br><i><font size=-1>Posted 4/25/2006. Ricky Liu</i></font>
+
+<li>p. 552, first paragraph. GCC also provides the
+"-fno-common" flag, which triggers an error if it encounters multiply
+defined global symbols. Also, "multiply defined" should be "multiple".
+<br><i><font size=-1>Posted 4/25/2006. Ricky Liu</i></font>
+
+<li>p. 553, second paragraph, line 3, "random" should be "rand".
+<br><i><font size=-1>Posted 4/25/2006. Ricky Liu</i></font>
+
+<li> p. 557, Practice Problem 7.3, "file object file" should be "object file".
+<br><i><font size=-1>Posted 3/16/2005. James Troup</i></font>
+
+<li> p. 558, line 7-8, "<kbd>.relo.text</kbd>" and "<kbd>.relo.data</kbd>" should be 
+"<kbd>.rel.text</kbd>" and "<kbd>.rel.data</kbd>" respectively.
+<br><i><font size=-1>Posted 6/1/2004. Dirk Maas</i></font>
+
+<li> p. 558, sect 7.7.1, paragraph 2, "how to the modify" 
+should be "how to modify".
+<br><i><font size=-1>Posted 3/16/2005. Mao Fan</i></font>
+
+<li>p. 553, second paragraph, line 3, "random" should be "rand".
+<br><i><font size=-1>Posted 4/25/2006. Ricky Liu</i></font>
+
+<li>p. 562, Figure 7.10 caption, "data" should be ".data".
+<br><i><font size=-1>Posted 4/25/2006. Ricky Liu</i></font>
+
+<li> p. 563, line 8, "<kbd>.relo</kbd>" should be "<kbd>.rel</kbd>".
+<br><i><font size=-1>Posted 6/1/2004. Dirk Maas</i></font>
+
+<li> p. 564, second last line, "in from" should be "from".
+<br><i><font size=-1>Posted 4/25/2006. Ricky Liu</i></font>
+
+<li> p. 565, line 1, "calls the exit function" should 
+read "terminates normally".
+<br><i><font size=-1>Posted 4/25/2006. Ricky Liu</i></font>
+
+<li> p. 570, command line before section 7.12, "main3.c" should be "dll.c".
+<br><i><font size=-1>Posted 4/25/2006. Ricky Liu</i></font>
+
+<li> p. 572, in both code fragments, "popl %ebx;" should be "popl %ebx".
+<br><i><font size=-1>Posted 4/25/2006. Ricky Liu</i></font>
+
+</ul>
+
+<li><b>Chapter 8: Exceptional Control Flow</b>
+<ul>
+
+<li> p. 592, Figure 8.7 caption, "on the whether" should read "on
+whether".  
+<br><i><font size=-1>Posted 4/25/2006. Ricky Liu</i></font>
+
+<li> p. 593, Figure 8.9, "Iinterrupt or trap" should be "Interrupt or trap".
+<br><i><font size=-1>Posted 3/29/2005. David Po</i></font>
+
+<li> p. 604, Figure 8.14, remove the '!' character from each <kbd>printf</kbd>
+<br><i><font size=-1>Posted 12/29/2003. Mark Morrissey</i></font>
+
+<li> p. 605, Practice problem 8.2. Remove the '!' character from the 
+<kbd>printf</kbd>
+<br><i><font size=-1>Posted 4/25/2006. Ricky Liu</i></font>
+
+<li>p. 607, top of page, third bullet item should be:
+"WNOHANG|WUNTRACED: Return immediately, with a return value
+of 0 if none of the children in the wait set has stopped or
+terminated, or with a return value equal to the PID of one
+of the stopped or  terminated children." 
+<br><i><font size=-1>Posted 12/30/2003. Michael Trigoboff</i></font>
+
+<li> p. 611, in function prototype of "execve", the third parameter should be
+"char *envp[]", not "char *envp".
+<br><i><font size=-1>Posted 6/23/2003. Daniel Amelang</i></font>
+
+<li> p. 611, Figure 8.17, the last <kbd>argv</kbd> parameter should
+be <kbd>/usr/include</kbd> instead of <kbd>/user/include</kbd>.
+<br><i><font size=-1>Posted 12/29/2003. Mark Morrissey</i></font>
+
+<li>p. 616, Figure 8.22. Function <kbd>parseline</kbd> in
+<kbd>shellex.c</kbd> incorrectly returns a pointer to the local stack
+variable <kbd>array</kbd> via <kbd>argv</kbd>. <a
+href="ics/code/ecf/shellex.c">Corrected version of
+<kbd>shellex.c</kbd></a>
+
+<li>p. 620, Figure 8.24. There should be a line drawn from
+Shell to Background Job #1.
+<br><i><font size=-1>Posted 11/04/2003. Mark Morrissey</i></font>
+
+<li> p. 623, in function prototype box at bottom of page,
+the <kbd>typdef</kbd> and <kbd>signal()</kbd> statements
+should both end with semicolons.
+<br><i><font size=-1>Posted 12/29/2003. Mark Morrissey</i></font>
+
+<li> p. 625, last line, "children the terminate" 
+should read "children to terminate".
+<br><i><font size=-1>Posted 4/25/2006. Ricky Liu</i></font>
+
+<li>p. 629, 2nd to last paragraph, line 3. 
+"modification to signal1" should be "modification to signal2".
+<br><i><font size=-1>Posted 11/04/2003. Mark Morrissey</i></font>
+
+<li>p. 635 (first line): "possible <kbd>deletejob</kbd>" should 
+be "possible <font color=red><b>for</b></font> <kbd>deletejob</kbd>"
+</ul>
+
+<li><b>Chapter 9: Measuring Program Execution Time</b>
+<ul>
+
+<li> p. 654, Figure 9.1.  The second sentence of the caption should read
+"The processor hardware operates at a microscopic time scale in which events have durations on the order of a few nanoseconds (ns)."
+<br><i><font size=-1>Posted 01/12/2004. Mark Morrissey</font></i>
+
+<li> p. 655, 1st line after aside.  Should be "... a hypothetical 250 ms ..."
+<br><i><font size=-1>Posted 12/02/2003. Mark Morrissey</font></i>
+
+<li> p. 656, middle of full paragraph.  Missing left paren: ``I'') should be (``I'').
+<br><i><font size=-1>Posted 01/21/2004. Mark Morrissey</font></i>
+
+
+<li> p. 660, 3rd line from bottom.  "96.7" should be "96.6".
+<br><i><font size=-1>Posted 12/02/2003. Mark Morrissey</font></i>
+
+<li>p. 663, third line.
+Should say T_c rather than T_m.
+<br><i><font size=-1>Posted 3/31/2006. Ricky Liu</i></font>
+
+<li>p. 664, code in Figure 9.9, line 34.
+Should read <kbd>borrow = cyc_lo > ncyc_lo</kbd>
+<br><i><font size=-1>Posted 3/31/2006. Ricky Liu</i></font>
+
+<li>p. 668, in the caption for Figure 9.13: "caches.aches" should just be
+"caches."
+<br><i><font size=-1>Posted 6/23/2003. Daniel Amelang</i></font>
+
+<li>p. 684, bullet before Section 9.7, third line.
+Should read "... as long as it uses cycle-based timing."
+<br><i><font size=-1>Posted 3/31/2006. Ricky Liu</i></font>
+
+<li>p. 686, second-to-last paragraph of Section 9.10, last line.
+Should read "... whether the minimum ...".
+<br><i><font size=-1>Posted 3/31/2006. Ricky Liu</i></font>
+
+</ul>
+
+<li><b>Chapter 10: Virtual Memory</b>
+<ul>
+<li> p. 698, 10.3.3, last sentence. "PP 0 should be PP 1".
+<br><i><font size=-1>Posted 12/02/2003. Mark Morrissey</font></i>
+
+<li> p. 701, Figure 10.9 caption, "the operating maintains" should read the
+"the operating system maintains".
+<br><i><font size=-1>Posted 8/12/2004. Venkata Naidu</font></i>
+
+<li> p. 704, Section 10.6, end of first paragraph. "symbols we will using" should read "symbols we will be using".
+<br><i><font size=-1>Posted 3/21/2005. Constantine Kousoulis</i></font>
+
+<li> p. 707, 4th line from bottom. "PTE in order the" should 
+read "PTE in order to"
+<br><i><font size=-1>Posted 12/13/2005. Inge Frick</i></font>
+
+<li> p. 709, Figure 10.17(a). "Cashe/memory" should be "Cache/memory".
+
+<li> p. 709, Last line, first paragraph. "addresses spaces" should be
+"address spaces".
+<br><i><font size=-1>Posted 11/21/2003. Emil Tarazi</i></font>
+
+<li> p. 712, Figure 10.21(a) The valid bit for the third entry in
+set 3 should be "1" instead of "13".
+<li> p. 712, Figure 10.21(b). The PPN entries for  VPNs 01, 04, 06, and 
+07 should be "--", to reinforce the fact that these PPNs are invalid.
+<li> p. 713, Figure 10.21 (c). The entry for Idx 7 and Blk 0 should
+be "11" rather than "--".
+
+<li> 
+p. 714, last line of first paragraph, "perform" should be "performs".
+<br><i><font size=-1>Posted 6/23/2003. Daniel Amelang</i></font>
+
+<li> p. 727, sec 10.8.3, second bullet, line 3, "write The text" 
+should be "write. The text". 
+<br><i><font size=-1>Posted 4/25/2006. Ricky Liu</i></font>
+
+<li> p. 729, paragraph after bullets, line 2, delete "and fd is NULL".
+(with MAP_ANON, the fd arg is ignored)
+<br><i><font size=-1>Posted 4/25/2006. Ricky Liu</i></font>
+
+<li>p. 731, line 4. "new and free calls in C++" should be "new
+and delete operators in C++".
+<br><i><font size=-1>Posted 11/4/2003. Quarup Barreirinhas</i></font>
+
+<li> p. 734, second program, although unnecessary, we should set a good
+example by calling free() before the exit() in line 11.
+<br><i><font size=-1>Posted 4/25/2006. Ricky Liu</i></font>
+
+<li> p. 745, figure 10.43, comments for global variables:
+<kbd>mem_brk</kbd> points to the last current heap byte plus 1, and
+<kbd>mem_max_addr</kbd> points to the last legal heap byte plus 1.
+<br><i><font size=-1>Posted 4/25/2006. Ricky Liu</i></font>
+
+<li> p. 751, sec 10.9.13, line 2, "block allocation" would be clearer
+if it read "block allocation time" 
+<br><i><font size=-1>Posted 4/25/2006. Ricky Liu</i></font>
+
+<li> p. 752, second last line, "{1024}, ..., {1025-2048}" should be
+"{1024}, {1025-2048}"
+<br><i><font size=-1>Posted 4/25/2006. Ricky Liu</i></font>
+
+<li> p. 754, third paragraph, second last line, "largest size class" should read "appropriate size class".
+<br><i><font size=-1>Posted 4/25/2006. Ricky Liu</i></font>
+
+<li> p. 757, 5th bullet: "int length(b)" should read
+"int length(ptr b)". 
+<br><i><font size=-1>Posted 4/25/2006. Ricky Liu</i></font>
+
+<li> p. 758, Figure 10.53: Missing labels (a) and (b).
+<br><i><font size=-1>Posted 4/25/2006. Ricky Liu</i></font>
+
+<li> p. 758, first sentence. "Figure 10.53" should be "Figure 10.54".
+<br><i><font size=-1>Posted 12/02/2003. Mark Morrissey</font></i>
+
+<li> p. 760, sec 10.11.3, line 4: "the use the" should read
+"use the".
+<br><i><font size=-1>Posted 4/25/2006. Ricky Liu</i></font>
+
+<li> p. 763, 2nd line above code for heapref.  "line 12" should be
+"line 10" <br><i><font size=-1>Posted 12/13/2005. Inge
+Frick</i></font> 
+
+
+</ul>
+
+<li><b>Chapter 11: System-Level I/O</b>
+<ul>
+<li>p. 783, 4th line from the bottom. "<kbd>rio_read</kbd>" should 
+be "<kbd>rio_readn</kbd>".
+
+<li>p. 784, 4th line from the bottom. "reads n bytes" should 
+be "reads <font color=red><b>up to</b></font> n bytes".
+
+<li>p. 784, 3rd line from the bottom. "<kbd>rio_readn</kbd>" should be 
+"<kbd>rio_readnb</kbd>".
+<br><i><font size=-1>Posted 12/04/2002. Paul Raff</i></font>
+
+<li> p. 785, rio_writen function. Comment in line 12. "errorno" should
+be "errno". 
+<br><i><font size=-1>Posted 12/02/2003. Mark Morrissey</font></i>
+
+<li>p. 796, line 10. "alternative alternative" should be "alternative".
+<br><i><font size=-1>Posted 07/31/2003.</i></font>
+
+
+</ul>
+<li><b>Chapter 12: Network Programming</b>
+<ul>
+<li> p. 802. Fig 12.1. Circle on the right should be labeled "Server process"
+instead of "Client process".
+<br><i><font size=-1>Posted 12/05/2003. Darren Shultz</font></i>
+
+<li> p. 809. First line below function declarations. "The <kbd>hotnl</kbd>
+function" should read "The <kbd>htonl</kbd> function".
+<br><i><font size=-1>Posted 7/12/2004. Steven Zhang</font></i>
+
+<li> p. 810. Practice problem 12.1. "<kbd>0xef000001</kbd>" should
+be "<kbd>0x7f000001</kbd>.
+<br><i><font size=-1>Posted 7/12/2004. Steven Zhang</font></i>
+
+<li> p. 813. Figure 12.12, line 26 should be 
+<kbd>addr.s_addr = ((struct in_addr *)*pp)->s_addr;</kbd>
+<br><i><font size=-1>Posted 11/21/2006. Randy Bryant</font></i>
+<img alt="[NEW]" width=31 height=12 src="new.gif">
+
+<li> p. 817. Fig 12.5. In the top and bottom lines, 
+<kbd>netinit/in.h</kbd> should be <kbd>netinet/in.h</kbd>
+<br><i><font size=-1>Posted 3/5/2005. Sacha Krakowiak</font></i>
+
+<li> p. 820. Figure 12.16, line 15 should be 
+<kbd>bcopy(char *)hp->h_addr_list[0];</kbd>
+<br><i><font size=-1>Posted 11/21/2006. Randy Bryant</font></i>
+<img alt="[NEW]" width=31 height=12 src="new.gif">
+
+<li> p. 830. 3rd line from bottom, "size in byte" should be "size in
+bytes".  <br><i><font size=-1>Posted 3/19/2007. James Woodruff</font></i> 
+<img alt="[NEW]" width=31 height=12 src="new.gif">
+
+<li> p. 831. 4th line from bottom, "to creates a child process" should
+be "to create a child process".
+<br><i><font size=-1>Posted 4/29/2005. Bhas Nalabothula</font></i>
+
+<li> p. 843. Prob 12.12, "contest" should be "content".
+<br><i><font size=-1>Posted 3/6/2005. Sacha Krakowiak</font></i>
+
+</ul>
+
+
+<li><b>Chapter 13: Concurrent Programming</b>
+<ul>
+<li> p. 847. Line 1 table of contents should be "849", not "489".
+<br><i><font size=-1>Posted 7/12/2004. Sacha Krakowiak</font></i>
+
+<li> p. 854. Line 4, "if an only if" should be "if and only if"
+<br><i><font size=-1>Posted 4/22/2005. Mao Fan</font></i>
+
+<li> p. 872. Fig 13.17, asm code, third block, label ".L9" 
+should be deleted.
+<br><i><font size=-1>Posted 5/2/2005. Mao Fan</font></i>
+
+<li> p. 887. Fig 13.33, line 8. Simply copying the structure hostent
+does not suffice, since it contains pointers; a deep copy is required.
+<br><i><font size=-1>Posted 12/12/2006. Martin Vopatek</font></i>
+<img alt="[NEW]" width=31 height=12 src="new.gif">
+
+<li> p. 887. Fig 13.33 caption, "Class 2" should be "Class 3".
+<br><i><font size=-1>Posted 12/12/2006. Martin Vopatek</font></i>
+<img alt="[NEW]" width=31 height=12 src="new.gif">
+
+<li> p. 889. Practice Problem 13.8. "<kbd>gethostbyame_ts</kbd>" should
+be "<kbd>gethostbyname_ts</kbd>"
+</ul>
+
+<li><b>Appendix A: HCL Descriptions of Processor Control Logic</b>
+
+<ul>
+<li> p. 922, Code for <kbd>D_bubble</kbd> (lines 255-258).  Should be:
+<kbd>
+<br># Mispredicted branch
+<br>(E_icode == IJXX && !e_Bch) ||
+<br># Stalling at fetch while ret passes through pipeline
+<br># but not condition for a load/use hazard
+<br>!(E_icode in { IMRMOVL, IPOPL } && E_dstM in { d_srcA, d_srcB }) &&
+<br>IRET in { D_icode, E_icode, M_icode };
+</kbd>
+<br><i><font size=-1>Posted 11/24/2005. Randy Bryant</font></i>
+</ul>
+
+<li><b>Appendix B: Error Handling</b>
+<ul>
+
+<li> p. 945. line number 664, "<kbd>Rio_writenb error</kbd>" 
+should be "<kbd>Rio_writen error</kbd>".
+<br><i><font size=-1>Posted 6/8/2004. Brian Kell</font></i>
+
+<li> p. 947. <kbd>open_listenfd</kbd>, lines 739, 748, and 752. 
+Function should close  <kbd>listenfd</kbd> descriptor 
+before returning.
+<br><i><font size=-1>Posted 2/17/2004. Martin Kulas</font></i>
+</ul>
+
+<li><b>Bibliography</b>
+<ul>
+<li> p. 950, entry [35], "Arlso" should be "Also".
+<br><i><font size=-1>Posted 4/11/2007. Yixin Cao</font></i>
+<img alt="[NEW]" width=31 height=12 src="new.gif">
+</ul>
+
+<li><b>Index</b>
+<ul>
+<li>p. 953: "<kbd>addl</kbd> [IA32] and double word" should read
+"<kbd>addl</kbd> [IA32] add double word"
+<li>p. 953: "<kbd>andl</kbd> [IA32] add double word" should read
+"<kbd>andl</kbd> [IA32] and double word"
+<li>p. 973: "Scud millse 82" should read "Scud missile 82"
+</ul>
+</ul>
+
+<a NAME="int1"></a>
+<hr>
+<h2>First International Printing [2003, ISBN 0-13-178456-0, softcover]</h2>
+
+<ul>
+<li><b>Preface</b>
+
+<ul>
+<li> p. xxvi (Last paragraph):  The name "Sandhya Dwarkadas" was mispelled.
+<br><i><font size=-1>Posted 01/12/2005. Michael Scott</font></i>
+</ul>
+
+<li><b>Chapter 1: A Tour of Computer Systems</b>
+<ul>
+<li> 
+p. 15, 3rd paragagraph. "to <font color=red><b>a</b></font> some new process" should read
+"to some new process". 
+<br><i><font size=-1>Posted 5/12/2003. Jeff Goldblat</i></font>
+</ul>
+
+<li><b>Chapter 2: Representing and Manipulating Information</b>
+<ul>
+
+<li>p. 36, Lines 3-6 below disassembler output.  This line should read:
+<br>
+"For now, we simply note that this line states that the hexadecimal
+byte sequence <kbd>01 05 64 94 04 08</kbd> is the byte-level representation of an
+instruction that adds a word of data to the value stored in memory at
+address <kbd>0x8049464</kbd>."
+<br><i><font size=-1>Posted 09/25/2003. Anne Rogers</i></font>
+
+<li> p. 36, Aside "New to C?: Naming data types with typedef."  The
+last sentence should end "... the declaration of a variable of
+type '<kbd>unsigned char <font color=red>*</font></kbd>'."
+<br><i><font size=-1>Posted 12/03/2007. Carl Marcinik</font></i>
+<img alt="[NEW]" width=31 height=12 src="new.gif">
+
+<li>p. 51, Fig. 2.8: under "unsigned short": 
+Guaranteed max and typical 32-bit 
+max should be 6<font color=red><b>5</b></font>,535 not 6<font color=red><b>3</b></font>,535. 
+<br><i><font size=-1>Posted 6/23/2003. Daniel Amelang</i></font>
+
+<li>p. 57, just before Equation 2.3:
+"If we let x = B2T_w(vec{x}) ..." should be
+"If we let vec{x} = T2B_w(x) ...".
+<br><i><font size=-1>Posted 8/7/2003. Thomas Niemann</i></font>
+
+<li> p. 61, second paragraph.  The first line should read: "As an
+example, consider the effect of executing the following code when integer variable
+<kbd>val</kbd> is set to <kbd>-12345</kbd>:"
+<br><i><font size=-1>Posted 10/18/2007. Carl Marcinik</font></i>
+<img alt="[NEW]" width=31 height=12 src="new.gif">
+
+
+<li> p. 64, multiple places.  Several of the bit vectors have one too
+many bits:
+<ol>
+<li> [x_{w}, x_{w-1}, ..., x_0] should be [x_{w-1}, x_{w-2}, ..., x_0]
+in the following places:
+<ul>
+<li> Left hand side of the first equation
+<li> In the text of the second paragraph
+<li> On the right hand sides of Equations 2.7 and 2.8.
+</ul>
+<li> [x_{k}, x_{k-1}, ..., x_0] should be [x_{k-1}, x_{k-2}, ..., x_0]
+in the following places:
+<ul>
+<li> Bottom line of equation
+<li> In the text of the second paragraph
+<li> On the left hand sides of Equations 2.7 and 2.8.
+</ul>
+</ol>
+<i><font size=-1>Posted 11/18/2003. Rui Carvalho</font></i>
+
+<li> p. 64, Equation 2.8.
+Inner function on right hand side should be B2U rather than B2T.
+<br><i><font size=-1>Posted 05/04/2006. Will Marrero</font></i>
+
+
+<li> p. 69, middle line of equation at bottom: There should be no minus signs in front of x_{w-1} and y_{w-1}.
+<br><i><font size=-1>Posted 09/18/2003. Simone Martins</font></i>
+
+<li> p. 73, 2nd & 3rd lines.  All subscripts "w+1" should read "w-1".
+<br><i><font size=-1>Posted 09/13/2005. Day Zhong</font></i>
+
+<li> p. 73, 4th line should read "for x in the range -2^{w-1} <= x < 2^{w-1}"
+<br><i><font size=-1>Posted 07/19/2004. Yin Yongsheng</font></i>
+
+<li>p. 75, 5th line after Equation 2.15.
+Should read
+"... complement product B2T(x) * B2T(y)" (y instead of x at the end).
+<br><i><font size=-1>Posted 09/15/2005. Jordan Brough</font></i>
+
+<li> p. 77, Practice Problem 2.28.  Parameter k can be 0, 1, 2, or 3.
+<br><i><font size=-1>Posted 09/08/2003. Darren Shultz</font></i>
+
+<li> p. 77, Practice Problem 2.28.  The expression <kbd>a &lt;&lt; k + b</kbd>
+should be written as <kbd>(a&lt;&lt;k) + b</kbd> to avoid problems with operator precedence.  Similarly we should write <kbd>(a&lt;&lt;1) + a</kbd>.
+<br><i><font size=-1>Posted 01/02/2008. Zeyang Li</font></i>
+<img alt="[NEW]" width=31 height=12 src="new.gif">
+
+<li>p. 78, 3rd line.
+The equation for x' should be SUM(i=k,w-1) x_i * 2^(i-k).
+<br><i><font size=-1>Posted 04/22/2005. Guanpeng Xu</font></i>
+
+<li>p. 78, End of second full paragraph.  Last sentence should read
+"Thus, this shifted bit vector is the two's complement representation
+of |_ x / 2^k _|," (rather than 
+|_ x / y _|.)
+<br><i><font size=-1>Posted 04/22/2005. Randy Bryant</font></i>
+
+<li> p. 91, Section 2.4.5, 3rd paragraph, 1st line.  The word
+"complement" should not be italicized, and there should be a space
+before it.
+<br><i><font size=-1>Posted 12/02/2003. Mark Morrissey</font></i>
+
+<li> p. 104, Problem 2.54, second paragraph.  The last part of the sentence should read "... we convert them to other unsigned values ...".
+<br><i><font size=-1>Posted 10/18/2007. Carl Marcinik</font></i>
+<img alt="[NEW]" width=31 height=12 src="new.gif">
+
+
+<li> p. 107, Problem 2.61.  Local variable <kbd>sig</kbd> should be
+renamed <kbd>frac</kbd>, and referred to as the fraction, rather than
+the significand.
+<br><i><font size=-1>Posted 08/08/2006. Randy Bryant</font></i>
+
+<li>p. 109, Problem 2.4 Solution, part D.  The first part should read
+<br><kbd>0x50da-0x502c = 0xae</kbd>.
+<br><i><font size=-1>Posted 06/14/2004. Alan West</font></i>
+
+<li> p. 118, Problem 2.32 solution: The subproblems (A--D) and the answers (A--C) don't line up:
+<ul>
+<li>The answer to subproblem B is given in A (9.54 X 10^{-8})
+<li>The answer to C is given in B (0.343)
+<li>The answer to D is given in C (687).
+</ul>
+<br><i><font size=-1>Posted 12/07/2004. Thomas Gross</font></i>
+
+<li>p. 120, Problem 2.37 solution for part H.
+The problem states that the value for d is not infinity
+or NaN, so we must find another counterexample.  Here is one: when d is 1.0E25 and
+f is 1.0, then (d+f) will be rounded to 1.0E25 and so (d+f)-d will
+evaluate to 0.0.
+<br><i><font size=-1>Posted 01/03/2006. Ricky Liu</font></i>
+
+<li>p. 126, The i486 CPU had 1.2M transistors (not 1.9), and the PentiumPro had 5.5M (not 6.5).
+This leads to a very slight change in the graph for Moore's Law on p. 127,
+but the trend of doubling every 30 months continues to hold.
+<br><i><font size=-1>Posted 01/23/2006. Ricky Liu</font></i>
+
+<li>p. 126, The Pentium 4 was first delivered in 2000, not 2001.
+<br><i><font size=-1>Posted 01/23/2006. Ricky Liu</font></i>
+
+</ul>
+
+<li><b>Chapter 3: Machine-Level Representation of Programs</b>
+<ul>
+<li>p. 133, first line.  Should read "Then, we could generate an executable program <kbd>prog</kbd> as follows:"
+<br><i><font size=-1>Posted 03/27/2005. Mario Lo Conte</font></i>
+
+<li>p. 133, Right after disassembly.  Should read "... the disassembly of
+<kbd>code.o</kbd>."
+<br><i><font size=-1>Posted 03/27/2005. Mario Lo Conte</font></i>
+
+<li>p. 141, New to C, line 10.  "This also a form of" should be "This is also a form of".
+<br><i><font size=-1>Posted 09/15/2003. Darren Shultz</font></i>
+
+<li>
+p. 147, first paragraph.  The last sentence should read "In general,
+compilers generate code that uses individual registers for multiple
+program values and moves program values among the registers."
+<br><i><font size=-1>Posted 10/15/2006. Nawanan Theera-Ampornpunt</font></i>
+<img alt="[NEW]" width=31 height=12 src="new.gif">
+
+<li>p. 149, End of last complete paragraph.  Add sentence "For reasons that are a bit obscure,
+the <kbd>incl</kbd> and <kbd>decl</kbd> instructions set the zero, sign, and overflow flags, but they leave the
+carry flag unchanged."
+<br><i><font size=-1>Posted 01/23/2006. Ricky Liu</font></i>
+
+<li>
+p. 150, Section 3.6.2, line 5.  Should be "condition code" rather than
+"conditions code".
+<br><i><font size=-1>Posted 10/15/2006. Nawanan Theera-Ampornpunt</font></i>
+<img alt="[NEW]" width=31 height=12 src="new.gif">
+
+
+<li>
+p. 154, line #2 in assembly code listing.  The comment should state:
+"Aligns next instruction to multiple of 16".
+<br><i><font size=-1>Posted 05/02/2004. Randy Bryant</font></i>
+
+<li>p. 156, last line of text.  "... skipping the statement on line 7." should read
+"skipping the statements on lines 7 and 8." 
+<br><i><font size=-1>Posted 01/23/2006. Ricky Liu</font></i>
+
+<li>p. 160, last line of first paragraph:
+"copy" should be "copied".
+<br><i><font size=-1>Posted 05/19/2006. Ronald Jones</font></i>
+
+<li>p. 161, last line of first paragraph.
+Should read "Once the loop exits, val is copied to register %eax ..."
+<br><i><font size=-1>Posted 02/06/2006. James Caroll</font></i>
+
+<li>p. 162, Figure 3.14c.  There should be an additional line:
+<br>
+14 <kbd>movl %ebx, %eax</kbd>
+<br><i><font size=-1>Posted 09/01/2004. Inge Frick</font></i>
+
+<li>p. 163, The last sentence of first paragraph states "This saves
+one instruction in the assembly code," but that's not really true.  The compiler could have generated the instruction
+<br>
+12 <kbd>jns .L10</kbd>
+<br>
+to perform the test <kbd>nmi >= 0</kbd>, so there is no performance
+gain in the compiler-generated code.  The last sentence should therefore
+state "Although this modified test is valid, it gives no real performance advantage."
+<br><i><font size=-1>Posted 09/01/2004. Inge Frick</font></i>
+
+<br>
+12 <kbd>movl %ebx, %eax</kbd>
+<br><i><font size=-1>Posted 09/01/2004. Inge Frick</font></i>
+
+
+<li>p. 163, Problem 3.11 assembly code.  There should be an additional line:
+<br>
+12 <kbd>movl %edx,%eax</kbd>
+<br><i><font size=-1>Posted 06/14/2004. Michael Li</font></i>
+
+<li>p. 173, Aside, 4th line from bottom, should read "... P (the caller) must save the value before calling Q ...".
+<br><i><font size=-1>Posted 06/14/2004. Michael Li</font></i>
+
+<li>p. 180, Figure 3.22.  In both stack frames, the offset of the frame pointer should be 0, not -4.
+<br><i><font size=-1>Posted 01/12/2005. Qing Xu</font></i>
+
+<li>p. 180, Figure 3.22.  In both stack frames, the value at offset -24 should be "Saved %ebx", not "Saved %ebp".
+<br><i><font size=-1>Posted 07/01/2004. Steven Zhang</font></i>
+
+<li>p. 182, last paragraph, second line.
+"(except in the first case ...)" should read
+"(except in the first and last cases,
+where the former copies the address, and the latter copies the index)"
+<br><i><font size=-1>Posted 01/23/2006. Ricky Liu</font></i>
+
+<li>
+p. 183, Aside on why to avoid integer multiply.  The Pentium III, on which the book is based, requires 4 clock cycles for integer multiplication.  More recent processors
+from Intel and AMD require between 3 and 10 clock cycles.
+<br><i><font size=-1>Posted 2/21/2007. Yixin Cao</font></i>
+<img alt="[NEW]" width=31 height=12 src="new.gif">
+
+<li>
+p. 190, Figure 3.25b.  Line 5 should read "int nTjPk = k;".
+<br><i><font size=-1>Posted 10/06/2003. Seiki</font></i>
+
+<li>p. 198, Problem 3.22, part C.
+Line 4 of the code should be removed.
+<br><i><font size=-1>Posted 01/23/2006. Ricky Liu</font></i>
+
+<li>p. 213, stack diagram at bottom.
+Step 8 value should be (a-b)/(-b+c).
+<br><i><font size=-1>Posted 01/23/2006. Ricky Liu</font></i>
+
+<li>p. 219, second example.
+<kbd>fmul</kbd> should be <kbd>fmull</kbd>.
+<br><i><font size=-1>Posted 01/23/2006. Ricky Liu</font></i>
+
+<li>
+p. 219, second example.  The example expression should be <kbd>x =
+(-(a*b)+c)*(a*b)</kbd>.  The expression in the box for step 6 should
+be (-(a*b)+c)*(a*b).
+<br><i><font size=-1>Posted 06/04/2004. Thomas Niemann</font></i>
+
+<li>p. 219, second example.
+There should be a seventh step
+with the instruction <kbd>fstpl x</kbd>.
+<br><i><font size=-1>Posted 01/23/2006. Ricky Liu</font></i>
+
+<li>p. 222, second to last line of text, and last two entries of table in Figure 3.36.
+The binary representations of 69 and 64 are [01000101] and [01000000], respectively.
+<br><i><font size=-1>Posted 01/23/2006. Ricky Liu</font></i>
+
+<li>
+p. 228, second paragraph.
+We stated that with GCC's inline assembly
+"...there are no direct ways to specify a program value to use as the
+destination operand for the <kbd>setae</kbd> instruction, since the
+operand must be a single byte."  In fact, you can specify
+single-byte operands with <kbd>gcc</kbd> by declaring variables of
+type <kbd>char</kbd>.
+See <a href="byteasm.html">Note on byte operands with inline assembly</a>.
+<br><i><font size=-1>Posted 04/07/2003. Michael Trigoboff</font></i>
+
+<li>
+p. 229, first two lines (lines 13-14 of okmul.c).  Recent versions of
+GCC do not allow a quoted string to split across multiple lines, and so attempting to compile this code gives an error message.  Instead, the lines should be written as two separate strings, as follows:
+<br>
+<kbd>
+    asm("movl %2,%%eax; mull %3; movl %%eax,%0;"
+<br>
+           "setae %%dl; movzbl %%dl,%1"  
+</kbd>
+<br><i><font size=-1>Posted 10/18/2007. Wang Yuanxuan</font></i>
+<img alt="[NEW]" width=31 height=12 src="new.gif">
+
+
+<li>p. 234, Figure 3.37.  The annotation "default" shown on line 28 with label .L14 should instead be on line 26 with label .L20.
+<br><i><font size=-1>Posted 10/04/2005. Scott Wright</font></i>
+
+<li>p. 241, Solution to Problem 3.8A.  Jump target is 
+<kbd>0x8048d1e - 0x26</kbd> =
+<kbd>0x8048cf8</kbd>. (Remember that <kbd>0xda</kbd> is a one-byte two's complement number).
+The first line of the disassembled code should read:
+<br>
+<kbd>8048d1c:  76 da    jbe  8048cf8</kbd>
+<br><i><font size=-1>Posted 05/02/2004. Hyoung-Kee Choi</font></i>
+
+
+<li>p. 246, Solution to Problem 3.17.  First entry in table.  Total size should be 14 rather than 28.
+<br><i><font size=-1>Posted 10/07/2003. David O'Hallaron</font></i>
+
+<li>
+p. 247, Solution to Problem 3.20, code line 4.  It would be better to use N instead of 255 here.  The C preprocessor would automatically substitute 255 and then scale this by 4 to get 1020.
+<br><i><font size=-1>Posted 2/14/2007. Yixin Cao</font></i>
+<img alt="[NEW]" width=31 height=12 src="new.gif">
+</ul>
+
+<li><b>Chapter 4: Processor Architecture</b>
+<ul>
+
+<li> p. 265, Aside on "The RISC versus CISC controversy".
+The last word of the fourth line of text should be "instructions",
+not "instruction".
+<br><i><font size=-1>Posted 10/21/2005. Scott Wright</font></i>
+
+<li>p. 270-1, Problem 4.5, code for poptest.  The instruction
+<kbd>movl %esp, %edx</kbd> should precede the instruction that pushes
+<kbd>tval</kbd>.  The first argument to the asm directive then reads:
+<p>
+<kbd>
+   asm("movl %%esp,%%edx; pushl %1; popl %%esp; movl %%esp,%0; movl %%edx,%%esp"
+</kbd>
+<p>
+The existing code causes a segmentation fault.
+<br><i><font size=-1>Posted 01/23/2006. Ricky Liu</font></i>
+
+<li> p. 278, Section 4.2.4. line 5.
+The reference to Figure 4.12
+should instead be to the diagram at the bottom of p. 276.
+<br><i><font size=-1>Posted 01/23/2006. Ricky Liu</font></i>
+
+<li> p. 278, second to last line.
+The value being tested is <em>iexpr</em>, not <em>expr</em>.
+<br><i><font size=-1>Posted 01/23/2006. Ricky Liu</font></i>
+
+<li>p. 288, Practice Problem 4.11.  
+The second sentence should be "Does this conform ...".
+<br><i><font size=-1>Posted 10/21/2005. Scott Wright</font></i>
+
+<li> p. 292, Fig. 4.20, Decode stage.
+Labels dstA and dstB should be dstE and dstM, respectively.
+<br><i><font size=-1>Posted 11/23/2005. Scott Wright</font></i>
+
+<li>p. 299, Figure 4.24, 3rd row from bottom.  The value for <kbd>RESP</kbd> should be 4. 
+<br><i><font size=-1>Posted 05/02/2004. Anita Gupta</font></i>
+
+<li>p. 300, Just before subheading "Decode and Write-Back Stages."
+The formula should read "p + 1 + r + 4i"
+<br><i><font size=-1>Posted 04/02/2004. John Ross</font></i>
+
+<li> p. 301, first paragraph, line 7.
+The write port address inputs are dstE and dstM, not dstA and dstB.
+<br><i><font size=-1>Posted 03/13/2005. Inge Frick</font></i>
+
+<li>p. 305, second line of Section 4.3.5, "PC stage" should be "PC update stage".
+<br><i><font size=-1>Posted 05/19/2006. Ronald Jones</font></i>
+
+<li> p. 306, Fig. 4.30, Decode stage.
+Labels dstA and dstB should be dstE and dstM, respectively.
+<br><i><font size=-1>Posted 11/23/2005. Scott Wright</font></i>
+
+<li> p. 308, second line below diagram.  "This an ..." should be "This is an ...".
+<br><i><font size=-1>Posted 01/23/2006. Ricky Liu</font></i>
+
+<li> p. 311, Figure 4.34.  
+The final number on the timeline should be 600, not 640.
+<br><i><font size=-1>Posted 05/27/2003. J&ouml;rg Brauer</font></i>
+
+<li> p. 322, Aside on "Other branch prediction strategies."  The third
+sentence should read "A slightly more sophisticated strategy, known as
+backward taken, forward not-taken (BTFNT), predicts branches to lower
+addresses than the next instruction will be taken, while those to
+higher addresses will not be taken."
+<br><i><font size=-1>Posted 12/03/2007. Carl Marcinik</font></i>
+<img alt="[NEW]" width=31 height=12 src="new.gif">
+
+<li> p. 325, Line 5 of second paragraph.
+Third word "instruction" should be "instructions".
+<br><i><font size=-1>Posted 11/23/2005. Scott Wright</font></i>
+
+<li> p. 326, Figure 4.44, expanded box for Cycle 5 labeled "W".
+The operation <kbd>R[%eax] <-- 10</kbd>
+should read <kbd>R[%edx] <-- 10</kbd>.
+<br><i><font size=-1>Posted 03/19/2007. Devon Macey</font></i>
+<img alt="[NEW]" width=31 height=12 src="new.gif">
+
+<li> p. 326, Line 1 of first full paragraph.
+Last word "instructions" should be "instruction".
+<br><i><font size=-1>Posted 11/23/2005. Scott Wright</font></i>
+
+<li> p. 335, line 4.
+Should refer to pipeline register E, not M.
+<br><i><font size=-1>Posted 03/13/2005. Inge Frick</font></i>
+
+<li> p. 331, Fig. 4.49, expanded box for Cycle 6.
+Box labeled "M" should have label "W".
+<br><i><font size=-1>Posted 11/23/2005. Scott Wright</font></i>
+
+<li> p. 332, Fig. 4.51, expanded box for Cycle 4, box labeled "M".
+Labels "W_dstE" and "W_valE" should be "M_dstE" and "M_valE", respectively.
+<br><i><font size=-1>Posted 11/23/2005. Scott Wright</font></i>
+
+<li> p. 335, Fig. 4.54, near bottom.
+Arrow labeled "Error" should point to the line "valB <-- R[%eax] = 0".
+<br><i><font size=-1>Posted 11/23/2005. Scott Wright</font></i>
+
+<li> p. 336, Line 2.
+The address of the irmovl instruction is 0x012, not 0x00c.
+<br><i><font size=-1>Posted 02/06/2006. Ricky Liu</font></i>
+
+<li> p. 336, Line 8 of first full paragraph.
+Should refer to register %ebx rather than %edx. 
+<br><i><font size=-1>Posted 11/23/2005. Scott Wright</font></i>
+
+<li> p. 337, Section 4.5.8, line 4 of first paragraph.
+Missing "of" between "design" and "the".
+<br><i><font size=-1>Posted 11/23/2005. Scott Wright</font></i>
+
+<li> p. 339, Figure 4.57 caption, 5th line.
+"dstA" and "dstB" should be "dstE" and "dstM", respectively
+<br><i><font size=-1>Posted 02/06/2006. Ricky Liu</font></i>
+
+<li> p. 346, Figure 4.63.
+The line of code at address 0x007 should be:
+<br>
+<kbd>0x007: irmovl $1, %eax # Fall through</kbd>
+<br><i><font size=-1>Posted 02/06/2006. Ricky Liu</font></i>
+
+
+<li> p. 348, Figure 4.65B.
+Label in box on right should be "x" rather than "y"
+<br><i><font size=-1>Posted 10/17/2005. Caren Yang</font></i>
+
+<li> p. 350, 4th line from bottom.  Sentence should read "Clearly, we
+do not want the pipeline to perform both sets of actions." (Omit
+first "to").  And next sentence should read "Instead, we want it to ..." (add "to").
+<br><i><font size=-1>Posted 02/06/2006 and 05/19/2006. Ricky Liu
+and Ronald Jones</font></i>
+
+<li> p. 351, first paragraph, last line.  Omit word "implement" from
+the sentence.
+<br><i><font size=-1>Posted 02/06/2006. Ricky Liu</font></i>
+
+<li> p. 352, Code for <kbd>D_bubble</kbd>.  Should be:
+<kbd>
+<br># Mispredicted branch,
+<br>(E_icode == IJXX && !e_Bch) ||
+<br># or stalling at fetch while ret passes through pipeline
+<br>IRET in { D_icode, E_icode, M_icode } &&
+<br># but not condition for a load/use hazard
+<br>!(E_icode in { IMRMOVL, IPOPL } && E_dstM in { d_srcA, d_srcB });
+</kbd>
+<br><i><font size=-1>Posted 11/24/2005. Randal Bryant</font></i>
+
+<li> p. 363, Problem 4.41, line 3.  Omit word "requires" from
+the sentence.
+<br><i><font size=-1>Posted 02/06/2006. Ricky Liu</font></i>
+
+<li> p. 368, Problem 4.6 Solution.
+The signal should be called <kbd>xor</kbd>, rather than <kbd>eq</kbd>.
+<br><i><font size=-1>Posted 11/16/2005. Betsy Wolff</font></i>
+
+<li> p. 368, Problem 4.7 Solution.
+The figure should have an OR gate, rather than an AND gate.
+<br><i><font size=-1>Posted 09/15/2005. Michael Bombyk</font></i>
+
+<li> p. 368, Problem 4.8 Solution.
+The correct code is:
+<br>
+<kbd>
+int Med3 = [<br>
+  (A <= B && B <= C) || (C < B && B < A) : B;<br>
+  (B <= A && A <= C) || (C < A && A < B) : A;<br>
+  1 : C;<br>
+]
+</kbd>
+<br><i><font size=-1>Posted 10/21/2005. Scott Wright</font></i>
+</ul>
+
+
+<li><b>Chapter 5: Optimizing Program Performance</b>
+<ul>
+<li>p. 388, Table in middle of page.  The entry for Integer + with function <kbd>combine2</kbd> should be 20.66, not 22.61.
+<br><i><font size=-1>Posted 01/20/2004. Thomas Niemann</font></i>
+
+<li>p. 394, Fig 5.10: Line 9 of code (<kbd>*dest = IDENT</kbd>) is not necessary.
+<br><i><font size=-1>Posted 6/23/2003. Daniel Amelang</i></font>
+
+<li> p. 398, 2nd line.  "such transcendental" should be "such as transcendental".
+<br><i><font size=-1>Posted 12/02/2003. Mark Morrissey</font></i>
+
+<li>p. 399, first paragraph under section 5.7.2: should be "...documents the 
+performance of some of <font color=red><b>the</b></font> basic operations...". 
+(Add a "the" after the second "of".) 
+<br><i><font size=-1>Posted 6/23/2003. Daniel Amelang</i></font>
+
+<li> p. 402, line after code <kbd>cmpl %esi, %edx.1 -> cc.1</kbd>.
+"... compares the value in %esi ... with the newly computed value for %edx."
+Should read
+"... compares the newly computed value for %edx with the value in %esi ...."
+<br><i><font size=-1>Posted 2/22/2006. Ricky Liu</i></font>
+
+<li> p. 405, second to last line of text.  The reference should be to
+Fig 5.16, not to Fig 5.15.
+<br><i><font size=-1>Posted 2/12/2004. Michael Trigoboff</i></font>
+
+<li>p. 405. last line.   Should read "...parallel on cycle 3 and..." rather than "cycles 3".
+<br><i><font size=-1>Posted 3/16/2005. James Troup</i></font>
+
+<li>p. 409, 3rd line from bottom.  "maximum loop index" should read
+"maximum array index".
+<br><i><font size=-1>Posted 2/22/2006. Ricky Liu</i></font>
+
+<li> p. 410, first text box. <kbd>addl %edx, 3</kbd> should read
+<kbd>addl $3, %edx</kbd>,
+in both the assembly instructions and the execution unit operations.
+<br><i><font size=-1>Posted 7/01/2003. Daniel Amelang</i></font>
+
+<li> p. 410, Figure 5.20.  <kbd>addl %edx.0, 3</kbd> should read
+<kbd>addl $3, %edx.0</kbd>.
+<br><i><font size=-1>Posted 7/01/2003. Daniel Amelang</i></font>
+
+<li> p. 416.  Formulae for PE_n and PO_n.  Both should have n/2-1 as
+their upper bounds.
+<br><i><font size=-1>Posted 2/22/2006. Ricky Liu</i></font>
+
+<li> p. 418, Figure 5.26.  The figure shows two load operations
+starting at cycle 2 and two at cycle 3, but this would not be possible
+with a single load unit.  The six load operations
+should begin at cycles 1 through 6 (from left to right).  This
+will not affect the overall program performance.  <br><i><font
+size=-1>Posted 03/15/2005. Michael Trigoboff</font></i>
+
+<li> p. 421, second line of text.  "accumulate sums" should read
+"accumulate products".
+<br><i><font size=-1>Posted 2/22/2006. Ricky Liu</i></font>
+
+<li> p. 421, Practice Problem 5.5, Part A, "being" should be "been".
+<br><i><font size=-1>Posted 6/23/2003. Daniel Amelang</i></font>
+
+<li> p. 422, last line before Practice Problem 5.6
+Should be "addition" rather than "multiplication".
+<br><i><font size=-1>Posted 03/13/2005. Inge Frick</font></i>
+
+<li>p. 423. last line.   Should read "... (80-bit) ...".
+<br><i><font size=-1>Posted 3/16/2005. James Troup</i></font>
+
+<li>p. 424, Figure 5.27.  The entry for floating point addition that
+is unrolled x4, parallelism x2 should also be shown in boldface,
+since it tied with unroll x8 parallelism x4.
+<br><i><font size=-1>Posted 2/22/2006. Ricky Liu</i></font>
+
+<li>p. 425, Figure 5.28.  The entry for floating point addition that
+is unrolled x4, parallelism x2 should be shown in boldface,
+since it achieves better performance (2.34 vs. 2.36) than does unrolling x8 parallelism x4.
+<br><i><font size=-1>Posted 2/22/2006. Randy Bryant</i></font>
+
+<li>p. 427, Figure 5.29.  Comment on line 6 of assembly code.
+It should read "If >= 0, goto end".
+<br><i><font size=-1>Posted 2/22/2006. Ricky Liu</i></font>
+
+<li> p. 428, Practice Problem 5.7.
+Assembly code line 4 should read 
+<br><kbd>  cmovzl %edx,%eax</kbd>
+<br><i><font size=-1>Posted 11/10/2003. Tim Freeman</i></font>
+
+<li>p. 429, Section 5.13, second paragraph, "All of our programs
+...", should read "The loops of all of our programs ...".
+<br><i><font size=-1>Posted 2/22/2006. Ricky Liu</i></font>
+
+<li>p. 433, second paragraph.  Drop "(a)" in the reference to Figure 5.33.
+<br><i><font size=-1>Posted 2/22/2006. Ricky Liu</i></font>
+
+<li>p. 434, assembly code and its translation at the top of the page.  The code given has
+two bugs: 1) the <kbd>decl</kbd> instruction does not set the
+condition codes, and 2) the loop test should be <kbd>jne</kbd>, not
+<kbd>jnc</kbd>.  The correct last two lines are:
+<br>
+<kbd>
+subl $1, %eax   subl $1, %eax.0 --> %eax.1
+<br>
+jne .l32        jne-taken cc.1
+</kbd>
+<br><i><font size=-1>Posted 2/22/2006. Ricky Liu</i></font>
+
+<li>p. 442, Line 3.  "26946/1007" should read "26,946/1,021".
+<br><i><font size=-1>Posted 2/22/2006. Ricky Liu</i></font>
+
+<li>p. 442, Line 7.  "2.70" should read "2.69".
+<br><i><font size=-1>Posted 2/22/2006. Ricky Liu</i></font>
+
+<li> p. 447, Problem 5.12, Part C, "greater" should be "less".
+<br><i><font size=-1>Posted 2/5/2004. Grant Davis</i></font>
+
+<li> p. 449, Problem 5.17, in text box column labeled "Execution unit operation".  Code  <kbd>movl 4(%edx.0)</kbd> should be
+<kbd>load 4(%edx.0)</kbd>.
+<br><i><font size=-1>Posted 6/23/2003. Daniel Amelang</i></font>
+
+<li> p. 449, Problem 5.18, in text box column labeled "Execution unit operation".  Code  <kbd>movl 4(%edx.0)</kbd> should be
+<kbd>load 4(%ecx.0)</kbd>.
+<br><i><font size=-1>Posted 02/16/2004. Mark Morrissey</i></font>
+
+<li> p. 451, Problem 5.4 Solution, code for <kbd>combine5px8</kbd>.  Fourth line should read:
+<br>
+int limit = length - 7;
+<kbd>
+</kbd>
+<br><i><font size=-1>Posted 6/23/2003. Daniel Amelang</i></font>.
+<i><font size=-1>Errata entry corrected 3/13/2004. Mark Morrissey</i></font>.
+
+<li> p. 453, Solution to Problem 5.7.
+The first sentence of the second paragraph should read "This code always dereferences <kbd>xp</kbd> (assembly code line 2)."
+
+<li> p. 453, Problem 5.8D Solution.  The CPE would be 3.00.
+<br><i><font size=-1>Posted 10/21/2003. Joe Trdinich</i></font>
+</ul>
+
+<li><b>Chapter 6: The Memory Hierarchy</b>
+<ul>
+
+<li>p. 474, Line 1.  "0xa" should be "0xa0".
+<br><i><font size=-1>Posted 2/28/2006. Ricky Liu</i></font>
+
+<li> p. 475, Figure 6.14 caption. "SourceDIXtrac" should be "Source: DIXtrac"
+<br><i><font size=-1>Posted 4/7/2005. Dave O'Hallaron</i></font>
+
+<li> p. 476, first line. "more tracks are packed" 
+should be "more sectors are packed". 
+<br><i><font size=-1>Posted 3/1/2004. Michael Trigoboff</i></font>
+
+<li>p. 479, 2nd last line: "stride-(N x sizeof(int))" should be "stride-N".
+<br><i><font size=-1>Posted 2/28/2006. Ricky Liu</i></font>
+
+<li>p. 480, Figure 6.19, description: "stride-(N x sizeof(int))" 
+should be "stride-N".
+<br><i><font size=-1>Posted 2/28/2006. Ricky Liu</i></font>
+
+<li>p. 505, Impact of Cache Size: 
+"must have a hit time of one clock cycle" should 
+read "must have a short hit time".
+<br><i><font size=-1>Posted 2/28/2006. Ricky Liu</i></font>
+
+<li>p. 509, 1 para, last sentence, 
+"the array size is larger than the cache size" should
+read "the array size is larger than the cache size, and M > E".
+<br><i><font size=-1>Posted 2/28/2006. Ricky Liu</i></font>
+
+<li>p. 511, Problem 6.16 and 6.17, part D:
+"What the miss rate be if the cache were twice as big?"
+should be "What would the miss rate be if the cache had the same
+block size but twice as many sets?"
+<br><i><font size=-1>Posted 2/28/2006. Ricky Liu</i></font>
+
+<li>p. 513, 2nd para, 2nd sentence:
+"start at 1 KB, increasing by a factor of two, to
+a maximum of 8 MB" should be "start at 8 MB, decreasing by a factor 
+of two, to a minimum of 1 KB".
+<br><i><font size=-1>Posted 2/28/2006. Ricky Liu</i></font>
+
+<li>p. 533, Solution to Problem 6.8, Part B, line 4, should
+read "(4096 * 4)/32 = 512 blocks".
+<br><i><font size=-1>Posted 12/29/2003. Suryanto</i></font>
+
+<li> p. 536, Solution to Problem 6.16, Line 2. "grid[16][0]" should be
+"grid[8][0]".
+<br><i><font size=-1>Posted 12/08/2003. Tim Wong</i></font>
+
+<li>p.536, Problem 6.19 Solution, part B, line 4: 
+"256 bytes" should be "256 KB". 
+<br><i><font size=-1>Posted 2/28/2006. Ricky Liu</i></font>
+</ul>
+
+<li><b>Chapter 7: Linking</b>
+
+<ul>
+
+<li>p. 546, Line after the code segment, "two integers in .bss" should be 
+"integers in .data".
+<br><i><font size=-1>Posted 4/25/2006. Ricky Liu</i></font>
+
+<li> p. 546, line 5, "corresponds module" should be "corresponds to module".
+<br><i><font size=-1>Posted 5/11/2004. Dirk Maas</i></font>
+
+<li>p. 551, last line, "negative one" should be "negative zero".
+<br><i><font size=-1>Posted 4/25/2006. Ricky Liu</i></font>
+
+
+<li>p. 552, first paragraph. GCC also provides the
+"-fno-common" flag, which triggers an error if it encounters multiply
+defined global symbols. Also, "multiply defined" should be "multiple".
+<br><i><font size=-1>Posted 4/25/2006. Ricky Liu</i></font>
+
+<li>p. 553, second paragraph, line 3, "random" should be "rand".
+<br><i><font size=-1>Posted 4/25/2006. Ricky Liu</i></font>
+
+<li> p. 557, Practice Problem 7.3, "file object file" should be "object file".
+<br><i><font size=-1>Posted 3/16/2005. James Troup</i></font>
+
+<li> p. 558, line 7-8, "<kbd>.relo.text</kbd>" and "<kbd>.relo.data</kbd>" should be 
+"<kbd>.rel.text</kbd>" and "<kbd>.rel.data</kbd>" respectively.
+<br><i><font size=-1>Posted 6/1/2004. Dirk Maas</i></font>
+
+<li> p. 558, sect 7.7.1, paragraph 2, 
+"how to the modify" should be "how to modify".
+<br><i><font size=-1>Posted 3/16/2005. Mao Fan</i></font>
+
+<li>p. 562, Figure 7.10 caption, "data" should be ".data".
+<br><i><font size=-1>Posted 4/25/2006. Ricky Liu</i></font>
+
+<li> p. 563, line 8, "<kbd>.relo</kbd>" should be "<kbd>.rel</kbd>".
+<br><i><font size=-1>Posted 6/1/2004. Dirk Maas</i></font>
+
+<li> p. 564, second last line, "in from" should be "from".
+<br><i><font size=-1>Posted 4/25/2006. Ricky Liu</i></font>
+
+<li> p. 565, line 1, "calls the exit function" should 
+read "terminates normally".
+<br><i><font size=-1>Posted 4/25/2006. Ricky Liu</i></font>
+
+<li> p. 570, command line before section 7.12, "main3.c" should be "dll.c".
+<br><i><font size=-1>Posted 4/25/2006. Ricky Liu</i></font>
+
+<li> p. 572, in both code fragments, "popl %ebx;" should be "popl %ebx".
+<br><i><font size=-1>Posted 4/25/2006. Ricky Liu</i></font>
+
+</ul>
+
+<li><b>Chapter 8: Exceptional Control Flow</b>
+<ul>
+
+<li> p. 592, Figure 8.7 caption, "on the whether" should read "on whether".
+<br><i><font size=-1>Posted 4/25/2006. Ricky Liu</i></font>
+
+<li> p. 593, Figure 8.9, "Iinterrupt or trap" should be "Interrupt or trap".
+<br><i><font size=-1>Posted 3/29/2005. David Po</i></font>
+
+<li> p. 604, Figure 8.14, remove the '!' character from each <kbd>printf</kbd>
+<br><i><font size=-1>Posted 12/29/2003. Mark Morrissey</i></font>
+
+<li> p. 605, Practice problem 8.2. Remove the '!' character from the 
+<kbd>printf</kbd>
+<br><i><font size=-1>Posted 4/25/2006. Ricky Liu</i></font>
+
+<li>p. 607, top of page, third bullet item should be:
+"WNOHANG|WUNTRACED: Return immediately, with a return value
+of 0 if none of the children in the wait set has stopped or
+terminated, or with a return value equal to the PID of one
+of the stopped or  terminated children." 
+<br><i><font size=-1>Posted 12/30/2003. Michael Trigoboff</i></font>
+
+<li> p. 611, in function prototype of "execve", the third parameter should be
+"char *envp[]", not "char *envp".
+<br><i><font size=-1>Posted 6/23/2003. Daniel Amelang</i></font>
+
+<li> p. 611, Figure 8.17, the last <kbd>argv</kbd> parameter should
+be <kbd>/usr/include</kbd> instead of <kbd>/user/include</kbd>.
+<br><i><font size=-1>Posted 12/29/2003. Mark Morrissey</i></font>
+
+<li>p. 620, Figure 8.24. There should be a line drawn from
+Shell to Background Job #1.
+<br><i><font size=-1>Posted 11/04/2003. Mark Morrissey</i></font>
+
+<li> p. 623, in function prototype box at bottom of page,
+the <kbd>typdef</kbd> and <kbd>signal()</kbd> statements
+should both end with semicolons.
+<br><i><font size=-1>Posted 12/29/2003. Mark Morrissey</i></font>
+
+<li> p. 625, last line, "children the terminate" 
+should read "children to terminate".
+<br><i><font size=-1>Posted 4/25/2006. Ricky Liu</i></font>
+
+<li>p. 629, 2nd to last paragraph, line 3. 
+"modification to signal1" should be "modification to signal2".
+<br><i><font size=-1>Posted 11/04/2003. Mark Morrissey</i></font>
+
+
+
+</ul>
+
+<li><b>Chapter 9: Measuring Program Execution Time</b>
+<ul>
+
+<li> p. 654, Figure 9.1.  The second sentence of the caption should read
+"The processor hardware operates at a microscopic time scale in which events have durations on the order of a few nanoseconds (ns)."
+<br><i><font size=-1>Posted 01/12/2004. Mark Morrissey</font></i>
+
+<li> p. 655, 1st line after aside.  Should be "... a hypothetical 250 ms ..."
+<br><i><font size=-1>Posted 12/02/2003. Mark Morrissey</font></i>
+
+<li> p. 656, middle of full paragraph.  Missing left paren: ``I'') should be (``I'').
+<br><i><font size=-1>Posted 01/21/2004. Mark Morrissey</font></i>
+
+<li> p. 660, 3rd line from bottom.  "96.7" should be "96.6".
+<br><i><font size=-1>Posted 12/02/2003. Mark Morrissey</font></i>
+
+<li>p. 663, third line.
+Should say T_c rather than T_m.
+<br><i><font size=-1>Posted 3/31/2006. Ricky Liu</i></font>
+
+<li>p. 664, code in Figure 9.9, line 34.
+Should read <kbd>borrow = cyc_lo > ncyc_lo</kbd>
+<br><i><font size=-1>Posted 3/31/2006. Ricky Liu</i></font>
+
+<li>p. 668, in the caption for Figure 9.13: "caches.aches" should just be
+"caches."
+<br><i><font size=-1>Posted 6/23/2003. Daniel Amelang</i></font>
+
+<li>p. 684, bullet before Section 9.7, third line.
+Should read "... as long as it uses cycle-based timing."
+<br><i><font size=-1>Posted 3/31/2006. Ricky Liu</i></font>
+ 
+
+<li>p. 686, second-to-last paragraph of Section 9.10, last line.
+Should read "... whether the minimum ...".
+<br><i><font size=-1>Posted 3/31/2006. Ricky Liu</i></font>
+
+</ul>
+
+<li><b>Chapter 10: Virtual Memory</b>
+<ul>
+<li> p. 698, 10.3.3, last sentence. "PP 0 should be PP 1".
+<br><i><font size=-1>Posted 12/02/2003. Mark Morrissey</font></i>
+
+<li> p. 701, Figure 10.9 caption, "the operating maintains" should read the
+"the operating system maintains".
+<br><i><font size=-1>Posted 8/12/2004. Venkata Naidu</font></i>
+
+<li> p. 704, Section 10.6, end of first paragraph. "symbols we will using" should read "symbols we will be using".
+<br><i><font size=-1>Posted 3/21/2005. Constantine Kousoulis</i></font>
+
+<li> p. 707, 4th line from bottom. "PTE in order the" should 
+read "PTE in order to"
+<br><i><font size=-1>Posted 12/13/2005. Inge Frick</i></font>
+
+<li> p. 709, Last line, first paragraph. "addresses spaces" should be
+"address spaces".
+<br><i><font size=-1>Posted 11/21/2003. Emil Tarazi</i></font>
+
+<li> 
+p. 714, last line of first paragraph, "perform" should be "performs".
+<br><i><font size=-1>Posted 6/23/2003. Daniel Amelang</i></font>
+
+<li> p. 727, sec 10.8.3, second bullet, line 3, "write The text" should be
+"write. The text". 
+<br><i><font size=-1>Posted 4/25/2006. Ricky Liu</i></font>
+
+<li> p. 729, paragraph after bullets, line 2, delete "and fd is NULL".
+(with MAP_ANON, the fd arg is ignored)
+<br><i><font size=-1>Posted 4/25/2006. Ricky Liu</i></font>
+
+<li>p. 731, line 4. "new and free calls in C++" should be "new
+and delete operators in C++".
+<br><i><font size=-1>Posted 11/4/2003. Quarup Barreirinhas</i></font>
+
+<li> p. 734, second program, although unnecessary, we should set a good
+example by calling free() before the exit() in line 11.
+<br><i><font size=-1>Posted 4/25/2006. Ricky Liu</i></font>
+
+<li> p. 745, figure 10.43, comments for global variables:
+<kbd>mem_brk</kbd> points to the last current heap byte plus 1, and
+<kbd>mem_max_addr</kbd> points to the last legal heap byte plus 1.
+<br><i><font size=-1>Posted 4/25/2006. Ricky Liu</i></font>
+
+<li> p. 751, sec 10.9.13, line 2, "block allocation" would be clearer
+if it read "block allocation time" 
+<br><i><font size=-1>Posted 4/25/2006. Ricky Liu</i></font>
+
+<li> p. 752, second last line, "{1024}, ..., {1025-2048}" should be
+"{1024}, {1025-2048}"
+<br><i><font size=-1>Posted 4/25/2006. Ricky Liu</i></font>
+
+<li> p. 754, third paragraph, second last line, "largest size class" should read "appropriate size class".
+<br><i><font size=-1>Posted 4/25/2006. Ricky Liu</i></font>
+
+<li> p. 757, 5th bullet: "int length(b)" should read
+"int length(ptr b)". 
+<br><i><font size=-1>Posted 4/25/2006. Ricky Liu</i></font>
+
+<li> p. 758, Figure 10.53: Missing labels (a) and (b).
+<br><i><font size=-1>Posted 4/25/2006. Ricky Liu</i></font>
+
+<li> p. 758, first sentence. "Figure 10.53" should be "Figure 10.54".
+<br><i><font size=-1>Posted 12/02/2003. Mark Morrissey</font></i>
+
+<li> p. 760, sec 10.11.3, line 4: "the use the" should read
+"use the".
+<br><i><font size=-1>Posted 4/25/2006. Ricky Liu</i></font>
+
+<li> p. 763, 2nd line above code for heapref.  "line 12" should be
+"line 10" <br><i><font size=-1>Posted 12/13/2005. Inge
+Frick</i></font> 
+
+
+</ul>
+
+<li><b>Chapter 11: System-Level I/O</b>
+<ul>
+
+<li> p. 785, rio_writen function. Comment in line 12. "errorno" should
+be "errno". 
+<br><i><font size=-1>Posted 12/02/2003. Mark Morrissey</font></i>
+
+<li>p. 796, line 10. "alternative alternative" should be "alternative".
+<br><i><font size=-1>Posted 07/31/2003.</i></font>
+</ul>
+
+<li><b>Chapter 12: Network Programming</b>
+<ul>
+<li> p. 802. Fig 12.1. Circle on the right should be labeled "Server process"
+instead of "Client process".
+<br><i><font size=-1>Posted 12/05/2003. Darren Shultz</font></i>
+
+<li> p. 809. First line below function declarations. "The <kbd>hotnl</kbd>
+function" should read "The <kbd>htonl</kbd> function".
+<br><i><font size=-1>Posted 7/12/2004. Steven Zhang</font></i>
+
+<li> p. 810. Practice problem 12.1. "<kbd>0xef000001</kbd>" should
+be "<kbd>0x7f000001</kbd>.
+<br><i><font size=-1>Posted 7/12/2004. Steven Zhang</font></i>
+
+<li> p. 813. Figure 12.12, line 26 should be 
+<kbd>addr.s_addr = ((struct in_addr *)*pp)->s_addr;</kbd>
+<br><i><font size=-1>Posted 11/21/2006. Randy Bryant</font></i>
+<img alt="[NEW]" width=31 height=12 src="new.gif">
+
+<li> p. 817. Fig 12.5. In the top and bottom lines, 
+<kbd>netinit/in.h</kbd> should be <kbd>netinet/in.h</kbd>
+<br><i><font size=-1>Posted 3/5/2005. Sacha Krakowiak</font></i>
+
+<li> p. 820. Figure 12.16, line 15 should be 
+<kbd>bcopy(char *)hp->h_addr_list[0];</kbd>
+<br><i><font size=-1>Posted 11/21/2006. Randy Bryant</font></i>
+<img alt="[NEW]" width=31 height=12 src="new.gif">
+
+<li> p. 830. 3rd line from bottom, "size in byte" should be "size in
+bytes".  <br><i><font size=-1>Posted 3/19/2007. James Woodruff</font></i> 
+<img alt="[NEW]" width=31 height=12 src="new.gif">
+
+<li> p. 831. 4th line from bottom, "to creates a child process" should
+be "to create a child process".
+<br><i><font size=-1>Posted 4/29/2005. Bhas Nalabothula</font></i>
+
+<li> p. 843. Prob 12.12, "contest" should be "content".
+<br><i><font size=-1>Posted 3/6/2005. Sacha Krakowiak</font></i>
+
+
+</ul>
+
+
+<li><b>Chapter 13: Concurrent Programming</b>
+<ul>
+
+<li> p. 847. Line 1 table of contents should be "849", not "489".
+<br><i><font size=-1>Posted 7/12/2004. Sacha Krakowiak</font></i>
+
+<li> p. 854. Line 4, "if an only if" should be "if and only if"
+<br><i><font size=-1>Posted 4/22/2005. Mao Fan</font></i>
+
+<li> p. 887. Fig 13.33, line 8. Simply copying the structure hostent
+does not suffice, since it contains pointers; a deep copy is required.
+<br><i><font size=-1>Posted 12/12/2006. Martin Vopatek</font></i>
+<img alt="[NEW]" width=31 height=12 src="new.gif">
+
+<li> p. 887. Fig 13.33 caption, "Class 2" should be "Class 3".
+<br><i><font size=-1>Posted 12/12/2006. Martin Vopatek</font></i>
+<img alt="[NEW]" width=31 height=12 src="new.gif">
+
+<li> p. 872. Fig 13.17, asm code, third block, label ".L9" 
+should be deleted.
+<br><i><font size=-1>Posted 5/2/2005. Mao Fan</font></i>
+
+</ul>
+
+<li><b>Appendix A: HCL Descriptions of Processor Control Logic</b>
+
+<ul>
+<li> p. 922, Code for <kbd>D_bubble</kbd> (lines 255-258).  Should be:
+<kbd>
+<br># Mispredicted branch
+<br>(E_icode == IJXX && !e_Bch) ||
+<br># Stalling at fetch while ret passes through pipeline
+<br># but not condition for a load/use hazard
+<br>!(E_icode in { IMRMOVL, IPOPL } && E_dstM in { d_srcA, d_srcB }) &&
+<br>IRET in { D_icode, E_icode, M_icode };
+</kbd>
+<br><i><font size=-1>Posted 11/24/2005. Randal Bryant</font></i>
+</ul>
+
+<li><b>Appendix B: Error Handling</b>
+<ul>
+
+<li> p. 945. line number 664, "<kbd>Rio_writenb error</kbd>" 
+should be "<kbd>Rio_writen error</kbd>".
+<br><i><font size=-1>Posted 6/8/2004. Brian Kell</font></i>
+
+<li> p. 947. <kbd>open_listenfd</kbd>, lines 739, 748, and 752. 
+Function should close  <kbd>listenfd</kbd> descriptor 
+before returning.
+<br><i><font size=-1>Posted 2/17/2004. Martin Kulas</font></i>
+</ul>
+
+<li><b>Bibliography</b>
+<ul>
+<li> p. 950, entry [35], "Arlso" should be "Also".
+<br><i><font size=-1>Posted 4/11/2007. Yixin Cao</font></i>
+<img alt="[NEW]" width=31 height=12 src="new.gif">
+</ul>
+
+<li><b>Index</b>
+<ul>
+</ul>
+</ul>
+
+<hr>
+<a href="mailto:randy.bryant@cs.cmu.edu, droh@cs.cmu.edu">
+Randy Bryant and Dave O'Hallaron</a> 
+<br>
+
+</td></tr></table>
+
+</body>
+</html>
+ 

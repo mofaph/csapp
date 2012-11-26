@@ -1,0 +1,190 @@
+%%COMMENT:3:12:Stack discipline (buffer overflow):
+The next problem concerns the following C code. This program reads a string on
+standard input and prints an integer in hexadecimal format based on the input
+string it read.
+
+\begin{ccode}
+\begin{alltt}
+#include <stdio.h>
+
+/* Read a string from stdin into buf */
+int evil_read_string() 
+\verb:{:
+    int buf[2];
+
+    scanf("%s",buf);
+    return buf[1];
+\verb:}:
+
+int main() 
+\verb:{:
+    printf("0x%x\verb:\n:", evil_read_string());
+\verb:}:
+\end{alltt}
+\end{ccode}
+
+Here is the corresponding machine code on a Linux/x86 machine:
+
+\begin{scode}
+\begin{alltt}
+08048414 <evil_read_string>:{\em\scriptsize }
+ 8048414:  55                      push   %ebp{\em\scriptsize }
+ 8048415:  89 e5                   mov    %esp,%ebp{\em\scriptsize }
+ 8048417:  83 ec 14                sub    $0x14,%esp{\em\scriptsize }
+ 804841a:  53                      push   %ebx{\em\scriptsize }
+ 804841b:  83 c4 f8                add    $0xfffffff8,%esp{\em\scriptsize }
+ 804841e:  8d 5d f8                lea    0xfffffff8(%ebp),%ebx{\em\scriptsize }
+ 8048421:  53                      push   %ebx                 {\em\scriptsize  address arg for scanf}
+ 8048422:  68 b8 84 04 08          push   $0x80484b8           {\em\scriptsize  format string for scanf}
+ 8048427:  e8 e0 fe ff ff          call   804830c <_init+0x50> {\em\scriptsize  call scanf}
+ 804842c:  8b 43 04                mov    0x4(%ebx),%eax{\em\scriptsize }
+ 804842f:  8b 5d e8                mov    0xffffffe8(%ebp),%ebx{\em\scriptsize }
+ 8048432:  89 ec                   mov    %ebp,%esp{\em\scriptsize }
+ 8048434:  5d                      pop    %ebp{\em\scriptsize }
+ 8048435:  c3                      ret    {\em\scriptsize }
+
+08048438 <main>:{\em\scriptsize }
+ 8048438:  55                      push   %ebp{\em\scriptsize }
+ 8048439:  89 e5                   mov    %esp,%ebp{\em\scriptsize }
+ 804843b:  83 ec 08                sub    $0x8,%esp{\em\scriptsize }
+ 804843e:  83 c4 f8                add    $0xfffffff8,%esp{\em\scriptsize }
+ 8048441:  e8 ce ff ff ff          call   8048414 <evil_read_string>{\em\scriptsize }
+ 8048446:  50                      push   %eax                 {\em\scriptsize  integer arg for printf}
+ 8048447:  68 bb 84 04 08          push   $0x80484bb           {\em\scriptsize  format string for printf}
+ 804844c:  e8 eb fe ff ff          call   804833c <_init+0x80> {\em\scriptsize  call printf}
+ 8048451:  89 ec                   mov    %ebp,%esp{\em\scriptsize }
+ 8048453:  5d                      pop    %ebp{\em\scriptsize }
+ 8048454:  c3                      ret    {\em\scriptsize }
+\end{alltt}
+\end{scode}
+
+\newpage
+\begin{problem}{12}
+
+
+This problem tests your understanding of the stack discipline
+and byte ordering. Here are some notes to help you work the problem:
+\begin{itemize}
+\item {\alltt scanf("%s", buf)} reads an input string from the standard
+input stream (stdin) and stores it at address {\tt buf} (including the terminating 
+'{\tt \symbol{92}0}' character). It does {\bf not} 
+check the size of the destination buffer.
+
+\item {\alltt printf("0x%x", i)} prints the integer i in hexadecimal format
+preceded by ``{\tt 0x}''. 
+
+\item Recall that Linux/x86 machines are Little Endian.
+
+\item You will need to know the hex values of the following characters:
+
+\begin{tabular}{|l|l||l|l|}
+\hline
+Character & Hex value & Character & Hex value \\
+\hline
+\hline
+{\tt 'd'} & {\tt 0x64} & {\tt 'v'} & {\tt 0x76} \\
+{\tt 'r'} & {\tt 0x72} & {\tt 'i'} & {\tt 0x69} \\  
+{\tt '.'} & {\tt 0x2e} & {\tt 'l'} & {\tt 0x6c} \\
+{\tt 'e'} & {\tt 0x65} & {\tt '\symbol{92}0'} & {\tt 0x00} \\ 
+%{\tt 'L'} & {\tt 0x4c} & {\tt 'E'} & {\tt 0x45} \\
+& & {\tt 's'} & {\tt 0x73} \\
+\hline
+\end{tabular}
+\end{itemize}
+\end{problem} % Put this here so that I can use a \newpage below
+
+\vspace*{1cm}
+
+\begin{subproblem}
+\item 
+Suppose we run this program on a Linux/x86 machine, and give it the
+string ``{\tt dr.evil}'' as input on stdin.
+
+Here is a template for the stack, showing the locations of {\tt buf[0]}
+and {\tt buf[1]}. Fill in the value of {\tt buf[1]} (in hexadecimal) and 
+indicate where 
+{\tt ebp} points just {\bf after} {\tt scanf} returns to {\tt evil\_read\_string}.
+
+\begin{verbatim}
+               |<- buf[0]->|<-buf[1] ->|
++--+--+--+--+--+--+--+--+--+--+--+--+--+--+--+--+--+--+--+--+--+--+
+   |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |
++--+--+--+--+--+--+--+--+--+--+--+--+--+--+--+--+--+--+--+--+--+--+
+\end{verbatim}
+\answer{
+1 point for buf[1], 1 point for ebp
+                <- buf[0] -><- buf[1] ->
++--+--+--+--+--+--+--+--+--+--+--+--+--+--+--+--+--+--+--+--+--+--+
+   |           |64|72|2e|65|76|69|6c|00|           |           |
++--+--+--+--+--+--+--+--+--+--+--+--+--+--+--+--+--+--+--+--+--+--+
+                                       ^
+                                      ebp 
+         ---------- addresses increase this way ------>
+}
+
+What is the 4-byte integer (in hex) printed by the {\tt printf} inside main? 
+
+\begin{verbatim}
+0x_____________________
+\end{verbatim}
+
+\answer{
+1 point
+ 0x6c6976 or 0x006c6976
+}
+
+\newpage
+
+\item
+Suppose now we give it the input ``{\tt dr.evil.lives}'' (again on a
+Linux/x86 machine).
+
+\begin{subproblem}
+\item
+List the contents of the following
+memory locations just {\bf after} {\tt scanf} returns to {\tt evil\_read\_string}.
+Each answer should be an unsigned 4-byte integer expressed as 8 hex digits.
+
+\begin{verbatim}
+
+buf[0] = 0x____________________
+
+buf[3] = 0x____________________
+
+\end{verbatim}
+
+\answer{
+1 point for buf[0], 2 for buf[3]
+ buf[0] = 0x652e7264
+ buf[3] = 0x08040073
+}
+
+\item
+Immediately {\bf before} the {\tt ret} instruction at address 
+{\tt 0x08048435} executes, what is the value of the frame pointer 
+register \verb:%ebp:? 
+\begin{verbatim}
+
+%ebp  = 0x____________________
+
+\end{verbatim}
+\answer{
+2 points
+ebp = 0x6576696c
+}
+
+\end{subproblem}
+
+\end{subproblem}
+
+You can use the following template of the stack 
+as {\em scratch space}. {\em Note:} this
+does {\bf not} have to be filled out to receive full credit.
+{\small{
+\begin{verbatim}
+               <- buf[0] -><- buf[1] ->
+--+--+--+--+--+--+--+--+--+--+--+--+--+--+--+--+--+--+--+--+--+--+--+--+--+--
+  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  |  
+--+--+--+--+--+--+--+--+--+--+--+--+--+--+--+--+--+--+--+--+--+--+--+--+--+--
+\end{verbatim}
+}}

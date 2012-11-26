@@ -1,0 +1,106 @@
+%%COMMENT:3:8:Stack discipline (buffer overflow) (Part II):
+The following problem concerns the following, low-quality code:
+\small{\begin{verbatim}
+void foo(int x)
+{
+  int a[3];
+  char buf[4];
+  a[0] = 0xF0F1F2F3;
+  a[1] = x;
+  gets(buf);
+  printf("a[0] = 0x%x, a[1] = 0x%x, buf = %s\n", a[0], a[1], buf);
+}
+\end{verbatim}}
+
+In a program containing
+this code, procedure {\tt foo} has the following disassembled form
+on an IA32 machine:
+
+\small{\begin{verbatim}
+ 080485d0 <foo>:
+ 80485d0:	55             	pushl  %ebp
+ 80485d1:	89 e5          	movl   %esp,%ebp
+ 80485d3:	83 ec 10       	subl   $0x10,%esp
+ 80485d6:	53             	pushl  %ebx
+ 80485d7:	8b 45 08       	movl   0x8(%ebp),%eax
+ 80485da:	c7 45 f4 f3 f2 	movl   $0xf0f1f2f3,0xfffffff4(%ebp)
+ 80485df:	f1 f0 
+ 80485e1:	89 45 f8       	movl   %eax,0xfffffff8(%ebp)
+ 80485e4:	8d 5d f0       	leal   0xfffffff0(%ebp),%ebx
+ 80485e7:	53             	pushl  %ebx
+ 80485e8:	e8 b7 fe ff ff 	call   80484a4 <_init+0x54>  # gets
+ 80485ed:	53             	pushl  %ebx
+ 80485ee:	8b 45 f8       	movl   0xfffffff8(%ebp),%eax
+ 80485f1:	50             	pushl  %eax
+ 80485f2:	8b 45 f4       	movl   0xfffffff4(%ebp),%eax
+ 80485f5:	50             	pushl  %eax
+ 80485f6:	68 ec 90 04 08 	pushl  $0x80490ec
+ 80485fb:	e8 94 fe ff ff 	call   8048494 <_init+0x44>  # printf
+ 8048600:	8b 5d ec       	movl   0xffffffec(%ebp),%ebx
+ 8048603:	89 ec          	movl   %ebp,%esp
+ 8048605:	5d             	popl   %ebp
+ 8048606:	c3             	ret    
+ 8048607:	90             	nop    
+\end{verbatim}}
+
+For the following questions, recall that:
+\begin{denseitemize}
+\item {\tt gets} is a standard C library routine. 
+\item IA32 machines are little-endian.
+\item C strings are null-terminated 
+(i.e., terminated by a character with value 0x00). 
+\item Characters `{\tt 0}' through `{\tt 9}' have ASCII codes
+{\tt 0x30} through {\tt 0x39}.
+\end{denseitemize}
+
+\newpage
+
+\begin{problem}{8}
+Consider the case where procedure {\tt foo} is called with argument {\tt x}
+equal to {\tt 0xE3E2E1E0}, and we type ``{\tt 123456789}'' in response
+to {\tt gets}.  
+
+\begin{choice}
+\item Fill in the following table indicating which program values
+are/are not corrupted by the response from {\tt gets}, i.e., their
+values were altered by some action within the call to {\tt gets}.
+\begin{center}
+\renewcommand{\arraystretch}{1.5}
+\begin{tabular}{|l|l|}
+\hline
+Program Value & Corrupted? (Y/N) \\
+\hline
+\verb@a[0]@ & \\
+% Answer: Y
+\hline
+\verb@a[1]@ & \\
+% Answer:  Y
+\hline
+\verb@a[2]@ & \\
+% Answer:  N
+\hline
+\verb@x@ & \\
+% Answer:  N
+\hline
+Saved value of register \verb@%ebp@ & \\
+% Answer:  N
+\hline
+% Answer:  N
+Saved value of register \verb@%ebx@ & \\
+\hline
+\end{tabular}
+\end{center}
+
+\item What will the {\tt printf} function print for the following:
+\begin{itemize}
+\item {\tt a[0]} (hexadecimal): \verb@________________________@
+% Answer:  0x38373635
+\item {\tt a[1]} (hexadecimal): \verb@________________________@
+% Answer:  0xE3E20039
+\item {\tt buf} (ASCII): \verb@________________________@
+% Answer:  123456789
+\end{itemize}
+\end{choice}
+\end{problem}
+
+

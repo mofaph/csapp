@@ -1,0 +1,150 @@
+%%COMMENT:6:5:Low-level cache access:
+\begin{problem}{5}
+The following problem concerns basic cache lookups.
+\end{problem}
+
+\begin{itemize}
+\item The memory is byte addressable.
+\item Memory accesses are to {\bf 1-byte words} (not 4-byte words).
+\item Physical addresses are 13 bits wide.
+\item The cache is 2-way set associative, with a 4 byte line size and 16 total lines.
+\end{itemize}
+
+In the following tables, {\bf all numbers are given in hexadecimal}.
+The contents of the cache are as follows:
+
+\begin{center}
+\begin{tabular}{|c||c c|c c c c||c c|c c c c|}
+\hline
+\multicolumn{13}{|c|}{2-way Set Associative Cache}\\
+\hline
+\makebox[.2in]{Index} & \makebox[.25in]{Tag} & \makebox[.2in]{Valid} &
+\makebox[.3in]{Byte 0} & \makebox[.3in]{Byte 1} &
+\makebox[.3in]{Byte 2} & \makebox[.3in]{Byte 3} &
+\makebox[.25in]{Tag} & \makebox[.2in]{Valid} &
+\makebox[.3in]{Byte 0} & \makebox[.3in]{Byte 1} &
+\makebox[.3in]{Byte 2} & \makebox[.3in]{Byte 3} \\ 
+\hline
+\hline
+0  &  09 & 1 & 86 & 30 & 3F & 10  &  00 & 0 & 99 & 04 & 03 & 48 \\
+1  &  45 & 1 & 60 & 4F & E0 & 23  &  38 & 1 & 00 & BC & 0B & 37 \\
+2  &  EB & 0 & 2F & 81 & FD & 09  &  0B & 0 & 8F & E2 & 05 & BD \\
+3  &  06 & 0 & 3D & 94 & 9B & F7  &  32 & 1 & 12 & 08 & 7B & AD \\
+4  &  C7 & 1 & 06 & 78 & 07 & C5  &  05 & 1 & 40 & 67 & C2 & 3B \\
+5  &  71 & 1 & 0B & DE & 18 & 4B  &  6E & 0 & B0 & 39 & D3 & F7 \\
+6  &  91 & 1 & A0 & B7 & 26 & 2D  &  F0 & 0 & 0C & 71 & 40 & 10 \\
+7  &  46 & 0 & B1 & 0A & 32 & 0F  &  DE & 1 & 12 & C0 & 88 & 37 \\
+\hline
+\end{tabular}
+%\end{minipage}
+\end{center}
+
+\section*{Part 1}
+
+The box below shows the format of a physical address.  Indicate
+(by labeling the diagram) the fields that would be used to determine
+the following:\\
+\begin{tabular}{cl}
+{\em CO} & The block offset within the cache line\\
+{\em CI} & The cache index\\
+{\em CT} & The cache tag\\
+\end{tabular}
+
+\vspace{0.2in}
+{\small
+\begin{tabular} {ccccccccccccc}
+\makebox[.15in]{12} & 
+\makebox[.15in]{11} & \makebox[.15in]{10} &
+\makebox[.15in]{9} & \makebox[.15in]{8} & 
+\makebox[.15in]{7} & \makebox[.15in]{6} & 
+\makebox[.15in]{5} & \makebox[.15in]{4} & 
+\makebox[.15in]{3} & \makebox[.15in]{2} & 
+\makebox[.15in]{1} & \makebox[.15in]{0} \\ 
+\end{tabular} 
+}
+
+\begin{tabular} {|c|c|c|c|c|c|c|c|c|c|c|c|c|}
+\hline
+\makebox[.15in]{} & \makebox[.15in]{} & \makebox[.15in]{} & 
+\makebox[.15in]{} & \makebox[.15in]{} & \makebox[.15in]{} & \makebox[.15in]{} & 
+\makebox[.15in]{} & \makebox[.15in]{} & \makebox[.15in]{} & \makebox[.15in]{} & 
+\makebox[.15in]{} & \makebox[.15in]{} \\ 
+&&&&&&&&&&&&\\
+\hline
+\end{tabular}
+
+\vspace{0.2in}
+%***********************************************************
+% solution
+% CT: [12-5]	CI: [4-2]	CO: [1-0]
+%***********************************************************
+
+\newpage
+\section*{Part 2}
+For the given physical address, indicate the cache entry accessed
+and the cache byte value returned {\bf in hex}.  
+Indicate whether a cache miss occurs.  
+
+If there is a cache miss, enter ``-'' for ``Cache Byte returned''.
+
+
+{\bf Physical address}:  {\tt 0E34}
+
+\begin{choice}
+
+\item Physical address format (one bit per box)\\
+{\small
+\begin{tabular} {ccccccccccccc}
+\makebox[.15in]{12} &
+\makebox[.15in]{11} & \makebox[.15in]{10} & 
+\makebox[.15in]{9} & \makebox[.15in]{8} & 
+\makebox[.15in]{7} & \makebox[.15in]{6} & 
+\makebox[.15in]{5} & \makebox[.15in]{4} & 
+\makebox[.15in]{3} & \makebox[.15in]{2} & 
+\makebox[.15in]{1} & \makebox[.15in]{0} \\ 
+\end{tabular} 
+}
+
+\begin{tabular} {|c|c|c|c|c|c|c|c|c|c|c|c|c|}
+\hline
+\makebox[.15in]{} & 
+\makebox[.15in]{} & \makebox[.15in]{} & \makebox[.15in]{} & \makebox[.15in]{} & 
+\makebox[.15in{}] & \makebox[.15in]{} & \makebox[.15in]{} & \makebox[.15in]{} & 
+\makebox[.15in]{} & \makebox[.15in]{} & \makebox[.15in]{} & \makebox[.15in]{}\\ 
+\hline
+\end{tabular}
+
+\vspace*{.5\baselineskip}
+\item Physical memory reference \\
+\vspace{.1in} \\
+\begin{tabular}{|l|l|}
+\hline
+Parameter & {    Value    } \\
+\hline
+\hline
+Byte offset & 0x\\
+\hline
+Cache Index & 0x\\
+\hline
+Cache Tag & 0x\\
+\hline
+Cache Hit? (Y/N) & \\
+\hline
+Cache Byte returned & 0x\\
+\hline
+\end{tabular}
+
+\end{choice}
+
+%***********************************************************
+% solution
+%
+% A. 0 1110 0011 0100
+%
+% B.
+%    	CO:		0x0
+%	CI:		0x5
+%	CT:		0x71
+%	cache hit?	Y
+%	cache byte?	0x0B
+%***********************************************************

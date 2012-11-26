@@ -1,0 +1,54 @@
+%%COMMENT:3:8:Decompiling a C ``for'' loop:
+\begin{problem}{8}
+This problem tests your understanding of how {\tt for} loops in C relate
+to IA32 machine code
+
+Consider the following IA32 assembly code for a procedure {\tt foo()}:
+
+\begin{verbatim}
+foo:
+        pushl %ebp
+        movl %esp,%ebp
+        movl 12(%ebp),%ecx
+        xorl %eax,%eax
+        movl 8(%ebp),%edx
+        cmpl %ecx,%edx
+        jle .L3
+        .align 4
+.L5:
+        addl %edx,%eax
+        decl %edx
+        cmpl %ecx,%edx
+        jg .L5
+.L3:
+        leave
+        ret
+\end{verbatim}
+
+Based on the assembly code above, fill in the blanks below in its
+corresponding C source code.  (Note: you may only use symbolic
+variables $x$, $y$, $i$, and $result$, from the source code in your
+expressions below --- do {\em not} use register names.)
+
+\begin{verbatim}
+int foo(int x, int y)
+{
+  int i, result=0;
+
+  for (i=________; ____________________________; _________) {
+
+    ______________;
+
+  }
+
+  return result;
+}
+\end{verbatim}
+%% answer:  
+%% for (i=x; i>y; i--) 
+%%   result += i;
+\end{problem}
+
+
+
+

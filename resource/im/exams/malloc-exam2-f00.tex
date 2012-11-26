@@ -1,0 +1,94 @@
+%%COMMENT:10:8:Dynamic memory allocation:
+\subsection*{Dynamic storage allocation}
+The following problem concerns dynamic storage allocation.
+
+Consider an allocator that uses an implicit free list.
+The layout of each allocated and free memory block is as follows:
+
+\begin{verbatim}
+
+               31                            2 1 0	
+                __________________________________
+     Header    |    Block Size (bytes)      |     |
+               |____________________________|_____|	
+               |                                  |
+               |                                  |
+               |                                  |
+               |                                  |
+               |                                  |
+               |__________________________________|
+     Footer    |    Block Size (bytes)      |     |
+               |____________________________|_____|
+
+\end{verbatim}
+
+Each memory block, either allocated or free, has a size that is a
+multiple of eight bytes. Thus, only the 29 higher order bits in the
+header and footer are needed to record block size, which includes the header and footer.  The
+usage of the remaining 3 lower order bits is as follows:
+\begin{itemize}
+\item {\tt bit 0} indicates the use of the current block: 1 for allocated, 0 for free.
+\item {\tt bit 1} indicates the use of the previous adjacent block: 1 for allocated, 0 for free.
+\item {\tt bit 2} is unused and is always set to be 0.
+\end{itemize}
+ 
+\newpage
+\begin{problem}{8} 
+\end{problem}
+Given the contents of the heap shown on the left, show the new
+contents of the heap (in the right table) after a call to {\tt
+free(0x400b010)} is executed. Your answers should be given as hex
+values. Note that the address grows from bottom up. Assume that the
+allocator uses immediate coalescing, that is, adjacent free blocks are
+merged immediately each time a block is freed.
+
+\begin{minipage}[b]{3 in}
+\begin{tabular}{l|c|} 
+\multicolumn{2}{l} {Address}  		 \\[0.15cm] \cline{2-2}
+& \\0x400b028 \hspace{0.3cm}	&0x00000012 \\ & \\ \cline{2-2}
+& \\0x400b024	&\hspace{0.4cm}0x400b611c\hspace{0.4cm}	\\ & \\ \cline{2-2}
+& \\0x400b020	&0x400b512c	\\ & \\ \cline{2-2}
+& \\0x400b01c	&0x00000012	\\ & \\ \cline{2-2}
+& \\0x400b018	&0x00000013	\\ & \\ \cline{2-2}
+& \\0x400b014	&0x400b511c	\\ & \\ \cline{2-2}
+& \\0x400b010	&0x400b601c	\\ & \\ \cline{2-2}
+& \\0x400b00c	&0x00000013	\\ & \\ \cline{2-2}
+& \\0x400b008	&0x00000013	\\ & \\ \cline{2-2}
+& \\0x400b004	&0x400b601c	\\ & \\ \cline{2-2}
+& \\0x400b000	&0x400b511c	\\ & \\ \cline{2-2}
+& \\0x400affc	&0x00000013	\\ & \\ \cline{2-2}
+\end{tabular}
+\end{minipage}
+\begin{minipage}[b]{3 in}
+\begin{tabular}{l|c|} 
+\multicolumn{2}{l} {Address}  		 \\[0.15cm] \cline{2-2}
+& \\0x400b028 \hspace{0.3cm}	& 	\\ & \\ \cline{2-2}
+& \\0x400b024	&\hspace{0.4cm}0x400b611c\hspace{0.4cm}	\\ & \\ \cline{2-2}
+& \\0x400b020	&0x400b512c	\\ & \\ \cline{2-2}
+& \\0x400b01c	&	\\ & \\ \cline{2-2}
+& \\0x400b018	&	\\ & \\ \cline{2-2}
+& \\0x400b014	&0x400b511c	\\ & \\ \cline{2-2}
+& \\0x400b010	&0x400b601c	\\ & \\ \cline{2-2}
+& \\0x400b00c	&	\\ & \\ \cline{2-2}
+& \\0x400b008	&	\\ & \\ \cline{2-2}
+& \\0x400b004	&0x400b601c	\\ & \\ \cline{2-2}
+& \\0x400b000	&0x400b511c	\\ & \\ \cline{2-2}
+& \\0x400affc	&	\\ & \\ \cline{2-2}
+\end{tabular}
+\end{minipage}
+
+%solution:
+% 0x400b028 : 0x00000022
+% 0x400b01c : 0x00000012
+% 0x400b018 : 0x00000013
+% 0x400b00c : 0x00000022
+% 0x400b008 : 0x00000013
+% 0x400affc : 0x00000013 
+
+	
+
+        
+
+
+
+

@@ -1,0 +1,88 @@
+<html>
+  <head>
+    <title>CS:APP Note on Byte Operands in ASM</title>
+  </head>
+
+<body bgcolor=white>
+
+<img src="mountain-thumb.gif" align=left>
+<h2>
+A Note on Byte Operands in ASM
+<p>
+</h2>
+<i>
+<a href="http://www.cs.cmu.edu/~bryant">Randal E. Bryant</a> and <a
+href="http://www.cs.cmu.edu/~droh">David R. O'Hallaron</a>
+</i>
+<br clear=all>
+<br>
+
+<a href="http://csapp.cs.cmu.edu">CS:APP Home Page</a>
+<br>
+<img src="line_marble1.gif">
+<p>
+On page 228 of CS:APP we stated that with GCC's inline assembly
+"...there are no direct ways to specify a program value to use as the
+destination operand for the <kbd>setae</kbd> instruction, since the
+operand must be a single byte."  In fact, you can specify single-byte
+operands with <kbd>gcc</kbd> by declaring variables of type
+<kbd>char</kbd>.
+
+This allows us to simplify the inline assembly for <kbd>ok_smul3</kbd>
+(p. 227) to the following (called <kbd>ok_smul4</kbd>):
+
+<p>
+<pre>
+int ok_smul4(int x, int y, int *dest) 
+{
+    unsigned char byte_result; 
+
+    *dest = x*y; 
+
+    /* Insert the following assembly code:
+       setae byte_result       # Set result
+    */
+    asm("setae %0"  
+	: "=r" (byte_result)  /* Output    */  
+	);  
+
+    return (int) byte_result; 
+} 
+</pre>
+
+Similarly, here's a simplified version of <kbd>ok_umul</kbd> (called <kbd>ok_umul2</kbd>):
+<p>
+<pre>
+int ok_umul2(unsigned x, unsigned y, unsigned *dest) 
+{ 
+    unsigned char byte_result; 
+
+    /* Insert the following assembly code:
+       movl  x,%eax         # Get x
+       mull  y              # Unsigned multiply by y
+       movl  %eax, *dest    # Store low-order 4 bytes at dest
+       setae byte_result    # Set result
+    */
+    asm("movl %2,%%eax; mull %3; movl %%eax,%0; setae %1"  
+	: "=r" (*dest), "=r" (byte_result) /* Outputs    */  
+	: "r"  (x),     "r" (y)            /* Inputs     */  
+	: "%eax"                           /* Overwrites */ 
+	); 
+
+    return (int) byte_result; 
+} 
+</pre>
+
+Thanks to <a href="http://spot.pcc.edu/~mtrigobo">Michael Trigoboff</a> for
+showing us this trick.
+
+<hr>
+<a href="mailto:randy.bryant@cs.cmu.edu, droh@cs.cmu.edu">
+Randy Bryant and Dave O'Hallaron</a> 
+<br>
+<!-- Created: Thu Mar  7 17:35:45 EST 2002 -->
+<!-- hhmts start -->
+Last modified: Wed Aug 30 17:49:21 EDT 2006
+<!-- hhmts end -->
+</body>
+</html>
