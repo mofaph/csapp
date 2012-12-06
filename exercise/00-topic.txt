@@ -356,3 +356,42 @@
      务的最好方法是直接创建结果的 IEEE 单精度表示。当 x 太小时，你的程序将返回
      0.0。当 x 太大时，它会返回 +oo。填写下列代码的空白部分，以计算出正确的结果。
      假设函数 u2f 返回的浮点值与它的无符号参数有相同的位表示。
+
+2.90 大约在公元前 250 年，希腊数学家阿基米德证明了 223/71 < PI < 22/7。如果当时
+     有一台计算机和标准库 <math.h>，他就能够确定 n 的单精度浮点近似值的十六进制
+     表示为 0x40490FDB。当然，所有的这些都只是近似值，因为 PI 不是有理数。
+
+     A. 这个浮点值表示的二进制小数是多少？
+     B. 22/7 的二进制小数表示是什么？提示：参见家庭作业 2.82。
+     C. 这两个 22/7 的近似值从哪一位（相对于二进制小数点）开始不同的？
+
+     位级浮点编码规则
+
+     在接下来的题目中，你要写的代码要实现浮点函数在浮点数的位级表示上直接运算。
+     你的代码应该完全遵循 IEEE 浮点运算的规则，包括当需要舍入时，要使用向偶数舍
+     入的方式。为此，我们定义数据类型 float_bits 等价于 unsigned：
+
+     /* Access bit-level representation floating-point number */
+     typedef unsigned float_bits;
+
+     你的代码中不使用数据类型 float，而要使用 float_bits。你可以使用数据类型 int
+     和 unsigned，包括无符号和整数常数和运算。你不可以使用任何联合、结构和数组。
+     更重要的是，你不能使用任何浮点数据类型、运算或者常数。取而代之的是，你的代
+     码应该执行实现这些指定的浮点运算的位操作。
+
+     下面的函数说明了对这些规则的使用。对于参数 f，如果 f 是非规格化的，该函数返
+     回 ±0（保持 f 的符号），否则，返回 f。
+
+     /* If f is denorm, return 0. Otherwise, return f */
+     float_bits float_denorm_zero(float_bits f) {
+         /* Decompose bit representation into parts */
+         unsigned sign = f>>31;
+         unsigned exp = f>>23 & 0xFF;
+         unsigned frac = f    & 0x7FFFFF;
+         if (exp == 0) {
+             /* Denormalized.  Set fraction to 0 */
+             frac = 0;
+         }
+         /* Reassemble bits */
+         return (sign << 31) | (exp << 23) | frac;
+     }
