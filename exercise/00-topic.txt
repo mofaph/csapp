@@ -395,3 +395,12 @@
          /* Reassemble bits */
          return (sign << 31) | (exp << 23) | frac;
      }
+
+2.91 遵循位级浮点编码规则，实现具有如下原型的函数：
+
+     /* Compute |f|.  If f is NaN, then return f. */
+     float_bits float_absval(float_bits f);
+
+     对于浮点数 f，这个函数计算 |f|。如果 f 是 NaN，你的函数应该简单地返回 f。测
+     试你的函数，对参数 f 可以取的所有 2^32 个值求值，将结果与你实用机器的浮点运
+     算得到的结果相比较。
