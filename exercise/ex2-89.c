@@ -17,6 +17,13 @@
  * [?*** **** *??? ???? ???? ???? ???? ????] 规格化数（阶码域不是全 0 并且不是全 1）
  */
 
+unsigned f2u(float f)
+{
+        union { float f; unsigned u; } a;
+        a.f = f;
+        return a.u;
+}
+
 float u2f(unsigned x)
 {
         /* 这里假设无符号整数和单精度浮点数的位表示相同 */
