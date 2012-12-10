@@ -352,6 +352,32 @@
      B. 能够被准确描述的最大奇整数。
      C. 最小的规格化数的倒数。
 
+2.88 我们在一个 int 类型为 32 位补码表示的机器上运行程序。float 类型的值使用 32
+     位 IEEE 格式，而 double 类型的值使用 64 位 IEEE 格式。
+
+     我们产生随机数 x、y 和 z，并且把它们转换成 double 类型的值：
+
+     /* Create some arbitrary values */
+     int x = random();
+     int y = random();
+     int z = random();
+
+     /* Convert to double */
+     double dx = (double)x;
+     double dy = (double)y;
+     double dz = (double)z;
+
+     对于下列的每个 C 表达式，你要指出表达式是否总是为 1。如果它总是为 1，描述其
+     中的数学原理。否则，列举出使它为 0 的参数的例子。请注意，不能使用 IA32 机器
+     运行 GCC 来测试你的答案，因为对于 float 和 double，它使用的都是 80 位的扩展
+     精度表示。
+
+     A. (double)(float)x == dx
+     B. dx + dy == (double)(x+y)
+     C. dx + dy + dz == dz + dy + dx
+     D. dx * dy * dz == dz * dy * dx
+     E. dx / dx == dy / dy
+
 2.89 分配给你一个任务，编写一个 C 函数来计算 2^x 的浮点表示。你意识到完成这个任
      务的最好方法是直接创建结果的 IEEE 单精度表示。当 x 太小时，你的程序将返回
      0.0。当 x 太大时，它会返回 +oo。填写下列代码的空白部分，以计算出正确的结果。
