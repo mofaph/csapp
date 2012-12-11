@@ -44,3 +44,4 @@
 2.92 exercise/ex2-92.c
 2.93 exercise/ex2-93.c
 2.94 exercise/ex2-94.c
+2.95 exercise/ex2-95.c
