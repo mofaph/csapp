@@ -15,7 +15,6 @@
  */
 
 #include <limits.h>             /* INT_MIN */
-#include <stdio.h>
 
 typedef unsigned float_bits;
 
