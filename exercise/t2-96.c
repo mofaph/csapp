@@ -15,7 +15,6 @@
 
 typedef unsigned float_bits;
 
-extern unsigned f2u(float f);
 extern float u2f(unsigned u);
 extern int float_f2i(float_bits f); /* (int)f */
 
