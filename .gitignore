@@ -1,3 +1,22 @@
 test.c
 t.c
 a.out
+
+# Object files
+*.o
+*.s
+
+# Libraries
+*.lib
+*.a
+
+# Shared objects (inc. Windows DLLs)
+*.dll
+*.so
+*.so.*
+*.dylib
+
+# Executables
+*.exe
+*.out
+*.app
