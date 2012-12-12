@@ -2,8 +2,10 @@
  * p107
  *
  * 使用 GCC 产生汇编代码：
+ *     unix> gcc -O1 -S code.c
  *
- * unix> gcc -O1 -S code.c
+ * 使用 GCC 产生目标代码文件：
+ *     unix> gcc -O1 -c code.c
  */
 
 int accum = 0;
