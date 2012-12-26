@@ -24,21 +24,14 @@ int main(void)
         float f;
         unsigned u, t;
 
-        int i;
-        for (i = INT_MIN; i < INT_MAX; i++) {
+        int i = INT_MIN;
+        do {
                 f = (float) i;
                 u = f2u(f);
                 t = float_i2f(i);
                 if (u != t)
                         printf("BAD: 0x%X, 0x%X, 0x%X\n", t, i, u);
-        }
-
-        /* i = INT_MAX */
-        f = (float) i;
-        u = f2u(f);
-        t = float_i2f(i);
-        if (u != t)
-                printf("BAD: 0x%X, 0x%X, 0x%X\n", t, i, u);
+        } while (i++ != INT_MAX);
 
         return 0;
 }

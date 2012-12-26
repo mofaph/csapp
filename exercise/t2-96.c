@@ -23,22 +23,14 @@ int main(void)
         float f;
         unsigned u, t;
 
-        int i;
-        for (i = INT_MIN; i < INT_MAX; i++) {
+        int i = INT_MIN;
+        do {
                 u = float_f2i(i);
                 f = u2f(i);
                 t = (int)f;
                 if (u != t)
                         printf("0x%08X: [GOOD: 0x%08X] [BAD: 0x%08X]\n", i, t, u);
-        }
-
-        if (i == INT_MAX) {
-                u = float_f2i(i);
-                f = u2f(i);
-                t = (int)f;
-                if (u != t)
-                        printf("0x%08X: [GOOD: 0x%08X] [BAD: 0x%08X]\n", i, t, u);
-        }
+        } while (i++ != INT_MAX);
 
         return 0;
 }
