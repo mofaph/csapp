@@ -41,6 +41,7 @@
 2.85 exercise/ex2-85.txt
 2.86 exercise/ex2-86.txt
 2.87 exercise/ex2-87.txt
+2.88 exercise/ex2-88.txt
 2.89 exercise/ex2-89.c
 2.90 exercise/ex2-90.txt
 2.91 exercise/ex2-91.c
