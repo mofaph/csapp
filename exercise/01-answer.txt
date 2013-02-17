@@ -50,3 +50,5 @@
 2.94 exercise/ex2-94.c
 2.95 exercise/ex2-95.c
 2.96 exercise/ex2-96.c
+
+3.54 ex3-54.c
