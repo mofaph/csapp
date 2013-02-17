@@ -570,3 +570,37 @@
      的地方。代码将返回值存放在寄存器 %eax 中。
 
      写出等价于我们汇编代码的 decode2 的 C 代码。
+
+3.55 下面的代码计算 x 和 y 的乘积，并将结果存放在存储器中。数据类型 ll_t 被定义
+     为等价于 long long。
+
+     typedef long long ll_t;
+
+     void store_prod(ll_t *dest, ll_t x, int y)
+     {
+         *dest = x * y;
+     }
+
+     GCC 生成下面的汇编代码实现计算：
+
+     # dest at %ebp+8, x at %ebp+12, y at %ebp+20
+     1  movl    12(%ebp), %esi
+     2  movl    20(%ebp), %eax
+     3  movl    %eax, %edx
+     4  sarl    $31, %edx
+     5  movl    %edx, %ecx
+     6  imull   %esi, %ecx
+     7  movl    16(%ebp), %ebx
+     8  imull   %eax, %ebx
+     9  addl    %ebx, %ecx
+     10 mull    %esi
+     11 leal    (%ecx, %edx), %edx
+     12 movl    8(%ebp), %ecx
+     13 movl    %eax, (%ecx)
+     14 movl    %edx, 4(%ecx)
+
+     这段代码用了三个乘法来实现多精度运算，这个多精度运算是在 32 位机器上实现 64
+     位运算所需要的。描述用来计算这个乘积的算法，并对汇编代码添加注释，说明它是
+     如何实现你的算法的。
+
+     提示：参考练习题 3.12 及其答案。
