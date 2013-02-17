@@ -550,3 +550,23 @@
     （例如，超出表示范围，或者它是一个 NaN），那么函数应该返回0x80000000。测试你
     的函数，对参数 f 可以取的所有 2^32 个值求值，将结果与你使用机器的浮点运算得到
     的结果相比较。
+
+3.54 一个函数的原型为
+
+     int decode2(int x, int y, int z);
+
+     将这个函数编译成 IA32 汇编代码。代码体如下：
+
+     # x at %ebp+8, y at %ebp+12, z at %ebp+16
+     1  movl    16(%ebp), %edx
+     2  subl    12(%ebp), %edx
+     3  movl    %edx, %eax
+     4  sall    $15, %eax
+     5  sarl    $15, %eax
+     6  xorl    8(%ebp), %edx
+     7  imull   %edx, %eax
+
+     参数 x、y 和 z 存放在存储器中相对于寄存器 %ebp 中地址偏移量为 8、12 和 16
+     的地方。代码将返回值存放在寄存器 %eax 中。
+
+     写出等价于我们汇编代码的 decode2 的 C 代码。
