@@ -657,3 +657,68 @@
      写一个 C 函数 cread_alt，它与 cread 有一样的行为，除了它可以被编译成使用条
      件数据传送。当用命令行选项 '-march=i686' 来编译时，产生的代码应该使用条件传
      送指令而不是某种跳转指令。
+
+3.58 下面的代码是在一个开关语句中根据枚举类型值进行分支选择的例子。回忆一下，C
+     语言中枚举类型只是一种引入一组与整数值相对应的名字的方法。默认情况下，值是
+     从 0 向上依次赋给名字的。在我们的代码中，省略了与各种情况标号相对应的动作。
+
+     /* Enumerated type creates set of constants numbered 0 and upward */
+     typedef enum { MODE_A, MODE_B, MODE_C, MODE_D, MODE_E } mode_t;
+
+     int switch3(int *p1, int *p2, mode_t action)
+     {
+         int result = 0;
+         switch (action) {
+         case MODE_A:
+         case MODE_B:
+         case MODE_C:
+         case MODE_D:
+         case MODE_E:
+         default:
+         }
+         return result;
+     }
+
+     产生的实现各个动作的汇编代码部分如下所示。注释指明了参数位置，寄存器值，以
+     及各个跳转目的的情况标号。寄存器 %edx 对应于程序变量 result，并被初始化为
+     -1。填写 C 代码中缺失的部分。注意那些会落入其他情况中的情况。
+
+     # Arguments: p1 at %ebp+8, p2 at %ebp+12, action at %ebp+16
+     # Registers: result in %edx (initialized to -1)
+     # The jump targets:
+     1  .L17:                   # MODE_E
+     2    movl  $17, %edx
+     3    jmp   .L19
+     4  .L13:                   # MODE_A
+     5    movl  8(%ebp), %eax
+     6    movl  (%eax), %edx
+     7    movl  12(%ebp), %ecx
+     8    movl  (%ecx), %eax
+     9    movl  8(%ebp), %ecx
+     10   movl  %eax, (%ecx)
+     11   jmp   .L19
+     12 .L14:                   # MODE_B
+     13   movl  12(%ebp), %edx
+     14   movl  (%edx), %eax
+     15   movl  %eax, %edx
+     16   movl  8(%ebp), %ecx
+     17   addl  (%ecx), %edx
+     18   movl  12(%ebp), %eax
+     19   movl  %edx, (%eax)
+     20   jmp   .L19
+     21 .L15:                   # MODE_C
+     22   movl  12(%ebp), %edx
+     23   movl  $15, (%edx)
+     24   movl  8(%ebp), %ecx
+     25   movl  (%ecx), %edx
+     26   jmp   .L19
+     27 .L16:                   # MODE_D
+     28   movl  8(%ebp), %edx
+     29   movl  (%edx), %eax
+     30   movl  12(%ebp), %ecx
+     31   movl  %eax, (%ecx)
+     32   movl  $17, %edx
+     33 .L19:                   # default
+     34   movl  %edx, %eax      # Set return value
+
+     上面的代码实现了 switch 语句的各个分支
