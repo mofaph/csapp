@@ -604,3 +604,43 @@
      如何实现你的算法的。
 
      提示：参考练习题 3.12 及其答案。
+
+3.56 考虑下面的汇编代码：
+
+     # x at %ebp+8, n at %ebp+12
+     1  movl    8(%ebp), %esi
+     2  movl    12(%ebp), %ebx
+     3  movl    $1431655765, %edi
+     4  movl    $-2147483648, %edx
+     5 .L2:
+     6  movl    %edx, %eax
+     7  andl    %esi, %eax
+     8  xorl    %eax, %edi
+     9  movl    %ebx, %ecx
+     10 shrl    %cl, %edx
+     11 testl   %edx, %edx
+     12 jne     .L2
+     13 movl    %edi, %eax
+
+     以上代码是以下整体形式的 C 代码编译产生的：
+
+     1  int loop(int x, int n)
+     2  {
+     3      int result = ____;
+     4      int mask;
+     5      for (mask = ____; mask ____; mask = ____) {
+     6          result ^= ____;
+     7      }
+     8      return result;
+     9  }
+
+     你的任务是填写这个 C 代码中缺失的部分，得到一个程序等价于产生的汇编代码。回
+     想一下，这个函数的结果是在寄存器 %eax 中返回的。你会发现以下工作很有帮助：
+     检查循环之前、之中和之后的汇编代码，形成一个寄存器和程序变量之间一致的映射。
+
+     A. 哪个寄存器保存着程序值 x、n、result 和 mask？
+     B. result 和 mask 的初始值是什么？
+     C. mask 的测试条件是什么？
+     D. mask 是如何被修改的？
+     E. result 是如何被修改的？
+     F. 填写这段 C 代码中所有缺失的部分。
