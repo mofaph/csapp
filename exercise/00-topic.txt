@@ -958,3 +958,34 @@
         个字段来使用，每个字段 4 个字节。描述每个字段都是怎么用的。
      C. 你要如何描述向函数传递结构参数的通用策略？
      D. 你要如何描述处理从函数返回结构值的通用策略？
+
+3.65 在下面的代码中，A 和 B 是用 #define 定义的常数：
+
+     typedef struct {
+         short x[A][B]; /* Unknown constants A and B */
+         int y;
+     } str1;
+
+     typedef struct {
+         char array[B];
+         int t;
+         short s[B];
+         int u;
+     } str2;
+
+     void setVal(str1 *p, str2 *q)
+     {
+         int v1 = q->t;
+         int v2 = q->u;
+         p->y = v1 + v2;
+     }
+
+     GCC 为 setVal 的主体产生下面的代码：
+
+     movl 12(%ebp), %eax
+     movl 28(%eax), %edx
+     addl 8(%eax), %edx
+     movl 8(%ebp), %eax
+     movl %edx, 44(%eax)
+
+     A 和 B 的值是多少？（答案是唯一的。）
