@@ -855,3 +855,39 @@
      B. 哪个寄存器保持着程序值 i 和 j？
      C. 写 transpose 的一个 C 代码版本，使用在这个循环中出现的优化。在你的代码中，
         使用参数 M，而不要使用常数值。
+
+3.63 考虑下面的源代码，这里 E1 和 E2 是用 #define 声明的宏表达式，计算用参数 n
+     表示的矩阵 A 的维度。这段代码计算矩阵的第 j 列的元素之和。
+
+     int sum_col(int n, int A[E1(n)][E2(n)], int j)
+     {
+         int i;
+         int result = 0;
+         for (i = 0; i < E1(n); i++)
+             result += A[i][j];
+         return result;
+     }
+
+     编译这个程序，GCC 产生下面的汇编代码：
+
+     ; n at %ebp+8, A at %ebp+12, j at %ebp+16
+     1    movl     8(%ebp), %edx
+     2    leal     (%edx,%edx), %eax
+     3    leal     -1(%eax), %ecx
+     4    leal     (%eax,%edx), %esi
+     5    movl     $0, %eax
+     6    testl    %esi, %esi
+     7    jle      .L3
+     8    leal     0(,%ecx,4), %ebx
+     9    movl     16(%ebp), %eax
+     10   movl     12(%ebp), %edx
+     11   leal     (%edx,%eax,4), %ecx
+     12   movl     $0, %edx
+     13   movl     $0, %eax
+     14 .L4:
+     15   addl     (%ecx), %eax
+     16   addl     $1, %edx
+     17   addl     %ebx, %ecx
+     18   cmpl     %esi, %edx
+     19   jl       .L4
+     20 .L3:
