@@ -891,3 +891,70 @@
      18   cmpl     %esi, %edx
      19   jl       .L4
      20 .L3:
+
+3.64 这个作业要查看 GCC 为参数和返回值中有结构的函数产生的代码，由此可以看到通常
+     这些语句特性是如何实现的。
+
+     下面的 C 代码是函数 word_sum，它用结构作为参数和返回值，还有一个函数 diff
+     调用 word_sum。
+
+     typedef struct {
+         int *p;
+         int v;
+     } str1;
+
+     typedef struct {
+         int prod;
+         int sum;
+     } str2;
+
+     str2 word_sum(str1 s1)
+     {
+         str2 result;
+
+         result.prod = *s1.p * s1.v;
+         result.sum  = *s1.p + s1.v;
+
+         return result;
+     }
+
+     int diff(int x, int y)
+     {
+         str1 s1;
+         str2 s2;
+
+         s1.p = &x;
+         s1.v = y;
+         s2 = word_sum(s1);
+
+         return s2.prod - s2.sum;
+     }
+
+     GCC 为这两个函数产生下面的代码：
+
+     1  word_sum:                 1    diff:
+     2    pushl %ebp              2      pushl %ebp
+     3    movl %esp, %ebp         3      movl %esp, %bp
+     4    pushl %ebx              4      subl $20, %esp
+     5    movl 8(%ebp), %eax      5      leal -8(%ebp), %edx
+     6    movl 16(%ebp), %ebx     6      leal 8(%ebp), %eax
+     7    movl 12(%ebp), %edx     7      movl %eax, 4(%esp)
+     8    movl (%edx), %edx       8      movl 12(%ebp), %eax
+     9    leal (%edx,%ebx), %ecx  9      movl %eax, 8(%esp)
+     10   movl %ecx, 4(%eax)      10     movl %edx, (%esp)
+     11   imull %ebx, %edx        11     call word_sum
+     12   movl %edx, (%eax)       12     subl $4, %esp
+     13   popl %ebx               13     movl -8(%ebp), %eax
+     14   popl %ebp               14     subl -4(%ebp), %eax
+     15   ret $4                  15     leave
+     16                           16     ret
+
+     指令 ret $4 很像普通的返回指令，但是它将栈指针增加了 8（4 个是为了返回地址，
+     加上 4 的加法），而不是 4。
+
+     A. 从 word_sum 代码的第 5~7 行我们可以看到，虽然函数只有一个参数，但是看上
+        去好像从栈中取出了 3 个值。描述这三个值分别是什么。
+     B. 从 diff 代码的第 4 行我们可以看到，栈桢中分配了 20 个字节。把他们当作 5
+        个字段来使用，每个字段 4 个字节。描述每个字段都是怎么用的。
+     C. 你要如何描述向函数传递结构参数的通用策略？
+     D. 你要如何描述处理从函数返回结构值的通用策略？
