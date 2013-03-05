@@ -825,3 +825,33 @@
 
      需要找到一个对你那种编译器行之有效的策略。不断尝试各种不同的策略，直到有一
      种能工作。
+
+3.62 下面的代码转置一个 MxM 矩阵的元素，这里 M 是一个用 #define 定义的常数：
+
+     void transpose(int A[M][M])
+     {
+         int i,j;
+         for (i = 0; i < M; i++)
+             for (j = 0; j < i; j++) {
+                 int t = A[i][j];
+                 A[i][j] = A[j][i];
+                 A[j][i] = t;
+             }
+     }
+
+     当用优化等级 -O2 编译时，GCC 为这个函数的内部循环产生下面的代码：
+
+     1 .L3:
+     2   movl (%ebx), %eax
+     3   movl (%esi,%ecx,4), %edx
+     4   movl %eax, (%esi,%ecx,4)
+     5   addl $1, %ecx
+     6   movl %edx, (%ebx)
+     7   addl $76, %ebx
+     8   cmpl %edi, %ecx
+     9   jl   .L3
+
+     A. M 的值是多少？
+     B. 哪个寄存器保持着程序值 i 和 j？
+     C. 写 transpose 的一个 C 代码版本，使用在这个循环中出现的优化。在你的代码中，
+        使用参数 M，而不要使用常数值。
