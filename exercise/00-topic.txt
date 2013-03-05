@@ -773,3 +773,32 @@
      (gdb) x/6w 0x80485f0
      0x80485f0: 0x08048442 0x08048435 0x08048442 0x0804844a
      0x8048600: 0x08048452 0x0804843a
+
+3.60 考虑下面的源代码，这里 R、S 和 T 都是用 #define 声明的常数：
+
+     int A[R][S][T];
+
+     int store_ele(int i, int j, int k, int *dest)
+     {
+         *dest = A[i][j][k];
+         return sizeof(A);
+     }
+
+     编译这个程序，GCC 产生下面的汇编代码：
+
+     ; i at %ebp+8, j at %ebp+12, k at %ebp+16, dest at %ebp+20
+     1  movl 8(%ebp), %ecx
+     2  movl 12(%ebp), %eax
+     3  leal (%eax,%eax,8), %eax
+     4  movl %ecx, %edx
+     5  sall $6, %edx
+     6  subl %ecx, %edx
+     7  addl %edx, %eax
+     8  addl 16(%ebp), %eax
+     9  movl A(,%eax,4), %edx
+     10 movl 20(%ebp), %eax
+     11 movl %edx, (%eax)
+     12 movl $2772, %eax
+
+     A. 将等式（3-1）从二维扩展到三维，提供数组元素 A[i][j][k] 的位置的公式。
+     B. 运用你的逆向工程技术，根据汇编代码，确定 R、S 和 T 的值。
