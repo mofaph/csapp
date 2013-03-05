@@ -722,3 +722,54 @@
      34   movl  %edx, %eax      # Set return value
 
      上面的代码实现了 switch 语句的各个分支
+
+3.59 这个程序给你一个机会，逆向工程一个 switch 语句。在下面这个过程中，去掉了
+     switch 语句的主体：
+
+     int switch_prob(int x, int n)
+     {
+         int result = x;
+
+         switch (n) {
+             /* Fill in code here */
+         }
+         return result;
+     }
+
+     下面给出了这个过程的反汇编机器代码。我们可以看到，在第 4 行，参数 n 被加载
+     到寄存器 %eax 中。
+
+     1 08048420 <switch_prob>:
+     2  8048420: 55                     push %ebp
+     3  8048421: 89 e5                  mov %esp, %ebp
+     4  8048423: 8b 45 0c               mov 0xc(%ebp), %eax
+     5  8048426: 83 e8 28               sub $0x28, %eax
+     6  8048429: 83 f8 05               cmp $0x5, %eax
+     7  804842c: 77 07                  ja 8048435 <switch_prob+0x15>
+     8  804842e: ff 24 85 f0 85 04 08   jmp *0x80485f0(,%eax,4)
+     9  8048435: 8b 45 08               mov 0x8(%ebp), %eax
+     10 8048438: eb 24                  jmp 804845e <switch_prob+0x3e>
+     11 804843a: 8b 45 08               mov 0x8(%ebp), %eax
+     12 804843d: 8d 76 00               lea 0x0(%esi), %esi
+     13 8048440: eb 19                  jmp 804845b <switch_prob+0x3b>
+     14 8048442: 8b 45 08               mov 0x8(%ebp), %eax
+     15 8048445: c1 e0 03               shl $0x3, %eax
+     16 8048448: eb 17                  jmp 8048461 <switch_prob+0x41>
+     17 804844a: 8b 45 08               mov 0x8(%ebp), %eax
+     18 804844d: c1 f8 03               sar $0x3, %eax
+     19 8048450: eb 0f                  jmp 8048461 <switch_prob+0x41>
+     20 8048452: 8b 45 08               mov 0x8(%ebp), %eax
+     21 8048455: c1 e0 03               shl $0x3, %eax
+     22 8048458: 2b 45 08               sub 0x8(%ebp), %eax
+     23 804845b: 0f af c0               imul %eax, %eax
+     24 804845e: 83 c0 11               add $0x11, %eax
+     25 8048461: 5d                     pop %ebp
+     26 8048462: c3                     ret
+
+     跳转表驻留在另一个存储器区域中。可以从第 8 行的间接跳转看出，跳转表的起始地
+     址为 0x80485f0。用调试器 GDB，我们可以用命令 x/6w 0x80485f0 来检查存储器中
+     的 6 个 4 字节的字。GDB 打印下面的内容：
+
+     (gdb) x/6w 0x80485f0
+     0x80485f0: 0x08048442 0x08048435 0x08048442 0x0804844a
+     0x8048600: 0x08048452 0x0804843a
