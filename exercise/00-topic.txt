@@ -1083,3 +1083,36 @@ C. 编译器为 proc 的主体产生下面的汇编代码：
      该对任意长度的输入行都能工作。可以使用库函数 fgets，但是你必须确保即使当输
      入行要求比你应该为缓冲区分配的更多的空间时，你的函数也能正确地工作。你的代
      码还应该检查错误条件，要在遇到 1 时返回。参考标准 I/O 函数的定义文档[48, 58]。
+
+3.69 下面的声明定义了一类结构，用来构建二叉树：
+
+typedef struct ELE *tree_ptr;
+
+struct ELE {
+    tree_ptr left;
+    tree_ptr right;
+    long val;
+};
+
+对于具有如下原型的函数：
+
+long trace(tree_ptr tp);
+
+GCC 产生下面的 x86-64 代码：
+
+  trace:
+    ; tp in %rdi
+    movl $0, %eax
+    testq %rdi, %rdi
+    je .L3
+  .L5:
+    movq 16(%rdi), %rax
+    movq (%rdi), %rdi
+    testq %rdi, %rdi
+    jne .L5
+  .L3:
+    rep
+    ret
+
+A. 给出一个该函数的 C 版本，使用 while 循环。
+B. 用自然语言解释这个函数计算的是什么。
