@@ -1116,3 +1116,44 @@ GCC 产生下面的 x86-64 代码：
 
 A. 给出一个该函数的 C 版本，使用 while 循环。
 B. 用自然语言解释这个函数计算的是什么。
+
+3.70 用家庭作业 3.69 中的树结构，以及一个具有以下原型的函数
+
+long traverse(tree_ptr tp)
+
+GCC 产生下面的 x86-64 代码：
+
+  traverse:
+  ; tp in %rdi
+    movq %rbx, -24(%rsp)
+    movq %rbp, -16(%rsp)
+    movq %r12, -8(%rsp)
+    subq $24, %rsp
+
+    movq %rdi, %rbp
+    movabsq $9223372036854775807, %rax
+    test %rdi, %rdi
+    je .L9
+
+    movq 16(%rdi), %rbx
+    movq (%rdi), %rdi
+    call traverse
+
+    movq %rax, %r12
+    movq 8(%rbp), %rdi
+    call traverse
+
+    cmpq %rax, %r12
+    cmovle %r12, %rax
+    cmpq %rbx, %rax
+    cmovg %rbx, %rax
+
+  .L9:
+    movq (%rsp), %rbx
+    movq 8(%rsp), %rbp
+    movq 16(%rsp), %r12
+    addq $24, %rsp
+    ret
+
+A. 生成这个函数的 C 版本。
+B. 用自然语言解释这个函数计算的是什么。
