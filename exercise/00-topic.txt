@@ -996,88 +996,88 @@
 
 3.66 你负责维护一个大型的 C 程序时，遇到下面这样的代码：
 
-1  typedef struct {
-2      int left;
-3      a_struct a[CNT];
-4      int right;
-5  } b_struct;
-6
-7  void test(int i, b_struct *bp)
-8  {
-9      int n = bp->left + bp->right;
-10     a_struct *ap = &bp->a[i];
-11     ap->x[ap->idx] = n;
-12 }
+     1  typedef struct {
+     2      int left;
+     3      a_struct a[CNT];
+     4      int right;
+     5  } b_struct;
+     6
+     7  void test(int i, b_struct *bp)
+     8  {
+     9      int n = bp->left + bp->right;
+     10     a_struct *ap = &bp->a[i];
+     11     ap->x[ap->idx] = n;
+     12 }
 
-编译时常数 CNT 和结构 a_struct 的声明在一个你没有访问权限的文件中。幸好，你有代
-码的'.o'版本，可以用 objdump 程序来反汇编这些文件，得到下面的反汇编代码：
+     编译时常数 CNT 和结构 a_struct 的声明在一个你没有访问权限的文件中。幸好，你有代
+     码的'.o'版本，可以用 objdump 程序来反汇编这些文件，得到下面的反汇编代码：
 
-1     00000000 <test>:
-2      0:  55                   push %ebp
-3      1:  89 e5                mov %esp, %ebp
-4      3:  53                   push %ebx
-5      4:  8b 45 08             mov 0x8(%ebp), %eax
-6      7:  8b 4d 0c             mov 0xc(%ebp), %ecx
-7      a:  6b d8 1c             imul $0x1c, %eax, %ebx
-8      d:  8d 14 c5 00 00 00 00 lea 0x0(,%eax,8), %edx
-9      14: 29 c2                sub %eax, %edx
-10     16: 03 54 19 04          add 0x4(%ecx,%ebx,1), %edx
-11     1a: 8b 81 c3 00 00 00    mov 0xc8(%ecx), %eax
-12     20: 03 01                add (%ecx), %eax
-13     22: 89 44 91 08          mov %eax, 0x8(%ecx,%edx,4)
-14     25: 5b                   pop %ebx
-15     27: 5d                   pop %ebp
-16     28: c3                   ret
+     1     00000000 <test>:
+     2      0:  55                   push %ebp
+     3      1:  89 e5                mov %esp, %ebp
+     4      3:  53                   push %ebx
+     5      4:  8b 45 08             mov 0x8(%ebp), %eax
+     6      7:  8b 4d 0c             mov 0xc(%ebp), %ecx
+     7      a:  6b d8 1c             imul $0x1c, %eax, %ebx
+     8      d:  8d 14 c5 00 00 00 00 lea 0x0(,%eax,8), %edx
+     9      14: 29 c2                sub %eax, %edx
+     10     16: 03 54 19 04          add 0x4(%ecx,%ebx,1), %edx
+     11     1a: 8b 81 c3 00 00 00    mov 0xc8(%ecx), %eax
+     12     20: 03 01                add (%ecx), %eax
+     13     22: 89 44 91 08          mov %eax, 0x8(%ecx,%edx,4)
+     14     25: 5b                   pop %ebx
+     15     27: 5d                   pop %ebp
+     16     28: c3                   ret
 
-运用你的逆向工程技术，推断下列的内容：
+     运用你的逆向工程技术，推断下列的内容：
 
-A. CNT 的值
-B. 结构 a_struct 的完成声明。假设这个结构只有字段 idx 和 x。
+     A. CNT 的值
+     B. 结构 a_struct 的完成声明。假设这个结构只有字段 idx 和 x。
 
 3.67 考虑下面的联合声明：
 
-union ele {
-    struct {
-        int *p;
-        int x;
-    } e1;
+     union ele {
+         struct {
+             int *p;
+             int x;
+         } e1;
 
-    struct {
-        int y;
-        union ele *next;
-    } e2;
-};
+         struct {
+             int y;
+             union ele *next;
+         } e2;
+     };
 
-这个声明说明联合中可以嵌套结构。
+     这个声明说明联合中可以嵌套结构。
 
-下面的过程（省略了一些表达式）对一个链表进行操作，链表是以上述联合作为元素的：
+     下面的过程（省略了一些表达式）对一个链表进行操作，链表是以上述联合作为元素的：
 
-void proc(union ele *up)
-{
-    up->____ = *(up->____) - up->____;
-}
+     void proc(union ele *up)
+     {
+         up->____ = *(up->____) - up->____;
+     }
 
-A. 小列字段的偏移量是多少（以字节为单位）：
+     A. 小列字段的偏移量是多少（以字节为单位）：
 
-e1.p: ____
-e2.x: ____
-e2.y: ____
-e2.next: ____
+     e1.p: ____
+     e2.x: ____
+     e2.y: ____
+     e2.next: ____
 
-B. 这个结构总共需要多少个字节？
-C. 编译器为 proc 的主体产生下面的汇编代码：
+     B. 这个结构总共需要多少个字节？
+     C. 编译器为 proc 的主体产生下面的汇编代码：
 
-; up at %ebp+8
-1 movl 8(%ebp), %edx
-2 movl 4(%edx), %ecx
-3 movl (%ecx), %eax
-4 movl (%eax), %eax
-5 subl (%edx), %eax
-6 movl %eax, 4(%ecx)
+     ; up at %ebp+8
+     1 movl 8(%ebp), %edx
+     2 movl 4(%edx), %ecx
+     3 movl (%ecx), %eax
+     4 movl (%eax), %eax
+     5 subl (%edx), %eax
+     6 movl %eax, 4(%ecx)
 
-在这些信息的基础上，填写 proc 代码中缺失的表达式。提示：有些联合引用的解释可以有
-歧义。当你清楚引用指引到哪里的时候，就能够澄清这些歧义。只有一个答案，不需要进行
-强制类型转换，且不违反任何类型限制。
+     在这些信息的基础上，填写 proc 代码中缺失的表达式。提示：有些联合引用的解释可以有
+     歧义。当你清楚引用指引到哪里的时候，就能够澄清这些歧义。只有一个答案，不需要进行
+     强制类型转换，且不违反任何类型限制。
 
 3.68 写一个函数 good_echo，它从标准输入读取一行，再把它写到标准输出。你的实现应
      该对任意长度的输入行都能工作。可以使用库函数 fgets，但是你必须确保即使当输
@@ -1086,74 +1086,74 @@ C. 编译器为 proc 的主体产生下面的汇编代码：
 
 3.69 下面的声明定义了一类结构，用来构建二叉树：
 
-typedef struct ELE *tree_ptr;
+     1 typedef struct ELE *tree_ptr;
+     2
+     3 struct ELE {
+     4     tree_ptr left;
+     5     tree_ptr right;
+     6     long val;
+     7 };
 
-struct ELE {
-    tree_ptr left;
-    tree_ptr right;
-    long val;
-};
+     对于具有如下原型的函数：
 
-对于具有如下原型的函数：
+     long trace(tree_ptr tp);
 
-long trace(tree_ptr tp);
+     GCC 产生下面的 x86-64 代码：
 
-GCC 产生下面的 x86-64 代码：
+       1  trace:
+           ; tp in %rdi
+       2    movl $0, %eax
+       3    testq %rdi, %rdi
+       4    je .L3
+       5  .L5:
+       6    movq 16(%rdi), %rax
+       7    movq (%rdi), %rdi
+       8    testq %rdi, %rdi
+       9    jne .L5
+       10 .L3:
+       11   rep
+       12   ret
 
-  trace:
-    ; tp in %rdi
-    movl $0, %eax
-    testq %rdi, %rdi
-    je .L3
-  .L5:
-    movq 16(%rdi), %rax
-    movq (%rdi), %rdi
-    testq %rdi, %rdi
-    jne .L5
-  .L3:
-    rep
-    ret
-
-A. 给出一个该函数的 C 版本，使用 while 循环。
-B. 用自然语言解释这个函数计算的是什么。
+     A. 给出一个该函数的 C 版本，使用 while 循环。
+     B. 用自然语言解释这个函数计算的是什么。
 
 3.70 用家庭作业 3.69 中的树结构，以及一个具有以下原型的函数
 
-long traverse(tree_ptr tp)
+     long traverse(tree_ptr tp)
 
-GCC 产生下面的 x86-64 代码：
+     GCC 产生下面的 x86-64 代码：
 
-  traverse:
-  ; tp in %rdi
-    movq %rbx, -24(%rsp)
-    movq %rbp, -16(%rsp)
-    movq %r12, -8(%rsp)
-    subq $24, %rsp
+     1  traverse:
+         ; tp in %rdi
+     2      movq %rbx, -24(%rsp)
+     3      movq %rbp, -16(%rsp)
+     4      movq %r12, -8(%rsp)
+     5      subq $24, %rsp
 
-    movq %rdi, %rbp
-    movabsq $9223372036854775807, %rax
-    test %rdi, %rdi
-    je .L9
+     6      movq %rdi, %rbp
+     7      movabsq $9223372036854775807, %rax
+     8      test %rdi, %rdi
+     9      je .L9
 
-    movq 16(%rdi), %rbx
-    movq (%rdi), %rdi
-    call traverse
+     10     movq 16(%rdi), %rbx
+     11     movq (%rdi), %rdi
+     12     call traverse
 
-    movq %rax, %r12
-    movq 8(%rbp), %rdi
-    call traverse
+     13     movq %rax, %r12
+     14     movq 8(%rbp), %rdi
+     15     call traverse
 
-    cmpq %rax, %r12
-    cmovle %r12, %rax
-    cmpq %rbx, %rax
-    cmovg %rbx, %rax
+     16     cmpq %rax, %r12
+     17     cmovle %r12, %rax
+     18     cmpq %rbx, %rax
+     19     cmovg %rbx, %rax
 
-  .L9:
-    movq (%rsp), %rbx
-    movq 8(%rsp), %rbp
-    movq 16(%rsp), %r12
-    addq $24, %rsp
-    ret
+     20 .L9:
+     21     movq (%rsp), %rbx
+     22     movq 8(%rsp), %rbp
+     23     movq 16(%rsp), %r12
+     24     addq $24, %rsp
+     25     ret
 
-A. 生成这个函数的 C 版本。
-B. 用自然语言解释这个函数计算的是什么。
+     A. 生成这个函数的 C 版本。
+     B. 用自然语言解释这个函数计算的是什么。
