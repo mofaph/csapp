@@ -993,3 +993,43 @@
      movl %edx, 44(%eax)
 
      A 和 B 的值是多少？（答案是唯一的。）
+
+3.66 你负责维护一个大型的 C 程序时，遇到下面这样的代码：
+
+1  typedef struct {
+2      int left;
+3      a_struct a[CNT];
+4      int right;
+5  } b_struct;
+6
+7  void test(int i, b_struct *bp)
+8  {
+9      int n = bp->left + bp->right;
+10     a_struct *ap = &bp->a[i];
+11     ap->x[ap->idx] = n;
+12 }
+
+编译时常数 CNT 和结构 a_struct 的声明在一个你没有访问权限的文件中。幸好，你有代
+码的'.o'版本，可以用 objdump 程序来反汇编这些文件，得到下面的反汇编代码：
+
+1     00000000 <test>:
+2      0:  55                   push %ebp
+3      1:  89 e5                mov %esp, %ebp
+4      3:  53                   push %ebx
+5      4:  8b 45 08             mov 0x8(%ebp), %eax
+6      7:  8b 4d 0c             mov 0xc(%ebp), %ecx
+7      a:  6b d8 1c             imul $0x1c, %eax, %ebx
+8      d:  8d 14 c5 00 00 00 00 lea 0x0(,%eax,8), %edx
+9      14: 29 c2                sub %eax, %edx
+10     16: 03 54 19 04          add 0x4(%ecx,%ebx,1), %edx
+11     1a: 8b 81 c3 00 00 00    mov 0xc8(%ecx), %eax
+12     20: 03 01                add (%ecx), %eax
+13     22: 89 44 91 08          mov %eax, 0x8(%ecx,%edx,4)
+14     25: 5b                   pop %ebx
+15     27: 5d                   pop %ebp
+16     28: c3                   ret
+
+运用你的逆向工程技术，推断下列的内容：
+
+A. CNT 的值
+B. 结构 a_struct 的完成声明。假设这个结构只有字段 idx 和 x。
