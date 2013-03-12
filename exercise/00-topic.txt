@@ -1207,3 +1207,35 @@
 
 7.7 不改变任何变量名字，修改 7.6.1 节中的 bar5.c，使得 foo5.c 输出 x 和 y 的正确
     值（也就是整数 15213 和 15212 的十六进制表示）。
+
+7.8 在此题中，REF(x,i) --> DEF(x,k) 表示链接器将任意对模块 i 中符号 x 的引用与模
+    块 k 中符号 x 的定义相关联。在下面每个例子中，用这种符号来说明链接器是如何解
+    析在每个模块中有多重定义的引用的。如果出现链接时错误（规则 1），写“ERROR”。
+    如果链接器从定义中任意选择一个（规则 3），那么写“UNKNOWN”。
+
+    A. /* Module 1*/                /* Module 2 */
+       int main()                   static int main = 1;
+       {                            int p2()
+       }                            {
+                                    }
+
+    a) REF(main.1) --> DEF(____.____)
+    b) REF(main.2) --> DEF(____.____)
+
+    B. /* Module 1 */               /* Module 2 */
+       int x;                       double x;
+       void main()                  int p2()
+       {                            {
+       }                            }
+
+    a) REF(x.1) --> DEF(____.____)
+    b) REF(x.2) --> DEF(____.____)
+
+    C. /* Module 1 */               /* Module 2 */
+       int x = 1;                   double x = 1.0;
+       void main()                  int p2()
+       {                            {
+       }                            }
+
+    a) REF(x.1) --> DEF(____.____)
+    b) REF(x.2) --> DEF(____.____)
