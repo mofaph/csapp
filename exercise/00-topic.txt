@@ -1262,3 +1262,6 @@
      A. p.o -> libx.a -> p.o
      B. p.o -> libx.a -> liby.a 和 liby.a -> libx.a
      C. p.o -> libx.a -> liby.a 和 liby.a -> libx.a -> libz.a
+
+7.11 图 7-12 中的段头部表明数据段占用了存储器中 0x104 个字节。然后，只有开始的
+     0xe8 字节来自可执行文件的节。引起这种差异的原因是什么？
