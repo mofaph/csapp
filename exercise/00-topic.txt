@@ -1239,3 +1239,18 @@
 
     a) REF(x.1) --> DEF(____.____)
     b) REF(x.2) --> DEF(____.____)
+
+7.9 考虑下面的程序，它由两个目标模块组成：
+
+    1 /* foo6.c */            1 /* bar6.c */
+    2 void p2(void);          2 #include <stdio.h>
+    3                         3
+    4 int main()              4 char main;
+    5 {                       5
+    6     p2();               6 void p2()
+    7     return 0;           7 {
+    8 }                       8     printf("0x%x\n", main);
+                              9 }
+
+    当在 Linux 系统中编译和执行这个程序时，即使 p2 不初始化变量 main，它也能打印字符
+    串“0x55\n”并正常终止。你能解释这一点吗？
