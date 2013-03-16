@@ -13,13 +13,13 @@
 
 int main(void)
 {
-    if (Fork() == 0) {          /* child */
-        printf("a");
-    }
-    else {                      /* parent */
-        printf("b");
-        waitpid(-1, NULL, 0);
-    }
-    printf("c");
-    exit(0);
+        if (Fork() == 0) {      /* child */
+                printf("a");
+        } else {                /* parent */
+                printf("b");
+                waitpid(-1, NULL, 0);
+        }
+
+        printf("c");
+        exit(0);
 }
