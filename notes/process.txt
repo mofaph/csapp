@@ -1,0 +1,85 @@
+
+* 进程控制
+
+** getpid/getppid 获取进程 ID
+
+#include <sys/types.h>
+#include <unistd.h>
+
+pid_t getpid(void);
+pid_t getppid(void);
+
+返回：getpid() 返回进程的 PID，getppid() 返回父进程的 PID
+
+** exit 终止进程
+
+#include <stdlib.h>
+
+void exit(int status);
+
+返回：该函数无返回值
+
+** fork 创建进程
+
+#include <sys/types.h>
+#include <unistd.h>
+
+pid_t fork(void);
+
+返回：子进程返回 0，父进程返回子进程的 PID，如果出错，则为 -1
+
+** waitpid/wait 等待子进程的终止或者停止
+
+#include <sys/types.h>
+#include <sys/wait.h>
+
+pid_t waitpid(pid_t pid, int *status, int options);
+
+返回：如果成功，则为子进程的 PID，如果 WNOHANG，则为 0，如果其他错误，则为 -1
+
+wait 函数是 waitpid 函数的简单版本
+
+#include <sys/types.h>
+#include <sys/wait.h>
+
+pid_t wait(int *status);
+
+返回：如果成功，则为子进程的 PID，如果出错，则为 -1
+
+** sleep/pause 让进程休眠
+
+sleep() 将一个进程挂起一段指定的时间。
+
+#include <unistd.h>
+
+unsigned int sleep(unsigned int secs);
+
+返回：还要休眠的秒数
+
+pause() 让调用函数休眠，直到该进程收到一个信号。
+
+#include <unistd.h>
+
+int pause(void);
+
+返回：总是返回 -1
+
+** execve 加载并运行程序
+
+#include <unistd.h>
+
+int execve(const char *filename, const char *argv[], const char *envp[]);
+
+返回：如果成功，则不返回；如果错误，则返回 -1
+
+** getenv/setenv/unsetenv 操作环境数组
+
+#include <stdlib.h>
+
+char *getenv(const char *name);
+int setenv(const char *name, const char *newvalue, int overwrite);
+void unsetenv(const char *name);
+
+getenv：若存在则为指向 name 的指针，若无匹配，则为 NULL
+setenv：若成功返回 0，若错误返回 -1
+unsetenv：无
