@@ -1,3 +1,9 @@
+/*
+ * p502~p504 -- code/ecf/shellex.c
+ *
+ * unix> gcc -I../../common shellex.c ../../common/csapp.c -lpthread
+ */
+
 #include "csapp.h"
 #define MAXARGS 128
 
