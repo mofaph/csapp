@@ -1,3 +1,11 @@
+/*
+ * 8.3 -- code/ecf/waitprob0.c
+ *
+ * 列出下面程序所有可能的输出序列
+ *
+ * $ gcc -iquote../common ../common/csapp.c ex8-3.c -lpthread
+ */
+
 #include <stdio.h>
 #include <stdlib.h>
 
