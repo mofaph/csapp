@@ -1,4 +1,6 @@
 /*
+ * p498 -- code/ecf/waitpid2.c
+ *
  * 使用 waitpid 按照创建子进程的顺序来回收僵死子进程
  */
 
