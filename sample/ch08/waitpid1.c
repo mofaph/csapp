@@ -1,5 +1,5 @@
 /*
- * p498
+ * p498 -- code/ecf/waitpid1.c
  *
  * 使用 waitpid 函数不按照特定的顺序回收僵死子进程
  */
