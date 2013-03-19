@@ -83,3 +83,41 @@ void unsetenv(const char *name);
 getenv：若存在则为指向 name 的指针，若无匹配，则为 NULL
 setenv：若成功返回 0，若错误返回 -1
 unsetenv：无
+
+* 信号处理
+
+** getpgrp/setpgid 获取/设置 进程组 ID
+
+#include <unistd.h>
+
+pid_t getpgrp(void);
+int setpgid(pid_t pid, pid_t pgid);
+
+getpgrp: 返回调用进程的进程组 ID
+setpgid: 改变自己或其他进程组的 ID。成功返回 0，失败返回 -1
+
+** kill/alarm 发送信号
+
+#include <sys/types.h>
+#include <signal.h>
+
+int kill(pid_t pid, int sig);
+
+kill: 发送信号给其它进程（包括它自己）。成功返回 0，失败返回 -1
+
+#include <unistd.h>
+
+unsigned int alarm(unsigned int secs);
+
+alarm: 向自己发送 SIGALARM 信号。返回前一次闹钟剩余的秒数，若以前没有设定闹钟，
+       则为 0
+
+** signal 接收信号
+
+#include <signal.h>
+typedef void (*sighandler_t)(int);
+
+sighandler_t signal(int signum, sighandler_t handler);
+
+signal: 修改和信号相关联的默认行为。成功则为指向前次处理程序的指针，错误则为
+        SIG_ERR（不设置 errno）
