@@ -24,12 +24,16 @@ void handler(int sig)
 
 unsigned int snooze(unsigned int secs)
 {
-        unsigned sleep_secs;
+        unsigned sleep_secs, reserve_secs;
 
-        sleep_secs = sleep(secs);
+        reserve_secs = sleep(secs);
+        sleep_secs = secs - reserve_secs;
 
-        printf("Slept for %u of %u secs\n", secs - sleep_secs, secs);
-        return sleep_secs;
+        printf("Slept for %u of %u secs\t\t"
+               "User hits ctrl-c after %u seconds\n",
+               sleep_secs, secs, sleep_secs);
+
+        return reserve_secs;
 }
 
 int main(int argc, char *argv[])
