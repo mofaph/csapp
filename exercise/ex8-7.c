@@ -3,6 +3,10 @@
  *
  * 有一个命令行参数，用这个参数调用练习题中的 snooze 函数，然后终止。
  * 编写程序，使得用户可以通过在键盘上输入 ctrl-c 中断 snooze 函数。
+ *
+ * unix> cc ex8-7.c
+ * unix> ./a.out 5
+ * Slept for 3 of 5 secs.       User hits ctrl-c after 3 seconds
  */
 
 #include <stdio.h>
@@ -33,7 +37,7 @@ int main(int argc, char *argv[])
         unsigned secs;
 
         if (argc != 2) {
-                fprintf(stderr, "usage: snooze seconds\n");
+                fprintf(stderr, "usage: %s seconds\n", argv[0]);
                 exit(1);
         }
 
