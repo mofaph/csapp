@@ -17,25 +17,25 @@ int counter = 2;
 
 void handler1(int sig)
 {
-  counter = counter - 1;
-  printf("%d", counter);
-  fflush(stdout);
-  exit(0);
+        counter = counter - 1;
+        printf("%d", counter);
+        fflush(stdout);
+        exit(0);
 }
 
 int main()
 {
-  signal(SIGUSR1, handler1);
+        signal(SIGUSR1, handler1);
 
-  printf("%d", counter);
-  fflush(stdout);
+        printf("%d", counter);
+        fflush(stdout);
 
-  if ((pid = fork()) == 0) {    /* child */
-    while (1) {};
-  }
-  kill(pid, SIGUSR1);
-  waitpid(-1, NULL, 0);
-  counter = counter + 1;
-  printf("%d", counter);
-  exit(0);
+        if ((pid = fork()) == 0) {    /* child */
+                while (1) {};
+        }
+        kill(pid, SIGUSR1);
+        waitpid(-1, NULL, 0);
+        counter = counter + 1;
+        printf("%d", counter);
+        exit(0);
 }
