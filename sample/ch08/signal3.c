@@ -1,3 +1,14 @@
+/*
+ * p515 -- code/ecf/signal3.c
+ *
+ * 这个程序是 signal2.c 的改进版本，它正确地解决了系统调用可能被中断的可能性。
+ *
+ * 为了编写可移植的信号处理代码，我们必须考虑系统调用过早返回的可能性，然后当它发
+ * 生时手动重启它们。
+ *
+ * $ gcc -I../../common signal3.c ../../common/csapp.c -lpthread
+ */
+
 #include "csapp.h"
 
 void handler2(int sig)
