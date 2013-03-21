@@ -12,34 +12,34 @@
 
 pid_t Fork(void)
 {
-  static struct timeval time;
-  unsigned bool, secs;
-  pid_t pid;
+        static struct timeval time;
+        unsigned              bool, secs;
+        pid_t                 pid;
 
-  /* Generate a different seed each time the function is called */
-  gettimeofday(&time, NULL);
-  srand(time.tv_usec);
+        /* Generate a different seed each time the function is called */
+        gettimeofday(&time, NULL);
+        srand(time.tv_usec);
 
-  /* Determine whether to sleep in parent of child and for how long */
-  bool = (unsigned)(CONVERT(rand()) + 0.5);
-  secs = (unsigned)(CONVERT(rand()) * MAX_SLEEP);
+        /* Determine whether to sleep in parent of child and for how long */
+        bool = (unsigned)(CONVERT(rand()) + 0.5);
+        secs = (unsigned)(CONVERT(rand()) * MAX_SLEEP);
 
-  /* Call the real fork function */
-  if ((pid = fork()) < 0)
-    return pid;
+        /* Call the real fork function */
+        if ((pid = fork()) < 0)
+                return pid;
 
-  /* Randomly decide to sleep in the parent or the child */
-  if (pid == 0) {               /* Child */
-    if (bool) {
-      usleep(secs);
-    }
-  }
-  else {                        /* Parent */
-    if (!bool) {
-      usleep(secs);
-    }
-  }
+        /* Randomly decide to sleep in the parent or the child */
+        if (pid == 0) {         /* Child */
+                if (bool) {
+                        usleep(secs);
+                }
+        }
+        else {                  /* Parent */
+                if (!bool) {
+                        usleep(secs);
+                }
+        }
 
-  /* Return the PID like a normal fork call */
-  return pid;
+        /* Return the PID like a normal fork call */
+        return pid;
 }
