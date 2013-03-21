@@ -141,3 +141,14 @@ sigfillset: 同下
 sigaddset: 同下
 sigdelset: 成功返回 0，出错返回 -1
 sigmember: 若 signum 是 sef 的成员返回 1，如果不是返回 0，出错返回 -1
+
+** setjmp/sigsetjmp/longjmp/siglongjmp 非本地跳转
+
+#include <setjmp.h>
+
+int setjmp(jmp_buf env);
+int sigsetjmp(sigjmp_buf env, int savesigs);
+void longjmp(jmp_buf env, int retval);
+void siglongjmp(sigjmp_buf env, int retval);
+
+setjmp: 返回 0
