@@ -1,3 +1,17 @@
+/*
+ * p520 -- code/ecf/procmask2.c
+ *
+ * 这个程序消除了 procmask1.c 中的竞争，用 sigprocmask() 来同步进程。
+ *
+ * 通过在调用 fork() 之前，阻塞 SIGCHLD 信号，然后在我们调用了 addjob() 之后就取
+ * 消阻塞这些信号，我们保证了在子进程被添加到作业列表之后回收该子进程。
+ *
+ * 注意，子进程继承了它们父进程的被阻塞集合，所以我们必须在调用 execve() 之前，小
+ * 心地解除子进程中阻塞的 SIGCHLD 信号。
+ *
+ * 这样，父进程保证在相应的 deletejob() 之前执行 addjob()。
+ */
+
 #include "csapp.h"
 
 void handler(int sig)
