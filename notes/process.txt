@@ -121,3 +121,23 @@ sighandler_t signal(int signum, sighandler_t handler);
 
 signal: 修改和信号相关联的默认行为。成功则为指向前次处理程序的指针，错误则为
         SIG_ERR（不设置 errno）
+
+** sigaction/sigprocmask 可移植的信号处理
+
+#include <signal.h>
+
+int sigaction(int signum, struct sigaction *act, struct sigaction *oldact);
+int sigprocmask(int how, const sigset_t *set, sigset_t *oldset);
+int sigemptyset(sigset_t *set);
+int sigfillset(sigset_t *set);
+int sigaddset(sigset_t *set, int signum);
+int sigdelset(sigset_t *set, int signum);
+int sigmember(const sigset_t *set, int signum);
+
+sigaction: 同下
+sigprocmask: 同下
+sigemptyset: 同下
+sigfillset: 同下
+sigaddset: 同下
+sigdelset: 成功返回 0，出错返回 -1
+sigmember: 若 signum 是 sef 的成员返回 1，如果不是返回 0，出错返回 -1
