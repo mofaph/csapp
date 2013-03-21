@@ -1,3 +1,11 @@
+/*
+ * p518 -- code/ecf/signal4.c
+ *
+ * signal2.c 的一个版本，该版本通过使用 Signal 包装函数得到可移植的信号处理语义
+ *
+ * $ gcc -I../../common signal4.c ../../common/csapp.c -lpthread
+ */
+
 #include "csapp.h"
 
 void handler2(int sig)
