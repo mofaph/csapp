@@ -1,3 +1,9 @@
+/*
+ * p28 -- code/data/show-bytes.c
+ *
+ * 打印程序对象的字节表示。这段代码使用强制类型转换来规避类型系统。
+ */
+
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
