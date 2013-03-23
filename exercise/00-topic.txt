@@ -1553,3 +1553,22 @@
              printf("hello\n");
              exit(0);
      }
+
+8.16 下面这个程序的输出是什么？
+
+     #include "csapp.h"
+
+     int counter = 1;
+
+     int main()
+     {
+             if (fork() == 0) {
+                     counter--;
+                     exit(0);
+             } else {
+                     Wait(NULL);
+                     printf("counter = %d\n", ++counter);
+             }
+
+             exit(0);
+     }
