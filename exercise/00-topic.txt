@@ -1511,3 +1511,24 @@
              printf("x=%d\n", --x);
              exit(0);
      }
+
+8.14 下面这个程序会输出多少个“hello”输出行？
+
+    #include "csapp.h"
+
+    void doit()
+    {
+            if (Fork() == 0) {
+                    Fork();
+                    printf("hello\n");
+                    exit(0);
+            }
+            return;
+    }
+
+    int main()
+    {
+            doit();
+            printf("hello\n");
+            exit(0);
+    }
