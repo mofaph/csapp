@@ -1496,3 +1496,18 @@
              printf("hello\n");
              return;
      }
+
+8.13 下面程序的一种可能的输出是什么？
+
+     #include "csapp.h"
+
+     int main()
+     {
+             int x = 3;
+
+             if (Fork() != 0)
+                     printf("x=%d\n", ++x);
+
+             printf("x=%d\n", --x);
+             exit(0);
+     }
