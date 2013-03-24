@@ -1645,3 +1645,13 @@
              printf("c");
              exit(0);
      }
+
+8.22 编写 UNIX system 函数的你自己的版本
+
+         int mysystem(char *command);
+
+     mysystem 函数通过调用“/bin/sh -c command”来执行 command，然后在 command 完
+     成后返回。如果 command（通过调用 exit 函数或者执行一条 return 语句）正常退出，
+     那么 mysystem 返回 command 退出状态。例如，如果 command 通过调用 exit(8) 终
+     止，那么 mysystem 返回值 8。否则，如果 command 是异常终止的，那么 mysystem
+     就返回外壳返回的状态。
