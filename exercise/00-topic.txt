@@ -1615,3 +1615,18 @@
          printf("hello\n");
          exit(0);
      }
+
+8.20 使用 execve 编写一个叫做 myls 的程序，该程序的行为和 /bin/ls 程序的一样。你
+     的程序应该接受相同的命令行参数，解释同样的环境变量，并产生相同的输出。
+
+     ls 程序从 COLUMNS 环境变量中获得屏幕的宽度。如果没有设置 COLUMNS，那么 ls 会
+     假设屏幕宽 80 列。因此，你可以通过把 COLUMNS 环境设置小于 80，来检查你对环境
+     变量的处理：
+
+     unix> cc ex8-20.c -o myls
+     unix> setenv COLUMNS 40
+     ...output is 40 column wide
+     unix> ./myls
+     unix> unsetenv COLUMNS
+     unix> ./myls
+     ...output is now 80 columns wide
