@@ -1655,3 +1655,40 @@
      那么 mysystem 返回 command 退出状态。例如，如果 command 通过调用 exit(8) 终
      止，那么 mysystem 返回值 8。否则，如果 command 是异常终止的，那么 mysystem
      就返回外壳返回的状态。
+
+8.23 你的一个同事想要使用信号来让一个父进程对发生在一个子进程中的事件计数。其思
+     想是每次发生一个事件时，通过向父进程发送一个信号来通知它，并且让父进程的信
+     号处理程序对一个全局变量 counter 加一，在子进程终止之后，父进程就可以检查这
+     个变量。然而，当他在系统上运行下面测试代码时，发现父进程调用 printf 时，
+     counter 的值总是 2，即使子进程向父进程发送了 5 个信号。他很困惑，向你寻求帮
+     助。你能解释这个程序有什么错误吗？
+
+     #include "csapp.h"
+
+     int counter = 0;
+
+     void handler(int sig)
+     {
+          counter++;
+          sleep(1); /* Do some work in the handler */
+          return;
+     }
+
+     int main()
+     {
+          int i;
+
+          Signal(SIGUSR2, handler);
+
+          if (Fork() == 0) {  /* Child */
+               for (i = 0; i < 5; i++) {
+                    Kill(getppid(), SIGUSR2);
+                    printf("sent SIGUSR2 to parent\n");
+               }
+               exit(0);
+          }
+
+          Wait(NULL);
+          printf("counter=%d\n", counter);
+          exit(0);
+     }
