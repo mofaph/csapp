@@ -29,7 +29,7 @@ int main(int argc, char *argv[])
         struct stat statbuf;
 
         if (argc != 2) {
-                fprintf(stderr, "usage: mmapcopy <filename>\n");
+                fprintf(stderr, "usage: %s <filename>\n", argv[0]);
                 exit(1);
         }
 
