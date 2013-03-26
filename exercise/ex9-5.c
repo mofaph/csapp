@@ -1,8 +1,10 @@
 /*
- * mmapcopy.c
+ * 9.5
  *
  * 使用 mmap() 将一个任意大小的磁盘文件拷贝到 stdout。
  * 输入文件的名字必须作为一个命令行参数来传递。
+ *
+ * unix> cc ex9-5.c -o mmapcopy
  *
  * #include <unistd.h>
  * #include <sys/mman.h>
@@ -58,5 +60,3 @@ int main(int argc, char *argv[])
 
         return 0;
 }
-
-/* mmapcopy.c ends here */
