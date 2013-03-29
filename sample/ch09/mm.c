@@ -144,38 +144,38 @@ void *mm_malloc(size_t size)
     return bp;
 }
 
+/*
+ * 9.8
+ */
 static void *find_fit(size_t asize)
 {
-    char *bp;
-    size_t size;
+        /* First fit search */
+        void *bp;
 
-    bp = heap_listp + 2*WSIZE;
-    while (GET_ALLOC(bp) || (size = GET_SIZE(HDRP(bp))) < asize) {
-        if (size == 0)
-            return NULL;
-        bp = NEXT_BLKP(bp);
-    }
+        for (bp = heap_listp; GET_SIZE(HDRP(bp)) > 0; bp = NEXT_BLKP(bp)) {
+                if (!GET_ALLOC(HDRP(bp)) && (asize <= GET_SIZE(HDRP(bp)))) {
+                        return bp;
+                }
+        }
 
-    return (void *)bp;
+        return NULL;            /* No fit */
 }
 
+/*
+ * 9.9
+ */
 static void place(void *bp, size_t asize)
 {
-    size_t csize, psize;
+        size_t csize = GET_SIZE(HDRP(bp));
 
-    csize = GET_SIZE(HDRP(bp));
-    if (GET_SIZE(HDRP(bp)) - asize < 2*DSIZE) {
-        PUT(HDRP(bp), PACK(csize, 1));
-        PUT(FTRP(bp), PACK(csize, 1));
-        return;
-    }
-
-    psize = csize - asize;
-    PUT(HDRP(bp), PACK(asize, 1));
-    PUT(FTRP(bp), PACK(asize, 1));
-    bp = NEXT_BLKP(bp);
-    PUT(HDRP(bp), PACK(psize, 0));
-    PUT(FTRP(bp), PACK(psize, 0));
+        if ((csize - asize) >= (2*DSIZE)) {
+                PUT(HDRP(bp), PACK(asize, 1));
+                PUT(FTRP(bp), PACK(asize, 1));
+                bp = NEXT_BLKP(bp);
+                PUT(HDRP(bp), PACK(csize-asize, 0));
+                PUT(HDRP(bp), PACK(csize-asize, 0));
+        } else {
+                PUT(HDRP(bp), PACK(csize, 1));
+                PUT(FTRP(bp), PACK(csize, 1));
+        }
 }
-
-/* mm.c ends here */
