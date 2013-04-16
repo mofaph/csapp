@@ -1789,3 +1789,6 @@
      >  fg %2 # Wait for fg job to finish.
      > quit
      unix> # Back to the UNIX shell
+
+9.14 假设有一个输入文件 hello.txt，由字符串“hello, world!\n”组成，编写一个 C 程
+     序，使用 mmap 将 hello.txt 的内容改为“Jello, world!\n”。
