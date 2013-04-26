@@ -152,3 +152,38 @@ void longjmp(jmp_buf env, int retval);
 void siglongjmp(sigjmp_buf env, int retval);
 
 setjmp: 返回 0
+
+* 文件操作
+
+** open/close
+
+#include <sys/types.h>
+#include <sys/stat.h>
+#include <fcntl.h>
+int open(char *filename, int flags, mode_t mode);
+open: 若成功则为新文件描述符，若出错为 -1
+
+#include <unistd.h>
+int close(int fd);
+close: 若成功返回 0，若出错则为 -1
+
+** read/write
+
+#include <unistd.h>
+
+ssize_t read(int fd, void *buf, size_t n);
+ssize_t write(int fd, const void *buf, size_t n);
+
+read: 若成功返回读的字节数，若EOF则为0，若出错则为 -1
+write: 成功返回写的字节数，出错则为 -1
+
+** stat/fstat
+
+#include <unistd.h>
+#include <sys/stat.h>
+
+int stat(const char *filename, struct stat *buf);
+int fstat(int fd, struct stat *buf);
+
+stat: 同下
+fstat: 成功返回 0，出错返回 -1
