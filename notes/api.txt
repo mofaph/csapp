@@ -187,3 +187,11 @@ int fstat(int fd, struct stat *buf);
 
 stat: 同下
 fstat: 成功返回 0，出错返回 -1
+
+** dup/dup2
+
+#include <unistd.h>
+
+int dup2(int oldfd, int newfd);
+
+返回：若成功则为非负的描述符，若出错则为 -1
