@@ -1,0 +1,14 @@
+10.9
+
+mofaph@gmail.com
+2013-5-11
+--------------------------------------------------------------------------------
+
+if (Fork() == 0) { /* Child */
+    /* The Shell may be run these code? */
+    1. close all the open file descriptor
+    2. open standard input, and bind it to fd 0
+    3. open standard output, and bind it to fd 1
+    4. open standard error output, and bind it to fd 2
+    Execve("fstatcheck", argv, envp);
+}
