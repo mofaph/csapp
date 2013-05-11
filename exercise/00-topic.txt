@@ -1797,3 +1797,19 @@
 
 9.18 9.9.12 节中的分配器要求每个块既有头部也有脚部，以实现常数时间的合并。修改分
      配器，使得空闲块需要头部和脚部，而已分配块只需要头部。
+
+10.6 下面程序的输出是什么？
+
+     #include "csapp.h"
+
+     int main()
+     {
+         int fd1, fd2;
+
+         fd1 = Open("foo.txt", O_RDONLY, 0);
+         fd2 = Open("bar.txt", O_RDONLY, 0);
+         Close(fd2);
+         fd2 = Open("baz.txt", O_RDONLY, 0);
+         printf("fd2 = %d\n", fd2);
+         exit(0);
+     }
