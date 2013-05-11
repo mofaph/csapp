@@ -23,8 +23,19 @@ int main(int argc, char **argv)
                 fprintf(stderr, "usage: %s fd\n", argv[0]);
                 return -1;
         }
-        int fd = atoi(argv[1]);
 
+        char *c = argv[1];
+        for (;;) {
+                if (isalpha(*c)) {
+                        fprintf(stderr, "%s: not a number\n", argv[1]);
+                        return -1;
+                }
+                if (*c == '\0')
+                        break;
+                c += 1;
+        }
+
+        int fd = atoi(argv[1]);
         struct stat stat;
         int ret = fstat(fd, &stat);
         if (ret) {
