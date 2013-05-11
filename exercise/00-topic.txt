@@ -1832,3 +1832,8 @@
          /* What code is the shell executing right here? */
          Execve("fstatcheck", argv, envp);
      }
+
+10.10 修改图 10-4 中的 cpfile 程序，使得它有一个可选的命令行参数 infile。如果给定
+      了 infile，那么拷贝 infile 到标准输出，否则像以前那样拷贝标准输入到标准输出。
+      一个要求是对于两种情况，你的解答都必须使用原来的拷贝循环（第 9~11 行）。只
+      允许你插入代码，而不允许更改任何已经存在的代码。
