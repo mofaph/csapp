@@ -1,6 +1,7 @@
 test.c
 t.c
 a.out
+missing
 
 # Object files
 *.o
