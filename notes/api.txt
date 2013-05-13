@@ -195,3 +195,30 @@ fstat: 成功返回 0，出错返回 -1
 int dup2(int oldfd, int newfd);
 
 返回：若成功则为非负的描述符，若出错则为 -1
+
+* 网络编程
+
+** htonl/htons ntohl/ntohs
+
+#include <netinet/in.h>
+
+unsigned long  int htonl(unsigned long  int hostlong);
+unsigned short int htons(unsigned short int hostshort);
+
+unsigned long  int ntohl(unsigned long  int netlong);
+unsigned short int ntohs(unsigned short int netshort);
+
+htonl/htons: 返回按照网络字节顺序的值
+ntohl/ntohs: 返回按照主机字节顺序的值
+
+** inet_aton/inet_ntoa
+
+#include <arpa/inet.h>
+
+int inet_aton(const char *cp, struct in_addr *inp);
+char *inet_ntoa(struct in_addr in);
+
+inet_aton: 将一个点分十进制串转换为一个网络字节顺序的 IP 地址
+           成功返回 1，出错则为 0
+inet_ntoa: 将一个网络字节顺序的 IP 地址转换为它所对应的点分十进制
+           返回指向点分十进制字符串的指针
