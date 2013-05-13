@@ -222,3 +222,12 @@ inet_aton: 将一个点分十进制串转换为一个网络字节顺序的 IP �
            成功返回 1，出错则为 0
 inet_ntoa: 将一个网络字节顺序的 IP 地址转换为它所对应的点分十进制
            返回指向点分十进制字符串的指针
+
+** gethostbyname/gethostbyaddr
+
+#include <netdb.h>
+
+struct hostent *gethostbyname(const char *name);
+struct hostent *gethostbyaddr(const char *addr, int len, 0);
+
+gethostbyname/gethostbyaddr: 成功返回 非NULL 指针，出错则为 NULL，同时设置 h_errno
