@@ -166,7 +166,10 @@ int main(void)
         printf("\n\n");
 
         int finish = len - unfinish;
-        printf("total: %d, finish: %d(%.2f%%)\n", len, finish, (double)finish/len*100);
+        printf("total: %d, finish: %d(%.2f%%), unfinish: %d(%.2f%%)\n",
+               len,
+               finish, (double)finish/len*100,
+               unfinish, (double)unfinish/len*100);
 
         return 0;
 }
