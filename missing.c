@@ -100,11 +100,11 @@ void get_chapter_topic_from_filename(char *filename, int *chapter_num, int *topi
 
         char buf[10];
 
-        memset(buf, 0, sizeof(buf)/sizeof(buf[0]));
+        memset(buf, 0, sizeof(buf));
         memcpy(buf, filename+pmatch[1].rm_so, pmatch[1].rm_eo-pmatch[1].rm_so);
         *chapter_num = atoi(buf);
 
-        memset(buf, 0, sizeof(buf)/sizeof(buf[0]));
+        memset(buf, 0, sizeof(buf));
         memcpy(buf, filename+pmatch[2].rm_so, pmatch[2].rm_eo-pmatch[2].rm_so);
         *topic_num = atoi(buf);
 
@@ -113,16 +113,14 @@ void get_chapter_topic_from_filename(char *filename, int *chapter_num, int *topi
 
 void set_total_topic(char *dirname)
 {
-        DIR *dp;
-        struct dirent *dirp;
-
-        dp = opendir(dirname);
+        DIR *dp = opendir(dirname);
         if (dp == NULL) {
                 perror("opendir");
                 return;
         }
 
         for (;;) {
+                struct dirent *dirp;
                 dirp = readdir(dp);
                 if (dirp == NULL)
                         break;
