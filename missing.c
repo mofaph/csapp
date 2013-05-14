@@ -111,6 +111,7 @@ void get_chapter_topic_from_filename(char *filename, int *chapter_num, int *topi
         regfree(&preg);
 }
 
+/* 如果题目已经完成了，就在题目集合中设置完成标志 */
 void set_total_topic(char *dirname)
 {
         DIR *dp = opendir(dirname);
