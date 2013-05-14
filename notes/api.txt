@@ -213,6 +213,7 @@ ntohl/ntohs: 返回按照主机字节顺序的值
 
 ** inet_aton/inet_ntoa
 
+#include <netinet/in.h>
 #include <arpa/inet.h>
 
 int inet_aton(const char *cp, struct in_addr *inp);
@@ -231,3 +232,21 @@ struct hostent *gethostbyname(const char *name);
 struct hostent *gethostbyaddr(const char *addr, int len, 0);
 
 gethostbyname/gethostbyaddr: 成功返回 非NULL 指针，出错则为 NULL，同时设置 h_errno
+
+** socket/connect/bind/listen/accept
+
+#include <sys/types.h>
+#include <sys/socket.h>
+int socket(int domain, int type, int protocol);
+socket: 成功返回非负描述符，出错返回 -1
+
+#include <sys/socket.h>
+int connect(int sockfd, struct sockaddr *serv_addr, int addrlen);
+connect: 成功返回 0，出错返回 -1
+
+#include <sys/socket.h>
+int bind(int sockfd, struct sockaddr *my_addr, int addrlen);
+int listen(int sockfd, int backlog);
+int accept(int listenfd, struct sockaddr *addr, int *addrlen);
+bind/listen: 成功返回 0，出错返回 -1
+accept: 成功返回非负连接描述符，出错返回 -1
