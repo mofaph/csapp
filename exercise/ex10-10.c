@@ -4,6 +4,8 @@
  * mofaph@gmail.com
  * 2013-5-11
  *
+ * 感谢 @oymy，指出了这道题应该使用 dup2()。
+ *
  * $ cc -I../common ../common/csapp.c ex10-10.c -lpthread
  */
 
@@ -20,16 +22,14 @@ int main(int argc, char **argv)
                 return -1;
         }
 
-        /* 这里将文件里的内容，拷贝到标准输出 */
+        /* 这里将标准输入的文件描述符，重定位到输入文件的描述符 */
         if (argc == 2) {
                 char *filename = argv[1];
                 int fd = Open(filename, O_RDONLY, 0);
-                Rio_readinitb(&rio, fd);
-                for (;;) {
-                        n = Rio_readlineb(&rio, buf, MAXLINE);
-                        if (n <= 0)
-                                goto done;
-                        Rio_writen(STDOUT_FILENO, buf, n);
+                int ret = dup2(fd, STDIN_FILENO); /* 将标准输入重定位到 fd */
+                if (ret < 0) {
+                        perror("dup2");
+                        return -1;
                 }
         }
 
@@ -38,6 +38,5 @@ int main(int argc, char **argv)
         while ((n = Rio_readlineb(&rio, buf, MAXLINE)) != 0)
                 Rio_writen(STDOUT_FILENO, buf, n);
 
-done:
         return 0;
 }
