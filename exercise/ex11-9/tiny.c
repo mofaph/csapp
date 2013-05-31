@@ -213,9 +213,9 @@ void serve_static(int fd, char *filename, int filesize)
         /* Send response headers to client */
         get_filetype(filename, filetype);
         snprintf(buf, sizeof(buf), "HTTP/1.0 200 OK\r\n");
-        snprintf(buf+strlen(buf), sizeof(buf)-strlen(buf), "%sServer: Tiny Web Server\r\n", buf);
-        snprintf(buf+strlen(buf), sizeof(buf)-strlen(buf), "%sContent-length: %d\r\n", buf, filesize);
-        snprintf(buf+strlen(buf), sizeof(buf)-strlen(buf), "%sContent-type: %s\r\n\r\n", buf, filetype);
+        snprintf(buf+strlen(buf), sizeof(buf)-strlen(buf), "Server: Tiny Web Server\r\n");
+        snprintf(buf+strlen(buf), sizeof(buf)-strlen(buf), "Content-length: %d\r\n", filesize);
+        snprintf(buf+strlen(buf), sizeof(buf)-strlen(buf), "Content-type: %s\r\n\r\n", filetype);
         Rio_writen(fd, buf, strlen(buf));
 
         /*
