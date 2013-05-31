@@ -227,7 +227,7 @@ void serve_static(int fd, char *filename, int filesize)
         int srcfd = Open(filename, O_RDONLY, 0);
         char *body = NULL;
         const int min_size = (1<<10); /* 1KB */
-        int max_size = INT_MIN;       /* 16bit: 32KB, 32bit: 2GB */
+        int max_size = (unsigned)INT_MIN >> 1; /* 16bit: 16KB, 32bit: 1GB */
         size_t size = min_size;
         for (;;) {
                 if (size != max_size) {
