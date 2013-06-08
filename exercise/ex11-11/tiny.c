@@ -205,21 +205,8 @@ int parse_uri(char *uri, char *filename, char *cgiargs)
         }
 }
 
-void serve_static(int fd, char *filename, int filesize, char *method)
+void send_response_body(int fd, char *filename)
 {
-        char filetype[MAXLINE], buf[MAXBUF];
-
-        /* Send response headers to client */
-        get_filetype(filename, filetype);
-        snprintf(buf, sizeof(buf), "HTTP/1.0 200 OK\r\n");
-        snprintf(buf+strlen(buf), sizeof(buf)-strlen(buf), "Server: Tiny Web Server\r\n");
-        snprintf(buf+strlen(buf), sizeof(buf)-strlen(buf), "Content-length: %d\r\n", filesize);
-        snprintf(buf+strlen(buf), sizeof(buf)-strlen(buf), "Content-type: %s\r\n\r\n", filetype);
-        Rio_writen(fd, buf, strlen(buf));
-
-        if (!strcasecmp(method, "HEAD"))
-                return;
-
         /*
          * Send response body to client
          *
@@ -259,6 +246,23 @@ void serve_static(int fd, char *filename, int filesize, char *method)
         /* Clean */
         free(body);
         Close(srcfd);
+}
+
+void serve_static(int fd, char *filename, int filesize, char *method)
+{
+        char filetype[MAXLINE], buf[MAXBUF];
+
+        /* Send response headers to client */
+        get_filetype(filename, filetype);
+        snprintf(buf, sizeof(buf), "HTTP/1.0 200 OK\r\n");
+        snprintf(buf+strlen(buf), sizeof(buf)-strlen(buf), "Server: Tiny Web Server\r\n");
+        snprintf(buf+strlen(buf), sizeof(buf)-strlen(buf), "Content-length: %d\r\n", filesize);
+        snprintf(buf+strlen(buf), sizeof(buf)-strlen(buf), "Content-type: %s\r\n\r\n", filetype);
+        Rio_writen(fd, buf, strlen(buf));
+
+        if (!strcasecmp(method, "HEAD"))
+                return;
+        send_response_body(fd, filename);
 }
 
 /*
