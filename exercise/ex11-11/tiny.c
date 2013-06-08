@@ -70,26 +70,21 @@ int main(int argc, char **argv)
         }
 }
 
-void doit(int fd)
+/* Return a pointer to request, the caller should free the buffer */
+char *read_request(rio_t *rp)
 {
-        int is_static;
-        struct stat sbuf;
-        char buf[MAXLINE], method[MAXLINE], uri[MAXLINE], version[MAXLINE];
-        char filename[MAXLINE], cgiargs[MAXLINE];
-        rio_t rio;
-
-        /* Read request line and headers, put them into a file */
+        char buf[MAXLINE];
         char *request = NULL;
-        Rio_readinitb(&rio, fd);
+
         for (;;) {
-                Rio_readlineb(&rio, buf, MAXLINE);
+                Rio_readlineb(rp, buf, MAXLINE);
                 /*
                  * Firefox will sent \x16\x3.
                  * \x16: Synchronous Idle, \x3: End of Text
                  */
                 if (!strncmp(buf, "\x16\x3", 2)) {
                         free(request);
-                        return;
+                        return NULL;
                 }
                 int buflen = strlen(buf);
                 char *old_request = request;
@@ -98,49 +93,65 @@ void doit(int fd)
                 if (request == NULL) {
                         fprintf(stderr, "realloc: run out of memory\n");
                         free(old_request);
-                        return;
+                        return NULL;
                 }
                 memmove(request+old_reqlen, buf, buflen+1);
                 if (!strcmp(buf, "\r\n")) /* Copy before stop */
                         break;
         }
-        sscanf(request, "%s %s %s", method, uri, version);
-        if (strcasecmp(method, "GET") && strcasecmp(method, "HEAD")) {
-                clienterror(fd, method, "501", "Not implemented",
-                        "Tiny does not implement this method");
+
+        return request;
+}
+
+void write_to_file(char *request)
+{
+        if (request == NULL)
                 return;
-        }
+
         FILE *out = fopen("tiny-request.txt", "w+");
         if (out == NULL) {
                 perror("fopen");
-                free(request);
+        } else {
+                fprintf(out, "%s", request);
+                fflush(out);
+                fclose(out);
+        }
+}
+
+void doit(int fd)
+{
+        rio_t rio;
+        Rio_readinitb(&rio, fd);
+        char *request = read_request(&rio);
+        if (request == NULL)
+                return;
+        write_to_file(request);
+
+        char method[MAXLINE], uri[MAXLINE], version[MAXLINE];
+        sscanf(request, "%s %s %s", method, uri, version);
+        free(request);
+        if (strcasecmp(method, "GET") && strcasecmp(method, "HEAD")) {
+                clienterror(fd, method, "501", "Not implemented", "Tiny does not implement this method");
                 return;
         }
-        fprintf(out, "%s", request);
-        fflush(out);
-        fclose(out);
-        free(request);
 
-        /* Parse URI from request */
-        is_static = parse_uri(uri, filename, cgiargs);
+        char filename[MAXLINE], cgiargs[MAXLINE];
+        int is_static = parse_uri(uri, filename, cgiargs);
+        struct stat sbuf;
         if (stat(filename, &sbuf) < 0) {
-                clienterror(fd, filename, "404", "Not found",
-                            "Tiny couldn't read the file");
+                clienterror(fd, filename, "404", "Not found", "Tiny couldn't read the file");
                 return;
         }
 
         if (is_static) {        /* Serve static content */
                 if (!(S_ISREG(sbuf.st_mode)) || !(S_IRUSR & sbuf.st_mode)) {
-                        clienterror(fd, filename, "403", "Forbidden",
-                                    "Tiny couldn't read the filetype");
+                        clienterror(fd, filename, "403", "Forbidden", "Tiny couldn't read the filetype");
                         return;
                 }
                 serve_static(fd, filename, sbuf.st_size, method);
-        }
-        else {                  /* Serve dynamic content */
+        } else {                  /* Serve dynamic content */
                 if (!(S_ISREG(sbuf.st_mode)) || !(S_IXUSR & sbuf.st_mode)) {
-                        clienterror(fd, filename, "403", "Forbidden",
-                                    "Tiny couldn't run the CGI program");
+                        clienterror(fd, filename, "403", "Forbidden", "Tiny couldn't run the CGI program");
                         return;
                 }
                 serve_dynamic(fd, filename, cgiargs, method);
