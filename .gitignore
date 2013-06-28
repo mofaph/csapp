@@ -3,6 +3,9 @@ t.c
 a.out
 missing
 
+TAGS
+tags
+
 # Object files
 *.o
 *.s
