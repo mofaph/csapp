@@ -25,10 +25,10 @@ TAGS:
 	find . \( -type d -name .git -prune \) -o \( -type f -name "*.[ch]" \) | xargs etags -
 
 ex9-20: ex9-20.o t9-20.o
-	gcc -Wall $^ -o $@
+	$(CC) $(CFLAGS) $^ -o $@
 
 tm: t-malloc.o
-	gcc -Wall $^ -o $@
+	$(CC) $(CFLAGS) $^ -o $@
 
 clean:
 	rm -f $(OBJS) ex9-20 tm TAGS
