@@ -5,15 +5,22 @@
 
 CC = gcc
 CFLAGS = -Wall
+INCLUDES += -I../../common
 LIBS += -lpthread
 
 OBJS += csapp.o
 OBJS += hello.o
+OBJS += echoservert.o
+OBJS += echo.o
 
 PROGRAMS += hello
+PROGRAMS += echoservert
 
 PHONY += all
 PHONY += clean
+
+csapp_h = ../../common/csapp.h
+csapp_c = ../../common/csapp.c
 
 .PHONY: $(PHONY)
 
@@ -27,6 +34,15 @@ hello.o: hello.c ../../common/csapp.h
 
 csapp.o: ../../common/csapp.c ../../common/csapp.h
 	$(CC) $(CFLAGS) -I../../common -c $< -o $@
+
+echoservert: echoservert.o csapp.o echo.o
+	$(CC) $(CFLAGS) $^ $(LIBS) -o $@
+
+echoservert.o: echoservert.c $(csapp_h)
+	$(CC) $(CFLAGS) $(INCLUDES) -c $< -o $@
+
+echo.o: ../ch11/echo.c $(csapp_h)
+	$(CC) $(CFLAGS) $(INCLUDES) -c $< -o $@
 
 clean:
 	rm -f $(OBJS) $(PROGRAMS)
