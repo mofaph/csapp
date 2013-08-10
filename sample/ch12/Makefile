@@ -29,11 +29,11 @@ all: $(PROGRAMS)
 hello: hello.o csapp.o
 	$(CC) $(CFLAGS) $^ $(LIBS) -o $@
 
-hello.o: hello.c ../../common/csapp.h
-	$(CC) $(CFLAGS) -I../../common -c $< -o $@
+hello.o: hello.c $(csapp_h)
+	$(CC) $(CFLAGS) $(INCLUDES) -c $< -o $@
 
-csapp.o: ../../common/csapp.c ../../common/csapp.h
-	$(CC) $(CFLAGS) -I../../common -c $< -o $@
+csapp.o: $(csapp_c) $(csapp_h)
+	$(CC) $(CFLAGS) $(INCLUDES) -c $< -o $@
 
 echoservert: echoservert.o csapp.o echo.o
 	$(CC) $(CFLAGS) $^ $(LIBS) -o $@
