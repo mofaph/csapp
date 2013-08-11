@@ -15,12 +15,16 @@ OBJS += echo.o
 OBJS += sharing.o
 OBJS += badcnt.o
 OBJS += goodcnt.o
+OBJS += sbuf.o
+OBJS += echoservert_pre.o
+OBJS += echo_cnt.o
 
 PROGRAMS += hello
 PROGRAMS += echoservert
 PROGRAMS += sharing
 PROGRAMS += badcnt
 PROGRAMS += goodcnt
+PROGRAMS += echoservert_pre
 
 PHONY += all
 PHONY += clean
@@ -66,6 +70,18 @@ goodcnt: goodcnt.o csapp.o
 	$(CC) $(CFLAGS) $^ $(LIBS) -o $@
 
 goodcnt.o: goodcnt.c $(csapp_h)
+	$(CC) $(CFLAGS) $(INCLUDES) -c $< -o $@
+
+echoservert_pre: echoservert_pre.o echo_cnt.o sbuf.o csapp.o
+	$(CC) $(CFLAGS) $^ $(LIBS) -o $@
+
+echoservert_pre.o: echoservert_pre.c $(csapp_h) sbuf.h
+	$(CC) $(CFLAGS) $(INCLUDES) -c $< -o $@
+
+echo_cnt.o: echo_cnt.c $(csapp_h)
+	$(CC) $(CFLAGS) $(INCLUDES) -c $< -o $@
+
+sbuf.o: sbuf.c sbuf.h
 	$(CC) $(CFLAGS) $(INCLUDES) -c $< -o $@
 
 clean:
