@@ -13,10 +13,12 @@ OBJS += hello.o
 OBJS += echoservert.o
 OBJS += echo.o
 OBJS += sharing.o
+OBJS += badcnt.o
 
 PROGRAMS += hello
 PROGRAMS += echoservert
 PROGRAMS += sharing
+PROGRAMS += badcnt
 
 PHONY += all
 PHONY += clean
@@ -50,6 +52,12 @@ sharing: sharing.o csapp.o
 	$(CC) $(CFLAGS) $^ $(LIBS) -o $@
 
 sharing.o: sharing.c $(csapp_h)
+	$(CC) $(CFLAGS) $(INCLUDES) -c $< -o $@
+
+badcnt: badcnt.o csapp.o
+	$(CC) $(CFLAGS) $^ $(LIBS) -o $@
+
+badcnt.o: badcnt.c $(csapp_h)
 	$(CC) $(CFLAGS) $(INCLUDES) -c $< -o $@
 
 clean:
