@@ -19,6 +19,7 @@ OBJS += sbuf.o
 OBJS += echoservert_pre.o
 OBJS += echo_cnt.o
 OBJS += echoserverp.o
+OBJS += select.o
 
 PROGRAMS += hello
 PROGRAMS += echoservert
@@ -27,6 +28,7 @@ PROGRAMS += badcnt
 PROGRAMS += goodcnt
 PROGRAMS += echoservert_pre
 PROGRAMS += echoserverp
+PROGRAMS += select
 
 PHONY += all
 PHONY += clean
@@ -90,6 +92,12 @@ echoserverp: echoserverp.o echo.o csapp.o
 	$(CC) $(CFLAGS) $^ $(LIBS) -o $@
 
 echoserverp.o: echoserverp.c $(csapp_h)
+	$(CC) $(CFLAGS) $(INCLUDES) -c $< -o $@
+
+select: select.o echo.o csapp.o
+	$(CC) $(CFLAGS) $^ $(LIBS) -o $@
+
+select.o: select.c $(csapp_h)
 	$(CC) $(CFLAGS) $(INCLUDES) -c $< -o $@
 
 clean:
