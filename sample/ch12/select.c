@@ -3,6 +3,11 @@
  *
  * 使用 I/O 多路复用的 echo 服务器。服务器使用 select 等待监听描述符上的连接请求
  * 和标准输入上的命令。
+ *
+ * 在类 UNIX 系统下编译和运行：
+ *
+ * unix> make select
+ * unix> ./select 16384
  */
 
 #include "csapp.h"
