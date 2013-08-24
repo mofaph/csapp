@@ -61,7 +61,10 @@ int init_total_topic(void)
 /* 根据章节号和题号，给出总题号 */
 int index_total(int chapter_num, int topic_num)
 {
-        if (topic_num < homework_topic[chapter_num].beg)
+        if (chapter_num < 0 || chapter_num > MAX_CHAPTER)
+                return -1;
+        if (topic_num < homework_topic[chapter_num].beg ||
+            topic_num > homework_topic[chapter_num].end)
                 return -1;
 
         int i, index = 0;
