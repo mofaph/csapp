@@ -321,3 +321,13 @@ int pthread_once(pthread_once_t *once_control, void (*init_routine)(void));
 个没有任何参数也不返回任何值的函数。
 
 当需要动态初始化多个线程共享的全局变量时，pthread_once() 是很有用的。
+
+* 信号量
+
+#include <semaphore.h>
+
+int sem_init(sem_t *sem, 0, unsigned int value);
+int sem_wait(sem_t *s); /* P(s) */
+int sem_post(sem_t *s); /* V(s) */
+
+返回值：若成功返回 0，若出错返回 -1
