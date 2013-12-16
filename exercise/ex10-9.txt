@@ -1,14 +1,19 @@
 10.9
 
-mofaph@gmail.com
-2013-5-11
+bskim45@gmail.com
+2013-12-17
 --------------------------------------------------------------------------------
+
+Before the call to execve, the child process opens foo.txt as descriptor 3, redirects stdin to foo.txt,
+and then (here is the kicker) closes descriptor 3:
 
 if (Fork() == 0) { /* Child */
     /* The Shell may be run these code? */
-    1. close all the open file descriptor
-    2. open standard input, and bind it to fd 0
-    3. open standard output, and bind it to fd 1
-    4. open standard error output, and bind it to fd 2
+    fd = Open(‘‘foo.txt’’, O_RDONLY, 0); /* fd == 3 */
+    Dup2(fd, STDIN_FILENO);
+    Close(fd);
     Execve("fstatcheck", argv, envp);
 }
+
+When fstatcheck begins running in the child, there are exactly three open files, corresponding to descriptors
+0, 1, and 2, with descriptor 1 redirected to foo.txt.
