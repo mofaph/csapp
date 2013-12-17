@@ -6,5 +6,5 @@
  */
 int combine_word(unsigned x, unsigned y)
 {
-        return (x & ~0xFF) | (y & 0xFF);
+        return (x & 0xFF) | (y & ~0xFF);
 }
