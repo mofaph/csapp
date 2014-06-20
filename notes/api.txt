@@ -250,3 +250,84 @@ int listen(int sockfd, int backlog);
 int accept(int listenfd, struct sockaddr *addr, int *addrlen);
 bind/listen: 成功返回 0，出错返回 -1
 accept: 成功返回非负连接描述符，出错返回 -1
+
+* 线程控制
+** pthread_create 创建线程
+
+#include <pthread.h>
+typedef void *(func)(void *);
+
+int pthread_create(pthread_t *tid, pthread_attr_t *attr, func *f, void *arg);
+
+这个函数创建一个新的线程，并带着一个输入变量 arg，在新线程的上下文中运行线程例
+程 f。能用 attr 参数来改变新创建线程的默认属性。详情请参考《UNIX高级编程环境·第2
+版》的第 11 章和第 12 章。
+
+返回值：成功返回 0，出错则为非零
+
+pthread_t pthread_self(void);
+
+返回值：调用者的线程 ID
+
+** pthread_exit/pthread_cancel 终止线程
+
+#include <pthread.h>
+
+void pthread_exit(void *thread_return);
+int pthread_cancel(pthread_t tid);
+
+返回值：成功返回 0，出错返回非零
+
+** pthread_join 回收已终止线程的资源
+
+#include <pthread.h>
+
+int pthread_cancel(pthread_t pid, void **thread_return);
+
+返回值：成功返回 0，出错返回非零
+
+这个函数等待其他线程终止。它会阻塞，直到线程 tid 终止，将线程例程返回的
+(void *) 指针赋值为 thread_return 指向的位置，然后回收已终止线程占用的所有存储器
+资源。
+
+pthread_join() 只能等待一个指定的线程终止，没有办法让 pthread_join() 等待任意一个
+线程终止。
+
+** pthread_detach 分离线程
+
+在任何一个时间点上，线程是可结合的或者是可分离的。一个分离的线程是不能被其他线程
+回收或杀死的，它的存储器资源在它终止时由系统自动释放。
+
+默认情况下，线程被创建成可结合的。一个可结合的线程能够被其他线程回收其资源和杀死；
+在被其他线程回收之前，它的存储器资源是没有被释放的。
+
+#include <pthread.h>
+
+int pthread_detach(pthread_t pid);
+
+返回值：成功返回 0，出错返回非零
+
+** pthread_once 初始化线程
+
+#include <pthread.h>
+
+pthread_once_t once_control = PTHREAD_ONCE_INIT;
+
+int pthread_once(pthread_once_t *once_control, void (*init_routine)(void));
+
+返回值：总是返回 0
+
+当第一次用参数 once_control 调用 pthread_once() 时，它调用 init_routine，这是一
+个没有任何参数也不返回任何值的函数。
+
+当需要动态初始化多个线程共享的全局变量时，pthread_once() 是很有用的。
+
+* 信号量
+
+#include <semaphore.h>
+
+int sem_init(sem_t *sem, 0, unsigned int value);
+int sem_wait(sem_t *s); /* P(s) */
+int sem_post(sem_t *s); /* V(s) */
+
+返回值：若成功返回 0，若出错返回 -1
