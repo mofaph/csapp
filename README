@@ -25,7 +25,6 @@ common/         共享代码
 exercise/       家庭作业的题目和个人的解答
 notes/          读书笔记
 sample/         手动录入的示例代码
-resource/       学习资源
 
 missing.c       这个程序输出还没有完成的家庭作业的题号
 
