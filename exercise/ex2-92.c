@@ -23,5 +23,15 @@ float_bits float_negate(float_bits f)
 
         if (exp == 0xFF && frac != 0) /* NaN */
                 return f;
-        return (~sign << 31) | (exp << 23) | frac;
+    
+        unsigned reverseSign = ~sign
+        return reverseSign<<31 | (exp << 23) | frac;
+}
+
+
+
+int main(){
+    float_bits a = 0x81E00000;
+    float_bits result = float_negate(a);
+    printf("%x",result);
 }
